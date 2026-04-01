@@ -18,10 +18,36 @@ export interface Category {
 }
 
 export interface Player {
+  id?: string;
   rank?: number;
   name: string;
   points: number;
   level: number;
+}
+
+export interface UserProfile {
+  id: string;
+  display_name: string;
+  avatar_url: string | null;
+  points: number;
+  level: number;
+  total_quizzes: number;
+  total_correct: number;
+  total_questions_answered: number;
+  badges: string[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface QuizHistoryEntry {
+  id: string;
+  user_id: string;
+  category_id: string;
+  category_name: string;
+  correct_answers: number;
+  total_questions: number;
+  points_earned: number;
+  completed_at: string;
 }
 
 export interface Prize {
@@ -38,4 +64,4 @@ export interface SessionStats {
     pointsEarned: number;
 }
 
-export type GameScreen = 'name_entry' | 'category_selection' | 'playing' | 'leaderboard' | 'score';
+export type GameScreen = 'auth' | 'dashboard' | 'profile_edit' | 'category_selection' | 'playing' | 'leaderboard' | 'score';

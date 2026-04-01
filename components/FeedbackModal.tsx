@@ -5,9 +5,10 @@ interface FeedbackModalProps {
   isOpen: boolean;
   onClose: () => void;
   question: Question | null;
+  onSubmitFeedback?: (questionText: string, feedbackText: string) => Promise<void>;
 }
 
-const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose, question }) => {
+const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose, question, onSubmitFeedback }) => {
   const [feedback, setFeedback] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -21,18 +22,10 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose, question
 
   if (!isOpen || !question) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const existing = JSON.parse(localStorage.getItem('mcquizzerFeedback') || '[]');
-      existing.push({
-        questionText: question.text,
-        feedback,
-        timestamp: new Date().toISOString(),
-      });
-      localStorage.setItem('mcquizzerFeedback', JSON.stringify(existing));
-    } catch {
-      // localStorage full or unavailable — silently continue
+    if (onSubmitFeedback) {
+      await onSubmitFeedback(question.text, feedback);
     }
     setIsSubmitted(true);
     setTimeout(() => {
