@@ -23,9 +23,17 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ isOpen, onClose, question
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(`Feedback submitted for question: "${question.text}"\nFeedback: ${feedback}`);
-    // Here you would typically send the feedback to a server.
-    // For this app, we'll just simulate it.
+    try {
+      const existing = JSON.parse(localStorage.getItem('mcquizzerFeedback') || '[]');
+      existing.push({
+        questionText: question.text,
+        feedback,
+        timestamp: new Date().toISOString(),
+      });
+      localStorage.setItem('mcquizzerFeedback', JSON.stringify(existing));
+    } catch {
+      // localStorage full or unavailable — silently continue
+    }
     setIsSubmitted(true);
     setTimeout(() => {
       onClose();
