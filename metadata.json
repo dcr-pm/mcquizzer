@@ -1,6 +1,6 @@
 {
-  "name": "MarketingCloud Quizzer",
-  "description": "Challenge your Salesforce Marketing Cloud knowledge with MarketingCloud Quizzer, the ultimate test for SFMC professionals.",
+  "name": "SF Quizzer",
+  "description": "Challenge your Salesforce Marketing Cloud knowledge with SF Quizzer, the ultimate test for SFMC professionals.",
   "requestFramePermissions": [],
   "prompt": ""
 }

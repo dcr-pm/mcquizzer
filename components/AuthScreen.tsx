@@ -117,8 +117,8 @@ const AuthScreen: React.FC = () => {
       <div className="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-700 animate-fade-in-up w-full max-w-sm">
         <div className="text-center mb-6">
           <i className="fa-solid fa-cloud text-4xl text-[#0F79AF] mb-2"></i>
-          <h2 className="text-xl sm:text-2xl font-bold text-white">MarketingCloud Quizzer</h2>
-          <p className="text-gray-400 text-sm mt-1">Test your SFMC knowledge</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-white">SF Quizzer</h2>
+          <p className="text-gray-400 text-sm mt-1">Test your Salesforce knowledge</p>
         </div>
 
         {error && (

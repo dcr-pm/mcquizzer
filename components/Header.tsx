@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
     <header className="sticky top-0 z-30 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg text-white p-3 sm:p-4 flex justify-between items-center">
       <div className="flex items-center gap-2 sm:gap-3">
         <i className="fa-solid fa-cloud text-2xl sm:text-3xl text-[#0F79AF]"></i>
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold">MarketingCloud Quizzer</h1>
+        <h1 className="text-lg sm:text-xl md:text-2xl font-bold">SF Quizzer</h1>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">

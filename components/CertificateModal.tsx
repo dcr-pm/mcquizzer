@@ -61,7 +61,7 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ player, stats, onCl
                 <div className="text-center sm:text-left order-2 sm:order-1">
                     <p className="font-certificate text-2xl sm:text-3xl text-gray-700">Quiz Master</p>
                     <hr className="border-gray-600"/>
-                    <p className="text-xs sm:text-sm text-gray-600">MarketingCloud Quizzer</p>
+                    <p className="text-xs sm:text-sm text-gray-600">SF Quizzer</p>
                 </div>
                 <div className="order-1 sm:order-2">
                     <i className="fa-solid fa-stamp text-6xl sm:text-8xl text-red-700 opacity-80 -rotate-12"></i>

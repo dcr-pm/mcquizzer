@@ -1,5 +1,5 @@
 -- ==============================================
--- MarketingCloud Quizzer - Supabase Setup Script
+-- SF Quizzer - Supabase Setup Script
 -- Run this in your Supabase SQL Editor
 -- ==============================================
 

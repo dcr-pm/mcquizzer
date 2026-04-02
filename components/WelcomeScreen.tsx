@@ -35,7 +35,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
             <i className="fa-solid fa-gears text-purple-400 text-2xl sm:text-3xl"></i>
         </div>
         
-        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Welcome to MarketingCloud Quizzer!</h2>
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Welcome to SF Quizzer!</h2>
         <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto mb-8">
           Challenge your expertise, earn points, and prove you're an SFMC Guru! Select a category and let the quiz begin.
         </p>
