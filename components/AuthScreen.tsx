@@ -148,9 +148,12 @@ const AuthScreen: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            className="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            className="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             required
           />
+          <p className="text-gray-500 text-xs mb-4 text-center">
+            <i className="fa-solid fa-circle-info mr-1"></i>Please use a personal email (Gmail, Outlook, Yahoo, iCloud). Work/corporate emails may not receive the sign-in code.
+          </p>
           <button
             type="submit"
             disabled={loading}
