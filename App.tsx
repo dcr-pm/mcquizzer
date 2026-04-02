@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Player, Category, Question, GameScreen, Prize, SessionStats } from './types.ts';
+import { Player, Category, Question, GameScreen, Prize, SessionStats, Certification, ExamState, ExamResult, PremiumQuestion, FlashcardProgress, DomainScore } from './types.ts';
 import { CATEGORIES, PRIZES, QUESTIONS_PER_ROUND, EINSTEIN_CHALLENGE_QUESTIONS } from './constants.ts';
 import { ALL_QUESTIONS } from './questions.ts';
+import { CERTIFICATIONS } from './data/certifications.ts';
+import { PREMIUM_QUESTIONS } from './data/premium-questions.ts';
+import { FLASHCARDS } from './data/flashcards.ts';
 import { useAuth } from './lib/AuthContext.tsx';
-import { saveQuizResult, fetchLeaderboard, saveFeedback } from './lib/database.ts';
+import { saveQuizResult, fetchLeaderboard, saveFeedback, saveExamResult, fetchFlashcardProgress, upsertFlashcardProgress } from './lib/database.ts';
 import Header from './components/Header.tsx';
 import Footer from './components/Footer.tsx';
 import AuthScreen from './components/AuthScreen.tsx';
@@ -15,6 +18,13 @@ import Leaderboard from './components/Leaderboard.tsx';
 import PrizeAlert from './components/PrizeAlert.tsx';
 import FeedbackModal from './components/FeedbackModal.tsx';
 import ScoreScreen from './components/ScoreScreen.tsx';
+import PremiumUpgradeScreen from './components/PremiumUpgradeScreen.tsx';
+import CertHubScreen from './components/CertHubScreen.tsx';
+import StudyModeScreen from './components/StudyModeScreen.tsx';
+import FlashcardScreen from './components/FlashcardScreen.tsx';
+import ExamSetupScreen from './components/ExamSetupScreen.tsx';
+import ExamPlayingScreen from './components/ExamPlayingScreen.tsx';
+import ExamResultsScreen from './components/ExamResultsScreen.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
   const shuffled = [...array];
@@ -47,6 +57,12 @@ const App: React.FC = () => {
 
   // Track the category ID for the current session (needed for saving to DB)
   const sessionCategoryIdRef = useRef<string>('');
+
+  // Premium tier state
+  const [currentCert, setCurrentCert] = useState<Certification>(CERTIFICATIONS[0]);
+  const [examState, setExamState] = useState<ExamState | null>(null);
+  const [examResult, setExamResult] = useState<ExamResult | null>(null);
+  const [flashcardProgress, setFlashcardProgress] = useState<FlashcardProgress[]>([]);
 
   const currentQuestion = questionQueue[currentQuestionIndex];
 
@@ -200,6 +216,11 @@ const App: React.FC = () => {
         handleEndQuiz();
         setScreen('dashboard');
       }
+    } else if (screen === 'exam_playing') {
+      if (window.confirm('Are you sure you want to leave? Your exam progress will be lost.')) {
+        setExamState(null);
+        setScreen('dashboard');
+      }
     } else {
       setScreen('dashboard');
     }
@@ -232,6 +253,122 @@ const App: React.FC = () => {
       }
   };
 
+  // =====================
+  // PREMIUM TIER HANDLERS
+  // =====================
+
+  const handleCertPrep = () => {
+    if (profile?.is_premium) {
+      setScreen('cert_hub');
+    } else {
+      setScreen('premium_upgrade');
+    }
+  };
+
+  const handleStartExam = (questions: PremiumQuestion[], timeLimitSeconds: number) => {
+    setExamState({
+      questions,
+      answers: new Map(),
+      flagged: new Set(),
+      currentIndex: 0,
+      startTime: Date.now(),
+      timeLimitSeconds,
+    });
+    setScreen('exam_playing');
+  };
+
+  const handleSubmitExam = useCallback(async () => {
+    if (!examState) return;
+    const { questions, answers, startTime } = examState;
+    const timeTaken = Math.floor((Date.now() - startTime) / 1000);
+
+    // Calculate scores
+    let correctTotal = 0;
+    const domainMap = new Map<string, { correct: number; total: number }>();
+
+    questions.forEach((q, i) => {
+      const isCorrect = answers.get(i) === q.correct;
+      if (isCorrect) correctTotal++;
+
+      const existing = domainMap.get(q.domainId) || { correct: 0, total: 0 };
+      existing.total++;
+      if (isCorrect) existing.correct++;
+      domainMap.set(q.domainId, existing);
+    });
+
+    const scorePercent = Math.round((correctTotal / questions.length) * 100);
+    const domainBreakdown: DomainScore[] = Array.from(domainMap.entries()).map(([domainId, scores]) => ({
+      domainId,
+      domainName: currentCert.domains.find(d => d.id === domainId)?.name || domainId,
+      correct: scores.correct,
+      total: scores.total,
+      percent: scores.total > 0 ? Math.round((scores.correct / scores.total) * 100) : 0,
+    }));
+
+    const result: ExamResult = {
+      certId: currentCert.id,
+      certName: currentCert.name,
+      totalQuestions: questions.length,
+      correctAnswers: correctTotal,
+      passed: scorePercent >= currentCert.passingScore,
+      passingScore: currentCert.passingScore,
+      scorePercent,
+      domainBreakdown,
+      timeTaken,
+      completedAt: new Date().toISOString(),
+    };
+
+    setExamResult(result);
+    setExamState(null);
+    setScreen('exam_results');
+
+    // Save to DB
+    if (user) {
+      await saveExamResult(user.id, result);
+    }
+  }, [examState, currentCert, user]);
+
+  const loadFlashcardProgress = useCallback(async () => {
+    if (user) {
+      const progress = await fetchFlashcardProgress(user.id, currentCert.id);
+      setFlashcardProgress(progress);
+    }
+  }, [user, currentCert.id]);
+
+  const handleFlashcardUpdate = async (flashcardId: string, mastery: 'new' | 'learning' | 'mastered') => {
+    // Optimistic update
+    setFlashcardProgress(prev => {
+      const existing = prev.find(p => p.flashcard_id === flashcardId);
+      if (existing) {
+        return prev.map(p => p.flashcard_id === flashcardId ? { ...p, mastery, last_reviewed: new Date().toISOString(), review_count: p.review_count + 1 } : p);
+      }
+      return [...prev, { user_id: user?.id || '', flashcard_id: flashcardId, cert_id: currentCert.id, mastery, last_reviewed: new Date().toISOString(), review_count: 1 }];
+    });
+    if (user) {
+      await upsertFlashcardProgress(user.id, flashcardId, currentCert.id, mastery);
+    }
+  };
+
+  // Load flashcard progress when entering flashcards screen
+  useEffect(() => {
+    if (screen === 'flashcards') {
+      loadFlashcardProgress();
+    }
+  }, [screen, loadFlashcardProgress]);
+
+  // Handle Stripe checkout return
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('checkout') === 'success') {
+      // Clear URL params
+      window.history.replaceState({}, '', window.location.pathname);
+      // Refresh profile to pick up is_premium
+      refreshProfile();
+    } else if (params.get('checkout') === 'cancel') {
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, [refreshProfile]);
+
   const handleSignOut = async () => {
     await signOut();
     setPlayer(null);
@@ -255,7 +392,7 @@ const App: React.FC = () => {
       case 'auth':
         return <AuthScreen />;
       case 'dashboard':
-        return <DashboardScreen onStartQuiz={() => setScreen('category_selection')} onShowLeaderboard={handleShowLeaderboard} onEditProfile={() => setScreen('profile_edit')} />;
+        return <DashboardScreen onStartQuiz={() => setScreen('category_selection')} onShowLeaderboard={handleShowLeaderboard} onEditProfile={() => setScreen('profile_edit')} onCertPrep={handleCertPrep} />;
       case 'profile_edit':
         return <ProfileEditScreen onBack={handleBackToDashboard} />;
       case 'category_selection':
@@ -279,6 +416,68 @@ const App: React.FC = () => {
       case 'score':
         if (sessionStats) {
            return <ScoreScreen stats={sessionStats} player={player} onPlayAgain={handlePlayAgain} onNewCategory={handleBackToCategories} onShowLeaderboard={handleShowLeaderboard} />;
+        }
+        return null;
+      case 'premium_upgrade':
+        return <PremiumUpgradeScreen onBack={handleBackToDashboard} />;
+      case 'cert_hub':
+        return (
+          <CertHubScreen
+            cert={currentCert}
+            onStudyMode={() => setScreen('study_mode')}
+            onFlashcards={() => setScreen('flashcards')}
+            onPracticeExam={() => setScreen('exam_setup')}
+            onBack={handleBackToDashboard}
+          />
+        );
+      case 'study_mode':
+        return (
+          <StudyModeScreen
+            cert={currentCert}
+            questions={PREMIUM_QUESTIONS.filter(q => q.certId === currentCert.id)}
+            onExit={() => setScreen('cert_hub')}
+          />
+        );
+      case 'flashcards':
+        return (
+          <FlashcardScreen
+            cert={currentCert}
+            flashcards={FLASHCARDS.filter(f => f.certId === currentCert.id)}
+            progress={flashcardProgress}
+            onUpdateProgress={handleFlashcardUpdate}
+            onExit={() => setScreen('cert_hub')}
+          />
+        );
+      case 'exam_setup':
+        return (
+          <ExamSetupScreen
+            cert={currentCert}
+            questions={PREMIUM_QUESTIONS.filter(q => q.certId === currentCert.id)}
+            onStartExam={handleStartExam}
+            onBack={() => setScreen('cert_hub')}
+          />
+        );
+      case 'exam_playing':
+        if (examState) {
+          return (
+            <ExamPlayingScreen
+              examState={examState}
+              onUpdateExamState={(updater) => setExamState(prev => prev ? updater(prev) : prev)}
+              onSubmit={handleSubmitExam}
+            />
+          );
+        }
+        return null;
+      case 'exam_results':
+        if (examResult) {
+          return (
+            <ExamResultsScreen
+              result={examResult}
+              cert={currentCert}
+              onRetake={() => setScreen('exam_setup')}
+              onBackToHub={() => setScreen('cert_hub')}
+            />
+          );
         }
         return null;
       default:

@@ -8,9 +8,10 @@ interface DashboardScreenProps {
   onStartQuiz: () => void;
   onShowLeaderboard: () => void;
   onEditProfile: () => void;
+  onCertPrep: () => void;
 }
 
-const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLeaderboard, onEditProfile }) => {
+const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLeaderboard, onEditProfile, onCertPrep }) => {
   const { user, profile } = useAuth();
   const [history, setHistory] = useState<QuizHistoryEntry[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
@@ -156,6 +157,29 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLe
             ))}
           </div>
         )}
+      </div>
+
+      {/* Cert Prep Card */}
+      <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-md rounded-2xl border border-blue-500/20 p-6 mb-6">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+            <i className="fa-solid fa-certificate text-2xl text-white"></i>
+          </div>
+          <div className="flex-1 text-center sm:text-left">
+            <h3 className="text-lg font-bold text-white">Cert Prep Pro</h3>
+            <p className="text-gray-400 text-sm">Study quizzes, flashcards & timed practice exams for Salesforce certifications</p>
+          </div>
+          <button
+            onClick={onCertPrep}
+            className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:scale-105 transform transition-transform text-sm whitespace-nowrap"
+          >
+            {profile.is_premium ? (
+              <><i className="fa-solid fa-arrow-right mr-2"></i>Open Cert Prep</>
+            ) : (
+              <><i className="fa-solid fa-lock mr-2"></i>Unlock Cert Prep</>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Action Buttons */}

@@ -1,4 +1,8 @@
 
+// =====================
+// FREE TIER TYPES
+// =====================
+
 export interface Question {
   text: string;
   options: string[];
@@ -25,6 +29,24 @@ export interface Player {
   level: number;
 }
 
+export interface Prize {
+  points: number;
+  name: string;
+  icon: string;
+  color?: string;
+}
+
+export interface SessionStats {
+  categoryName: string;
+  correctAnswers: number;
+  totalQuestions: number;
+  pointsEarned: number;
+}
+
+// =====================
+// AUTH & PROFILE
+// =====================
+
 export interface UserProfile {
   id: string;
   display_name: string;
@@ -35,6 +57,9 @@ export interface UserProfile {
   total_correct: number;
   total_questions_answered: number;
   badges: string[];
+  is_premium: boolean;
+  premium_since: string | null;
+  stripe_customer_id: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -50,18 +75,102 @@ export interface QuizHistoryEntry {
   completed_at: string;
 }
 
-export interface Prize {
-  points: number;
+// =====================
+// PREMIUM TIER TYPES
+// =====================
+
+export interface CertDomain {
+  id: string;
   name: string;
+  weight: number;
+}
+
+export interface Certification {
+  id: string;
+  name: string;
+  description: string;
   icon: string;
-  color?: string;
+  color: string;
+  gradient: string;
+  domains: CertDomain[];
+  passingScore: number;
+  examQuestionCount: number;
+  examTimeLimitMinutes: number;
 }
 
-export interface SessionStats {
-    categoryName: string;
-    correctAnswers: number;
-    totalQuestions: number;
-    pointsEarned: number;
+export interface PremiumQuestion {
+  text: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+  certId: string;
+  domainId: string;
 }
 
-export type GameScreen = 'auth' | 'dashboard' | 'profile_edit' | 'category_selection' | 'playing' | 'leaderboard' | 'score';
+export interface Flashcard {
+  id: string;
+  certId: string;
+  domainId: string;
+  front: string;
+  back: string;
+}
+
+export interface FlashcardProgress {
+  user_id: string;
+  flashcard_id: string;
+  cert_id: string;
+  mastery: 'new' | 'learning' | 'mastered';
+  last_reviewed: string;
+  review_count: number;
+}
+
+export interface DomainScore {
+  domainId: string;
+  domainName: string;
+  correct: number;
+  total: number;
+  percent: number;
+}
+
+export interface ExamResult {
+  id?: string;
+  certId: string;
+  certName: string;
+  totalQuestions: number;
+  correctAnswers: number;
+  passed: boolean;
+  passingScore: number;
+  scorePercent: number;
+  domainBreakdown: DomainScore[];
+  timeTaken: number;
+  completedAt: string;
+}
+
+export interface ExamState {
+  questions: PremiumQuestion[];
+  answers: Map<number, number>;
+  flagged: Set<number>;
+  currentIndex: number;
+  startTime: number;
+  timeLimitSeconds: number;
+}
+
+// =====================
+// NAVIGATION
+// =====================
+
+export type GameScreen =
+  | 'auth'
+  | 'dashboard'
+  | 'profile_edit'
+  | 'category_selection'
+  | 'playing'
+  | 'leaderboard'
+  | 'score'
+  | 'cert_hub'
+  | 'study_mode'
+  | 'flashcards'
+  | 'exam_setup'
+  | 'exam_playing'
+  | 'exam_results'
+  | 'premium_upgrade';

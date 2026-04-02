@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Player, GameScreen } from '../types.ts';
+import { useAuth } from '../lib/AuthContext.tsx';
 
 interface HeaderProps {
   player: Player | null;
@@ -9,6 +10,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, screen }) => {
+  const { profile } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -48,6 +50,12 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
 
         {player && (
           <div className="flex items-center gap-2 sm:gap-4">
+            {profile?.is_premium && (
+              <div className="flex items-center bg-gradient-to-r from-yellow-500 to-amber-500 text-white font-bold py-1.5 px-3 rounded-full shadow-md text-xs">
+                <i className="fa-solid fa-crown mr-1"></i>
+                <span>PRO</span>
+              </div>
+            )}
             <div className="flex items-center bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-3 sm:px-4 rounded-full shadow-md text-sm sm:text-base">
               <i className="fa-solid fa-star mr-1 sm:mr-2"></i>
               <span>{player.points.toLocaleString()}</span>
