@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { supabase } from './supabase.ts';
+import { supabase, isSupabaseConfigured } from './supabase.ts';
 import { fetchProfile } from './database.ts';
 import { UserProfile } from '../types.ts';
 
@@ -7,8 +7,9 @@ interface AuthContextType {
   user: any | null;
   profile: UserProfile | null;
   loading: boolean;
-  signUp: (email: string, password: string, displayName: string) => Promise<{ error: string | null }>;
-  signIn: (email: string, password: string) => Promise<{ error: string | null }>;
+  configured: boolean;
+  signInWithOtp: (email: string, displayName: string) => Promise<{ error: string | null }>;
+  verifyOtp: (email: string, token: string) => Promise<{ error: string | null }>;
   signInWithGoogle: () => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
   refreshProfile: () => Promise<void>;
@@ -25,7 +26,7 @@ export function useAuth(): AuthContextType {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<any | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
 
   const loadProfile = useCallback(async (userId: string) => {
     const p = await fetchProfile(userId);
@@ -33,6 +34,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   useEffect(() => {
+    if (!isSupabaseConfigured) return;
+
     // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       const currentUser = session?.user ?? null;
@@ -58,26 +61,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, [loadProfile]);
 
-  const signUp = async (email: string, password: string, displayName: string): Promise<{ error: string | null }> => {
-    const { error } = await supabase.auth.signUp({
+  const signInWithOtp = async (email: string, displayName: string): Promise<{ error: string | null }> => {
+    if (!isSupabaseConfigured) return { error: 'Supabase is not configured' };
+    const { error } = await supabase.auth.signInWithOtp({
       email,
-      password,
-      options: { data: { display_name: displayName } },
+      options: {
+        data: { display_name: displayName },
+      },
     });
     return { error: error?.message ?? null };
   };
 
-  const signIn = async (email: string, password: string): Promise<{ error: string | null }> => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const verifyOtp = async (email: string, token: string): Promise<{ error: string | null }> => {
+    if (!isSupabaseConfigured) return { error: 'Supabase is not configured' };
+    const { error } = await supabase.auth.verifyOtp({
+      email,
+      token,
+      type: 'email',
+    });
     return { error: error?.message ?? null };
   };
 
   const signInWithGoogle = async (): Promise<{ error: string | null }> => {
+    if (!isSupabaseConfigured) return { error: 'Supabase is not configured' };
     const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
     return { error: error?.message ?? null };
   };
 
   const signOut = async () => {
+    if (!isSupabaseConfigured) return;
     await supabase.auth.signOut();
     setUser(null);
     setProfile(null);
@@ -88,7 +100,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, signUp, signIn, signInWithGoogle, signOut, refreshProfile }}>
+    <AuthContext.Provider value={{ user, profile, loading, configured: isSupabaseConfigured, signInWithOtp, verifyOtp, signInWithGoogle, signOut, refreshProfile }}>
       {children}
     </AuthContext.Provider>
   );

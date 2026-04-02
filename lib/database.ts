@@ -1,7 +1,8 @@
-import { supabase } from './supabase.ts';
+import { supabase, isSupabaseConfigured } from './supabase.ts';
 import { UserProfile, QuizHistoryEntry } from '../types.ts';
 
 export async function fetchProfile(userId: string): Promise<UserProfile | null> {
+  if (!isSupabaseConfigured) return null;
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -13,6 +14,7 @@ export async function fetchProfile(userId: string): Promise<UserProfile | null> 
 }
 
 export async function updateProfile(userId: string, updates: Partial<Pick<UserProfile, 'display_name' | 'avatar_url'>>): Promise<UserProfile | null> {
+  if (!isSupabaseConfigured) return null;
   const { data, error } = await supabase
     .from('profiles')
     .update(updates)
@@ -34,6 +36,8 @@ export async function saveQuizResult(
     pointsEarned: number;
   }
 ): Promise<void> {
+  if (!isSupabaseConfigured) return;
+
   // Insert quiz history
   await supabase.from('quiz_history').insert({
     user_id: userId,
@@ -62,6 +66,7 @@ export async function saveQuizResult(
 }
 
 export async function fetchQuizHistory(userId: string, limit = 10): Promise<QuizHistoryEntry[]> {
+  if (!isSupabaseConfigured) return [];
   const { data, error } = await supabase
     .from('quiz_history')
     .select('*')
@@ -74,6 +79,7 @@ export async function fetchQuizHistory(userId: string, limit = 10): Promise<Quiz
 }
 
 export async function fetchLeaderboard(limit = 50): Promise<UserProfile[]> {
+  if (!isSupabaseConfigured) return [];
   const { data, error } = await supabase
     .from('profiles')
     .select('*')
@@ -85,6 +91,7 @@ export async function fetchLeaderboard(limit = 50): Promise<UserProfile[]> {
 }
 
 export async function saveFeedback(userId: string, questionText: string, feedback: string): Promise<void> {
+  if (!isSupabaseConfigured) return;
   await supabase.from('feedback').insert({
     user_id: userId,
     question_text: questionText,
