@@ -65,7 +65,7 @@ const AuthScreen: React.FC = () => {
             <i className="fa-solid fa-envelope-circle-check text-4xl text-green-400 mb-2"></i>
             <h2 className="text-xl sm:text-2xl font-bold text-white">Check Your Email</h2>
             <p className="text-gray-400 text-sm mt-2">
-              We sent a 6-digit code to <strong className="text-white">{email}</strong>
+              We sent a code to <strong className="text-white">{email}</strong>
             </p>
           </div>
 
@@ -79,16 +79,16 @@ const AuthScreen: React.FC = () => {
             <input
               type="text"
               value={otpCode}
-              onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              placeholder="Enter 6-digit code"
+              onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 8))}
+              placeholder="Enter code"
               className="w-full bg-gray-700 border border-gray-600 rounded-md p-3 text-white text-center text-2xl tracking-widest focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
               required
-              maxLength={6}
+              maxLength={8}
               autoFocus
             />
             <button
               type="submit"
-              disabled={loading || otpCode.length !== 6}
+              disabled={loading || otpCode.length < 6}
               className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-md shadow-lg hover:scale-105 transform transition-transform duration-300 disabled:opacity-50 disabled:hover:scale-100"
             >
               {loading ? (
@@ -99,12 +99,18 @@ const AuthScreen: React.FC = () => {
             </button>
           </form>
 
-          <div className="mt-4 text-center">
+          <div className="mt-4 flex justify-center gap-4">
             <button
               onClick={() => { setStep('email'); setOtpCode(''); setError(null); }}
               className="text-gray-400 hover:text-white text-sm transition-colors"
             >
-              <i className="fa-solid fa-arrow-left mr-1"></i> Use a different email
+              <i className="fa-solid fa-arrow-left mr-1"></i> Different email
+            </button>
+            <button
+              onClick={async () => { setError(null); setOtpCode(''); await signInWithOtp(email, displayName); }}
+              className="text-blue-400 hover:text-blue-300 text-sm transition-colors"
+            >
+              <i className="fa-solid fa-rotate-right mr-1"></i> Resend code
             </button>
           </div>
         </div>
