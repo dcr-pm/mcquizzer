@@ -8,9 +8,12 @@ interface PremiumUpgradeScreenProps {
 }
 
 const PremiumUpgradeScreen: React.FC<PremiumUpgradeScreenProps> = ({ onBack }) => {
-  const { user } = useAuth();
+  const { user, refreshProfile } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [proPassCode, setProPassCode] = useState('');
+  const [proPassLoading, setProPassLoading] = useState(false);
+  const [proPassSuccess, setProPassSuccess] = useState(false);
   const cert = CERTIFICATIONS[0];
 
   const handleUpgrade = async () => {
@@ -22,6 +25,31 @@ const PremiumUpgradeScreen: React.FC<PremiumUpgradeScreenProps> = ({ onBack }) =
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');
       setLoading(false);
+    }
+  };
+
+  const handleRedeemProPass = async () => {
+    if (!user || !proPassCode.trim()) return;
+    setProPassLoading(true);
+    setError(null);
+    try {
+      const response = await fetch('/.netlify/functions/redeem-propass', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id, code: proPassCode.trim().toUpperCase() }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setError(data.error || 'Invalid ProPass code.');
+        setProPassLoading(false);
+        return;
+      }
+      setProPassSuccess(true);
+      await refreshProfile();
+      setTimeout(() => onBack(), 1500);
+    } catch (err: any) {
+      setError(err.message || 'Something went wrong. Please try again.');
+      setProPassLoading(false);
     }
   };
 
@@ -97,6 +125,40 @@ const PremiumUpgradeScreen: React.FC<PremiumUpgradeScreenProps> = ({ onBack }) =
           <p className="text-center text-gray-500 text-xs mt-3">
             <i className="fa-solid fa-tag mr-1"></i>Have a discount code? You can enter it at checkout.
           </p>
+
+          {/* ProPass Section */}
+          <div className="mt-6 pt-6 border-t border-gray-700">
+            {proPassSuccess ? (
+              <div className="bg-green-500/20 border border-green-500/50 text-green-300 text-sm p-4 rounded-xl text-center">
+                <i className="fa-solid fa-circle-check text-2xl mb-2"></i>
+                <p className="font-bold">ProPass Activated!</p>
+                <p className="text-xs mt-1">Redirecting to Cert Hub...</p>
+              </div>
+            ) : (
+              <>
+                <p className="text-center text-gray-400 text-sm mb-3">
+                  <i className="fa-solid fa-key mr-1"></i>Have a ProPass code?
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={proPassCode}
+                    onChange={(e) => setProPassCode(e.target.value.toUpperCase())}
+                    placeholder="Enter ProPass code"
+                    className="flex-1 bg-gray-700 border border-gray-600 rounded-xl p-3 text-white text-sm text-center tracking-widest focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder:tracking-normal placeholder:text-gray-500"
+                    maxLength={20}
+                  />
+                  <button
+                    onClick={handleRedeemProPass}
+                    disabled={proPassLoading || !proPassCode.trim()}
+                    className="bg-gray-600 hover:bg-gray-500 text-white font-bold px-5 rounded-xl transition-colors disabled:opacity-40 disabled:hover:bg-gray-600"
+                  >
+                    {proPassLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : <i className="fa-solid fa-arrow-right"></i>}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
