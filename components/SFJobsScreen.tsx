@@ -145,6 +145,9 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Salesforce Jobs</h1>
         <p className="text-gray-400 text-sm">Latest opportunities from LinkedIn, Indeed, Glassdoor and more</p>
+        <div className="mt-3 bg-blue-500/10 border border-blue-500/20 rounded-lg px-4 py-2 inline-block">
+          <p className="text-blue-300 text-xs"><i className="fa-solid fa-circle-info mr-1"></i>These listings are for awareness of current openings. We recommend visiting the company website directly to apply.</p>
+        </div>
       </div>
 
       {/* Cloud filter */}
