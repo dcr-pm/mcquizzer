@@ -67,7 +67,7 @@ const BlogScreen: React.FC<BlogScreenProps> = ({ onBack }) => {
           <div className="border-t border-gray-700 pt-6">
             <div
               className="text-gray-300 leading-relaxed space-y-4"
-              style={{ fontFamily: "'Special Elite', cursive", fontSize: '1.1rem', lineHeight: '2' }}
+              style={{ fontSize: '1rem', lineHeight: '1.8' }}
             >
               {selectedPost.content.split('\n\n').map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
