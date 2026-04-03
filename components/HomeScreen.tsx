@@ -18,18 +18,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
   const { profile } = useAuth();
 
   return (
-    <div className="relative py-6 sm:py-10 animate-fade-in-up max-w-4xl mx-auto">
-      {/* Knowledge-themed background */}
-      <div className="fixed inset-0 -z-10 pointer-events-none" style={{
-        background: `
-          radial-gradient(ellipse 600px 600px at 15% 20%, rgba(59,130,246,0.08) 0%, transparent 70%),
-          radial-gradient(ellipse 500px 500px at 85% 15%, rgba(99,102,241,0.07) 0%, transparent 70%),
-          radial-gradient(ellipse 400px 400px at 50% 60%, rgba(20,184,166,0.06) 0%, transparent 70%),
-          radial-gradient(ellipse 350px 350px at 80% 75%, rgba(139,92,246,0.05) 0%, transparent 70%),
-          radial-gradient(ellipse 300px 300px at 20% 80%, rgba(6,182,212,0.06) 0%, transparent 70%),
-          url("https://www.transparenttextures.com/patterns/groovepaper.png")
-        `,
-      }} />
+    <div className="py-6 sm:py-10 animate-fade-in-up max-w-4xl mx-auto">
       {/* Welcome */}
       <div className="text-center mb-8">
         <i className="fa-solid fa-cloud text-5xl text-[#0F79AF] mb-3"></i>
