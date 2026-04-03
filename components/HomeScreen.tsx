@@ -27,7 +27,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
           radial-gradient(ellipse 400px 400px at 50% 60%, rgba(20,184,166,0.06) 0%, transparent 70%),
           radial-gradient(ellipse 350px 350px at 80% 75%, rgba(139,92,246,0.05) 0%, transparent 70%),
           radial-gradient(ellipse 300px 300px at 20% 80%, rgba(6,182,212,0.06) 0%, transparent 70%),
-          url("https://www.transparenttextures.com/patterns/connected.png")
+          url("https://www.transparenttextures.com/patterns/groovepaper.png")
         `,
       }} />
       {/* Welcome */}
