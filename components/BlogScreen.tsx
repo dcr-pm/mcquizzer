@@ -70,7 +70,11 @@ const BlogScreen: React.FC<BlogScreenProps> = ({ onBack }) => {
               style={{ fontSize: '1rem', lineHeight: '1.8' }}
             >
               {selectedPost.content.split('\n\n').map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
+                <p key={i}>
+                  {paragraph.split('\n').map((line, j, arr) => (
+                    <span key={j}>{line}{j < arr.length - 1 && <br />}</span>
+                  ))}
+                </p>
               ))}
             </div>
           </div>
