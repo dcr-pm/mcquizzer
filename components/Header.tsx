@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const showHomeButton = player && !['dashboard'].includes(screen);
+  const showHomeButton = player && !['home'].includes(screen);
 
   const initials = player
     ? player.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
@@ -34,8 +34,10 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
   return (
     <header className="sticky top-0 z-30 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg text-white p-3 sm:p-4 flex justify-between items-center">
       <div className="flex items-center gap-2 sm:gap-3">
-        <i className="fa-solid fa-cloud text-2xl sm:text-3xl text-[#0F79AF]"></i>
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold">SF Quizzer</h1>
+        <button onClick={onNavigateHome} className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
+          <i className="fa-solid fa-cloud text-2xl sm:text-3xl text-[#0F79AF]"></i>
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold">SF Quizzer</h1>
+        </button>
         <div className="hidden sm:block">
           <StockTicker />
         </div>
@@ -84,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
                     onClick={() => { setDropdownOpen(false); onNavigateHome(); }}
                     className="w-full text-left px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-700/80 hover:text-white transition-colors flex items-center gap-2"
                   >
-                    <i className="fa-solid fa-gauge w-4"></i> Dashboard
+                    <i className="fa-solid fa-house w-4"></i> Home
                   </button>
                   <button
                     onClick={() => { setDropdownOpen(false); onSignOut(); }}

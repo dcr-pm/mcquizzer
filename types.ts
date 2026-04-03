@@ -193,4 +193,6 @@ export type GameScreen =
   | 'exam_results'
   | 'premium_upgrade'
   | 'sf_news'
-  | 'blog';
+  | 'blog'
+  | 'home'
+  | 'help';

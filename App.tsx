@@ -27,6 +27,8 @@ import ExamPlayingScreen from './components/ExamPlayingScreen.tsx';
 import ExamResultsScreen from './components/ExamResultsScreen.tsx';
 import SFNewsScreen from './components/SFNewsScreen.tsx';
 import BlogScreen from './components/BlogScreen.tsx';
+import HomeScreen from './components/HomeScreen.tsx';
+import HelpScreen from './components/HelpScreen.tsx';
 import NewsletterModal from './components/NewsletterModal.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -77,7 +79,7 @@ const App: React.FC = () => {
       setPlayer({ id: profile.id, name: profile.display_name, points: profile.points, level: profile.level });
       const existingPrizes = PRIZES.filter(prize => profile.points >= prize.points);
       setUnlockedPrizes(existingPrizes);
-      if (screen === 'auth') setScreen('dashboard');
+      if (screen === 'auth') setScreen('home');
     } else if (!authLoading && !user) {
       setPlayer(null);
       setScreen('auth');
@@ -229,15 +231,15 @@ const App: React.FC = () => {
     if (screen === 'playing') {
       if (window.confirm('Are you sure you want to leave? Your current quiz progress will be lost.')) {
         handleEndQuiz();
-        setScreen('dashboard');
+        setScreen('home');
       }
     } else if (screen === 'exam_playing') {
       if (window.confirm('Are you sure you want to leave? Your exam progress will be lost.')) {
         setExamState(null);
-        setScreen('dashboard');
+        setScreen('home');
       }
     } else {
-      setScreen('dashboard');
+      setScreen('home');
     }
   };
 
@@ -406,6 +408,20 @@ const App: React.FC = () => {
     switch (screen) {
       case 'auth':
         return <AuthScreen />;
+      case 'home':
+        return (
+          <HomeScreen
+            onStartQuiz={() => setScreen('category_selection')}
+            onCertPrep={handleCertPrep}
+            onSFNews={() => setScreen('sf_news')}
+            onBlog={() => setScreen('blog')}
+            onHelp={() => setScreen('help')}
+            onDashboard={() => setScreen('dashboard')}
+            onLeaderboard={handleShowLeaderboard}
+          />
+        );
+      case 'help':
+        return <HelpScreen onBack={() => setScreen('home')} />;
       case 'dashboard':
         return <DashboardScreen onStartQuiz={() => setScreen('category_selection')} onShowLeaderboard={handleShowLeaderboard} onEditProfile={() => setScreen('profile_edit')} onCertPrep={handleCertPrep} onSFNews={() => setScreen('sf_news')} onBlog={() => setScreen('blog')} />;
       case 'profile_edit':
@@ -427,14 +443,14 @@ const App: React.FC = () => {
         }
         return null;
       case 'leaderboard':
-        return <Leaderboard players={leaderboard.slice(0,10)} currentPlayerName={player?.name || null} onBack={handleBackToDashboard} />;
+        return <Leaderboard players={leaderboard.slice(0,10)} currentPlayerName={player?.name || null} onBack={() => setScreen('home')} />;
       case 'score':
         if (sessionStats) {
            return <ScoreScreen stats={sessionStats} player={player} onPlayAgain={handlePlayAgain} onNewCategory={handleBackToCategories} onShowLeaderboard={handleShowLeaderboard} />;
         }
         return null;
       case 'premium_upgrade':
-        return <PremiumUpgradeScreen onBack={handleBackToDashboard} />;
+        return <PremiumUpgradeScreen onBack={() => setScreen('home')} />;
       case 'cert_hub':
         return (
           <CertHubScreen
@@ -496,9 +512,9 @@ const App: React.FC = () => {
         }
         return null;
       case 'sf_news':
-        return <SFNewsScreen onBack={handleBackToDashboard} />;
+        return <SFNewsScreen onBack={() => setScreen('home')} />;
       case 'blog':
-        return <BlogScreen onBack={handleBackToDashboard} />;
+        return <BlogScreen onBack={() => setScreen('home')} />;
       default:
         return <AuthScreen />;
     }

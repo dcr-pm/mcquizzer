@@ -87,7 +87,7 @@ const BlogScreen: React.FC<BlogScreenProps> = ({ onBack }) => {
   return (
     <div className="py-6 sm:py-8 animate-fade-in-up max-w-3xl mx-auto">
       <button onClick={onBack} className="text-gray-400 hover:text-white text-sm mb-6 transition-colors">
-        <i className="fa-solid fa-arrow-left mr-2"></i>Back to Dashboard
+        <i className="fa-solid fa-arrow-left mr-2"></i>Back
       </button>
 
       <div className="text-center mb-8">
