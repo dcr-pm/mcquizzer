@@ -195,4 +195,5 @@ export type GameScreen =
   | 'sf_news'
   | 'blog'
   | 'home'
-  | 'help';
+  | 'help'
+  | 'sf_jobs';

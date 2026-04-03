@@ -10,9 +10,10 @@ interface HomeScreenProps {
   onHelp: () => void;
   onDashboard: () => void;
   onLeaderboard: () => void;
+  onSFJobs: () => void;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNews, onBlog, onHelp, onDashboard, onLeaderboard }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNews, onBlog, onHelp, onDashboard, onLeaderboard, onSFJobs }) => {
   const { profile } = useAuth();
 
   return (
@@ -85,6 +86,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
           </div>
           <h2 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors mb-2">From the Founder</h2>
           <p className="text-gray-400 text-sm">Thoughts, stories, and insights from the creator of SF Quizzer.</p>
+        </button>
+
+        {/* SF Jobs */}
+        <button
+          onClick={onSFJobs}
+          className="bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 sm:p-8 text-left hover:border-green-500/30 hover:bg-gray-800 transition-all group sm:col-span-2"
+        >
+          <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mb-4">
+            <i className="fa-solid fa-briefcase text-2xl text-white"></i>
+          </div>
+          <h2 className="text-xl font-bold text-white group-hover:text-green-300 transition-colors mb-2">Salesforce Jobs</h2>
+          <p className="text-gray-400 text-sm">Browse the latest Salesforce job opportunities. Updated in near real-time from top job boards.</p>
         </button>
       </div>
 
