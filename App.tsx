@@ -529,7 +529,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-dvh bg-cover bg-fixed" style={{backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')"}}>
+    <div className="bg-gray-900 text-white min-h-dvh bg-cover bg-fixed" style={{backgroundImage: "url('https://www.transparenttextures.com/patterns/stardust.png')"}}>
       <style>{`
         @keyframes fall {
           0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
