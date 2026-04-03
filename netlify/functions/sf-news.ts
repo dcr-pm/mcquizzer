@@ -27,14 +27,19 @@ export async function handler() {
       const link = getTag('link');
       const pubDate = getTag('pubDate');
       const source = getTag('source');
-      const description = getTag('description')
-        .replace(/<[^>]*>/g, '')
+      // Decode entities first, then strip all HTML tags and URLs
+      const rawDesc = getTag('description')
         .replace(/&amp;/g, '&')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
         .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .slice(0, 200);
+        .replace(/&#39;/g, "'");
+      const description = rawDesc
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/https?:\/\/\S+/g, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .slice(0, 200) || '';
 
       if (title && link) {
         articles.push({
