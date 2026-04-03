@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 interface Job {
   title: string;
@@ -45,6 +45,7 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
   const [selectedCloud, setSelectedCloud] = useState('all');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [customLocation, setCustomLocation] = useState('');
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const fetchJobs = useCallback(async (cloud: string, location: string) => {
     setLoading(true);
@@ -57,7 +58,10 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
       const res = await fetch(`/.netlify/functions/sf-jobs${qs ? `?${qs}` : ''}`);
       const data = await res.json();
       if (data.error && (!data.jobs || data.jobs.length === 0)) {
-        setError(data.error);
+        const msg = data.error.includes('429')
+          ? 'Too many requests. Please wait a moment and try again.'
+          : data.error;
+        setError(msg);
       }
       setJobs(data.jobs || []);
     } catch {
@@ -68,7 +72,11 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
   }, []);
 
   useEffect(() => {
-    fetchJobs(selectedCloud, selectedLocation);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      fetchJobs(selectedCloud, selectedLocation);
+    }, 500);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
   }, [selectedCloud, selectedLocation, fetchJobs]);
 
   const handleCloudChange = (cloud: string) => {
