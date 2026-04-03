@@ -75,12 +75,9 @@ const SFNewsScreen: React.FC<SFNewsScreenProps> = ({ onBack }) => {
                   <i className="fa-solid fa-bolt text-blue-400"></i>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-bold text-sm sm:text-base group-hover:text-blue-300 transition-colors leading-snug mb-2">
+                  <h3 className="text-white font-bold text-sm sm:text-base group-hover:text-blue-300 transition-colors leading-snug mb-3">
                     {item.title}
                   </h3>
-                  {item.description && (
-                    <p className="text-gray-400 text-xs sm:text-sm line-clamp-2 mb-3">{item.description}</p>
-                  )}
                   <div className="flex items-center gap-3 text-xs text-gray-500">
                     <span><i className="fa-solid fa-globe mr-1"></i>{item.source}</span>
                     <span><i className="fa-solid fa-clock mr-1"></i>{timeAgo(item.publishedAt)}</span>
