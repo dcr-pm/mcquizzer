@@ -25,19 +25,17 @@ const handler: Handler = async (event) => {
 
   try {
     const params = event.queryStringParameters || {};
-    const cloud = params.cloud || 'all';
+    const cloud = params.cloud || '';
+    const role = params.role || '';
     const location = params.location || '';
 
     // Build search query
-    let query = 'Salesforce';
-    if (cloud !== 'all') {
-      query = `Salesforce ${cloud}`;
-    }
-    if (location) {
-      query += ` ${location}`;
-    }
+    const parts = ['Salesforce'];
+    if (cloud) parts.push(cloud);
+    if (role && role !== 'Other') parts.push(role);
+    const query = parts.join(' ');
 
-    const cacheKey = `${cloud}|${location}`;
+    const cacheKey = `${cloud}|${role}|${location}`;
     const cached = cache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
       return {
@@ -48,7 +46,7 @@ const handler: Handler = async (event) => {
     }
 
     const searchParams = new URLSearchParams({
-      query,
+      query: location ? `${query} ${location}` : query,
       page: '1',
       num_pages: '2',
       date_posted: 'month',

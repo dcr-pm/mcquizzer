@@ -21,9 +21,27 @@ const CLOUDS = [
   { id: 'Data Cloud', label: 'Data Cloud', icon: 'fa-database' },
   { id: 'Commerce Cloud', label: 'Commerce Cloud', icon: 'fa-cart-shopping' },
   { id: 'Experience Cloud', label: 'Experience Cloud', icon: 'fa-globe' },
+  { id: 'Revenue Cloud', label: 'Revenue Cloud', icon: 'fa-money-bill-trend-up' },
+  { id: 'Health Cloud', label: 'Health Cloud', icon: 'fa-heart-pulse' },
+  { id: 'Financial Services Cloud', label: 'Financial Services', icon: 'fa-landmark' },
+];
+
+const ROLES = [
+  { id: 'all', label: 'All Roles', icon: 'fa-users' },
   { id: 'Admin', label: 'Admin', icon: 'fa-gear' },
   { id: 'Developer', label: 'Developer', icon: 'fa-code' },
   { id: 'Architect', label: 'Architect', icon: 'fa-sitemap' },
+  { id: 'Consultant', label: 'Consultant', icon: 'fa-comments' },
+  { id: 'Business Analyst', label: 'Business Analyst', icon: 'fa-magnifying-glass-chart' },
+  { id: 'Project Manager', label: 'Project Manager', icon: 'fa-diagram-project' },
+  { id: 'Account Manager', label: 'Account Manager', icon: 'fa-handshake' },
+  { id: 'Solution Engineer', label: 'Solution Engineer', icon: 'fa-screwdriver-wrench' },
+  { id: 'Data Analyst', label: 'Data Analyst', icon: 'fa-chart-pie' },
+  { id: 'Marketing Specialist', label: 'Marketing Specialist', icon: 'fa-bullhorn' },
+  { id: 'Technical Lead', label: 'Technical Lead', icon: 'fa-user-tie' },
+  { id: 'Scrum Master', label: 'Scrum Master', icon: 'fa-arrows-spin' },
+  { id: 'QA Tester', label: 'QA / Tester', icon: 'fa-bug' },
+  { id: 'Other', label: 'Other', icon: 'fa-ellipsis' },
 ];
 
 const LOCATIONS = [
@@ -43,16 +61,18 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCloud, setSelectedCloud] = useState('all');
+  const [selectedRole, setSelectedRole] = useState('all');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [customLocation, setCustomLocation] = useState('');
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const fetchJobs = useCallback(async (cloud: string, location: string) => {
+  const fetchJobs = useCallback(async (cloud: string, role: string, location: string) => {
     setLoading(true);
     setError(null);
     try {
       const params = new URLSearchParams();
       if (cloud !== 'all') params.set('cloud', cloud);
+      if (role !== 'all') params.set('role', role);
       if (location) params.set('location', location);
       const qs = params.toString();
       const res = await fetch(`/.netlify/functions/sf-jobs${qs ? `?${qs}` : ''}`);
@@ -74,13 +94,17 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
-      fetchJobs(selectedCloud, selectedLocation);
+      fetchJobs(selectedCloud, selectedRole, selectedLocation);
     }, 500);
     return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
-  }, [selectedCloud, selectedLocation, fetchJobs]);
+  }, [selectedCloud, selectedRole, selectedLocation, fetchJobs]);
 
   const handleCloudChange = (cloud: string) => {
     setSelectedCloud(cloud);
+  };
+
+  const handleRoleChange = (role: string) => {
+    setSelectedRole(role);
   };
 
   const handleLocationChange = (loc: string) => {
@@ -138,6 +162,26 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
               }`}
             >
               <i className={`fa-solid ${cloud.icon} mr-1`}></i>{cloud.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Role filter */}
+      <div className="mb-4">
+        <p className="text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wider">Role</p>
+        <div className="flex flex-wrap gap-2">
+          {ROLES.map((role) => (
+            <button
+              key={role.id}
+              onClick={() => handleRoleChange(role.id)}
+              className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
+                selectedRole === role.id
+                  ? 'bg-green-500 text-white'
+                  : 'bg-gray-700 text-gray-400 hover:text-white'
+              }`}
+            >
+              <i className={`fa-solid ${role.icon} mr-1`}></i>{role.label}
             </button>
           ))}
         </div>
