@@ -9,84 +9,85 @@ interface JobItem {
   source: string;
 }
 
-let cache: { data: JobItem[]; timestamp: number } | null = null;
-const CACHE_TTL = 1800000; // 30 minutes
+// Cache per query key, TTL 30 minutes
+const cache = new Map<string, { data: JobItem[]; timestamp: number }>();
+const CACHE_TTL = 1800000;
 
-const fetchRemotiveJobs = async (): Promise<JobItem[]> => {
-  try {
-    const res = await fetch('https://remotive.com/api/remote-jobs?search=salesforce&limit=25');
-    if (!res.ok) return [];
-    const data = await res.json();
-    if (!data.jobs || !Array.isArray(data.jobs)) return [];
-    return data.jobs.map((job: any) => ({
-      title: job.title || '',
-      company: job.company_name || '',
-      location: job.candidate_required_location || 'Remote',
-      url: job.url || '',
-      publishedAt: job.publication_date || '',
-      source: 'Remotive',
-    }));
-  } catch {
-    return [];
+const handler: Handler = async (event) => {
+  const apiKey = process.env.RAPIDAPI_KEY;
+  if (!apiKey) {
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'RAPIDAPI_KEY not configured', jobs: [] }),
+    };
   }
-};
 
-const fetchArbeitnowJobs = async (): Promise<JobItem[]> => {
   try {
-    const res = await fetch('https://www.arbeitnow.com/api/job-board-api');
-    if (!res.ok) return [];
-    const data = await res.json();
-    if (!data.data || !Array.isArray(data.data)) return [];
-    return data.data
-      .filter((job: any) => {
-        const text = `${job.title} ${job.description} ${job.tags?.join(' ')}`.toLowerCase();
-        return text.includes('salesforce');
-      })
-      .slice(0, 15)
-      .map((job: any) => ({
-        title: job.title || '',
-        company: job.company_name || '',
-        location: job.location || job.remote ? 'Remote' : '',
-        url: job.url || '',
-        publishedAt: job.created_at ? new Date(job.created_at * 1000).toISOString() : '',
-        source: 'Arbeitnow',
-      }));
-  } catch {
-    return [];
-  }
-};
+    const params = event.queryStringParameters || {};
+    const cloud = params.cloud || 'all';
+    const location = params.location || '';
 
-const handler: Handler = async () => {
-  try {
-    if (cache && Date.now() - cache.timestamp < CACHE_TTL) {
+    // Build search query
+    let query = 'Salesforce';
+    if (cloud !== 'all') {
+      query = `Salesforce ${cloud}`;
+    }
+    if (location) {
+      query += ` ${location}`;
+    }
+
+    const cacheKey = `${cloud}|${location}`;
+    const cached = cache.get(cacheKey);
+    if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
       return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=600' },
-        body: JSON.stringify({ jobs: cache.data }),
+        body: JSON.stringify({ jobs: cached.data }),
       };
     }
 
-    const [remotiveJobs, arbeitnowJobs] = await Promise.all([
-      fetchRemotiveJobs(),
-      fetchArbeitnowJobs(),
-    ]);
+    const searchParams = new URLSearchParams({
+      query,
+      page: '1',
+      num_pages: '2',
+      date_posted: 'month',
+    });
 
-    // Combine and sort by date (newest first)
-    const allJobs = [...remotiveJobs, ...arbeitnowJobs]
-      .filter(j => j.title && j.url)
-      .sort((a, b) => {
-        const dateA = new Date(a.publishedAt).getTime() || 0;
-        const dateB = new Date(b.publishedAt).getTime() || 0;
-        return dateB - dateA;
-      })
-      .slice(0, 30);
+    const res = await fetch(`https://jsearch.p.rapidapi.com/search?${searchParams}`, {
+      headers: {
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
+      },
+    });
 
-    cache = { data: allJobs, timestamp: Date.now() };
+    if (!res.ok) {
+      const errText = await res.text();
+      return {
+        statusCode: res.status,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: `JSearch API error: ${res.status}`, jobs: [] }),
+      };
+    }
+
+    const data = await res.json();
+    const jobs: JobItem[] = (data.data || []).map((job: any) => ({
+      title: job.job_title || '',
+      company: job.employer_name || '',
+      location: job.job_city && job.job_state
+        ? `${job.job_city}, ${job.job_state}`
+        : job.job_city || job.job_state || (job.job_is_remote ? 'Remote' : ''),
+      url: job.job_apply_link || job.job_google_link || '',
+      publishedAt: job.job_posted_at_datetime_utc || '',
+      source: job.job_publisher || 'JSearch',
+    })).filter((j: JobItem) => j.title && j.url);
+
+    cache.set(cacheKey, { data: jobs, timestamp: Date.now() });
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=600' },
-      body: JSON.stringify({ jobs: allJobs }),
+      body: JSON.stringify({ jobs }),
     };
   } catch (err: any) {
     return {

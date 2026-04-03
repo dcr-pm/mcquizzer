@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface Job {
   title: string;
@@ -13,25 +13,78 @@ interface SFJobsScreenProps {
   onBack: () => void;
 }
 
+const CLOUDS = [
+  { id: 'all', label: 'All Clouds', icon: 'fa-cloud' },
+  { id: 'Marketing Cloud', label: 'Marketing Cloud', icon: 'fa-envelope' },
+  { id: 'Sales Cloud', label: 'Sales Cloud', icon: 'fa-chart-line' },
+  { id: 'Service Cloud', label: 'Service Cloud', icon: 'fa-headset' },
+  { id: 'Data Cloud', label: 'Data Cloud', icon: 'fa-database' },
+  { id: 'Commerce Cloud', label: 'Commerce Cloud', icon: 'fa-cart-shopping' },
+  { id: 'Experience Cloud', label: 'Experience Cloud', icon: 'fa-globe' },
+  { id: 'Admin', label: 'Admin', icon: 'fa-gear' },
+  { id: 'Developer', label: 'Developer', icon: 'fa-code' },
+  { id: 'Architect', label: 'Architect', icon: 'fa-sitemap' },
+];
+
+const LOCATIONS = [
+  { id: '', label: 'Any Location' },
+  { id: 'Remote', label: 'Remote' },
+  { id: 'New York', label: 'New York' },
+  { id: 'San Francisco', label: 'San Francisco' },
+  { id: 'Chicago', label: 'Chicago' },
+  { id: 'Austin', label: 'Austin' },
+  { id: 'Toronto', label: 'Toronto' },
+  { id: 'London', label: 'London' },
+  { id: 'India', label: 'India' },
+];
+
 const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCloud, setSelectedCloud] = useState('all');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const [customLocation, setCustomLocation] = useState('');
+
+  const fetchJobs = useCallback(async (cloud: string, location: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const params = new URLSearchParams();
+      if (cloud !== 'all') params.set('cloud', cloud);
+      if (location) params.set('location', location);
+      const qs = params.toString();
+      const res = await fetch(`/.netlify/functions/sf-jobs${qs ? `?${qs}` : ''}`);
+      const data = await res.json();
+      if (data.error && (!data.jobs || data.jobs.length === 0)) {
+        setError(data.error);
+      }
+      setJobs(data.jobs || []);
+    } catch {
+      setError('Unable to load job listings right now.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const res = await fetch('/.netlify/functions/sf-jobs');
-        const data = await res.json();
-        if (data.jobs) setJobs(data.jobs);
-      } catch (err: any) {
-        setError('Unable to load job listings right now.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchJobs();
-  }, []);
+    fetchJobs(selectedCloud, selectedLocation);
+  }, [selectedCloud, selectedLocation, fetchJobs]);
+
+  const handleCloudChange = (cloud: string) => {
+    setSelectedCloud(cloud);
+  };
+
+  const handleLocationChange = (loc: string) => {
+    setSelectedLocation(loc);
+    setCustomLocation('');
+  };
+
+  const handleCustomLocationSearch = () => {
+    if (customLocation.trim()) {
+      setSelectedLocation(customLocation.trim());
+    }
+  };
 
   const timeAgo = (dateStr: string) => {
     if (!dateStr) return '';
@@ -54,18 +107,76 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
         <i className="fa-solid fa-arrow-left mr-2"></i>Back
       </button>
 
-      <div className="text-center mb-8">
+      <div className="text-center mb-6">
         <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mx-auto mb-4">
           <i className="fa-solid fa-briefcase text-3xl text-white"></i>
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Salesforce Jobs</h1>
-        <p className="text-gray-400 text-sm">Latest Salesforce opportunities, updated in near real-time</p>
+        <p className="text-gray-400 text-sm">Latest opportunities from LinkedIn, Indeed, Glassdoor and more</p>
       </div>
 
+      {/* Cloud filter */}
+      <div className="mb-4">
+        <p className="text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wider">Salesforce Cloud</p>
+        <div className="flex flex-wrap gap-2">
+          {CLOUDS.map((cloud) => (
+            <button
+              key={cloud.id}
+              onClick={() => handleCloudChange(cloud.id)}
+              className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
+                selectedCloud === cloud.id
+                  ? 'bg-green-500 text-white'
+                  : 'bg-gray-700 text-gray-400 hover:text-white'
+              }`}
+            >
+              <i className={`fa-solid ${cloud.icon} mr-1`}></i>{cloud.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Location filter */}
+      <div className="mb-6">
+        <p className="text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wider">Location</p>
+        <div className="flex flex-wrap gap-2 mb-2">
+          {LOCATIONS.map((loc) => (
+            <button
+              key={loc.id}
+              onClick={() => handleLocationChange(loc.id)}
+              className={`text-xs px-3 py-1.5 rounded-full transition-colors ${
+                selectedLocation === loc.id && !customLocation
+                  ? 'bg-green-500 text-white'
+                  : 'bg-gray-700 text-gray-400 hover:text-white'
+              }`}
+            >
+              {loc.id && <i className="fa-solid fa-location-dot mr-1"></i>}{loc.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={customLocation}
+            onChange={(e) => setCustomLocation(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleCustomLocationSearch()}
+            placeholder="Or type a city, state, or country..."
+            className="flex-1 bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+          />
+          <button
+            onClick={handleCustomLocationSearch}
+            disabled={!customLocation.trim()}
+            className="px-4 py-2 bg-green-500 text-white text-sm font-bold rounded-lg hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+
+      {/* Results */}
       {loading ? (
         <div className="text-center py-12">
           <i className="fa-solid fa-spinner fa-spin text-3xl text-green-400 mb-4"></i>
-          <p className="text-gray-400">Loading jobs...</p>
+          <p className="text-gray-400">Searching jobs...</p>
         </div>
       ) : error ? (
         <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl text-sm text-center">
@@ -75,45 +186,48 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
         <div className="bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/20 p-12 text-center">
           <i className="fa-solid fa-briefcase text-4xl text-gray-600 mb-4"></i>
           <h3 className="text-lg font-bold text-white mb-2">No Listings Found</h3>
-          <p className="text-gray-400 text-sm">Check back soon for new Salesforce opportunities.</p>
+          <p className="text-gray-400 text-sm">Try a different cloud or location filter.</p>
         </div>
       ) : (
-        <div className="space-y-3">
-          {jobs.map((job, i) => (
-            <a
-              key={i}
-              href={job.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-gray-800/80 backdrop-blur-md rounded-xl border border-white/10 p-5 hover:border-green-500/30 hover:bg-gray-800 transition-all group"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-bold text-sm sm:text-base group-hover:text-green-300 transition-colors mb-1 truncate">
-                    {job.title}
-                  </h3>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-400">
-                    <span>
-                      <i className="fa-solid fa-building mr-1 text-gray-500"></i>{job.company}
-                    </span>
-                    {job.location && (
+        <>
+          <p className="text-xs text-gray-500 mb-3">{jobs.length} job{jobs.length !== 1 ? 's' : ''} found</p>
+          <div className="space-y-3">
+            {jobs.map((job, i) => (
+              <a
+                key={i}
+                href={job.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-gray-800/80 backdrop-blur-md rounded-xl border border-white/10 p-5 hover:border-green-500/30 hover:bg-gray-800 transition-all group"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-bold text-sm sm:text-base group-hover:text-green-300 transition-colors mb-1">
+                      {job.title}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-400">
                       <span>
-                        <i className="fa-solid fa-location-dot mr-1 text-gray-500"></i>{job.location}
+                        <i className="fa-solid fa-building mr-1 text-gray-500"></i>{job.company}
                       </span>
-                    )}
+                      {job.location && (
+                        <span>
+                          <i className="fa-solid fa-location-dot mr-1 text-gray-500"></i>{job.location}
+                        </span>
+                      )}
+                    </div>
                   </div>
+                  <span className="text-green-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm flex-shrink-0 mt-1">
+                    Apply <i className="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                  </span>
                 </div>
-                <span className="text-green-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm flex-shrink-0 mt-1">
-                  Apply <i className="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-                </span>
-              </div>
-              <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
-                <span>{job.source}</span>
-                {job.publishedAt && <span>{timeAgo(job.publishedAt)}</span>}
-              </div>
-            </a>
-          ))}
-        </div>
+                <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
+                  <span>{job.source}</span>
+                  {job.publishedAt && <span>{timeAgo(job.publishedAt)}</span>}
+                </div>
+              </a>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
