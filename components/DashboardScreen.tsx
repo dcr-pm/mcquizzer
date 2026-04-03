@@ -206,7 +206,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLe
             <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
               <i className="fa-solid fa-pen-fancy text-white"></i>
             </div>
-            <h3 className="text-white font-bold group-hover:text-purple-300 transition-colors" style={{ fontFamily: "'Great Vibes', cursive" }}>From the Founder</h3>
+            <h3 className="text-white font-bold group-hover:text-purple-300 transition-colors">From the Founder</h3>
           </div>
           <p className="text-gray-400 text-xs">Thoughts and insights from the creator of SF Quizzer</p>
         </button>

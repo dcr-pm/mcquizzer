@@ -50,7 +50,7 @@ const BlogScreen: React.FC<BlogScreenProps> = ({ onBack }) => {
             <p className="text-blue-400 text-xs mb-3">
               <i className="fa-solid fa-calendar mr-1"></i>{formatDate(selectedPost.published_at)}
             </p>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4" style={{ fontFamily: "'Great Vibes', cursive", fontSize: '2.2rem' }}>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
               {selectedPost.title}
             </h1>
             <div className="flex items-center gap-3">
@@ -90,7 +90,7 @@ const BlogScreen: React.FC<BlogScreenProps> = ({ onBack }) => {
         <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
           <i className="fa-solid fa-pen-fancy text-3xl text-white"></i>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Great Vibes', cursive", fontSize: '2.5rem' }}>
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
           From the Founder
         </h1>
         <p className="text-gray-400 text-sm">Thoughts, stories, and insights from the creator of SF Quizzer</p>
@@ -118,10 +118,7 @@ const BlogScreen: React.FC<BlogScreenProps> = ({ onBack }) => {
               <p className="text-purple-400 text-xs mb-2">
                 <i className="fa-solid fa-calendar mr-1"></i>{formatDate(post.published_at)}
               </p>
-              <h3
-                className="text-white font-bold text-lg sm:text-xl group-hover:text-purple-300 transition-colors mb-2"
-                style={{ fontFamily: "'Great Vibes', cursive", fontSize: '1.6rem' }}
-              >
+              <h3 className="text-white font-bold text-lg sm:text-xl group-hover:text-purple-300 transition-colors mb-2">
                 {post.title}
               </h3>
               <p className="text-gray-400 text-sm line-clamp-2">{post.excerpt}</p>
