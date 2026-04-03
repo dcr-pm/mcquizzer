@@ -19,24 +19,27 @@ export async function handler() {
       const itemXml = match[1];
 
       const getTag = (tag: string) => {
-        const tagMatch = itemXml.match(new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?(.*?)(?:\\]\\]>)?<\\/${tag}>`));
-        return tagMatch ? tagMatch[1].trim() : '';
+        // Handle both CDATA and non-CDATA content
+        const cdataMatch = itemXml.match(new RegExp(`<${tag}[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/${tag}>`));
+        if (cdataMatch) return cdataMatch[1].trim();
+        const simpleMatch = itemXml.match(new RegExp(`<${tag}[^>]*>([^<]*)<\\/${tag}>`));
+        return simpleMatch ? simpleMatch[1].trim() : '';
       };
 
-      const title = getTag('title').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+      const decodeEntities = (str: string) =>
+        str.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+
+      const title = decodeEntities(getTag('title'));
       const link = getTag('link');
       const pubDate = getTag('pubDate');
-      const source = getTag('source');
-      // Decode entities first, then strip all HTML tags and URLs
-      const rawDesc = getTag('description')
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'");
+      const source = decodeEntities(getTag('source'));
+
+      // Google News descriptions are HTML junk — strip everything aggressively
+      const rawDesc = decodeEntities(getTag('description'));
       const description = rawDesc
         .replace(/<[^>]*>/g, ' ')
         .replace(/https?:\/\/\S+/g, '')
+        .replace(/href="[^"]*"/g, '')
         .replace(/\s+/g, ' ')
         .trim()
         .slice(0, 200) || '';
