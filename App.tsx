@@ -25,6 +25,9 @@ import FlashcardScreen from './components/FlashcardScreen.tsx';
 import ExamSetupScreen from './components/ExamSetupScreen.tsx';
 import ExamPlayingScreen from './components/ExamPlayingScreen.tsx';
 import ExamResultsScreen from './components/ExamResultsScreen.tsx';
+import SFNewsScreen from './components/SFNewsScreen.tsx';
+import BlogScreen from './components/BlogScreen.tsx';
+import NewsletterModal from './components/NewsletterModal.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
   const shuffled = [...array];
@@ -63,6 +66,8 @@ const App: React.FC = () => {
   const [examState, setExamState] = useState<ExamState | null>(null);
   const [examResult, setExamResult] = useState<ExamResult | null>(null);
   const [flashcardProgress, setFlashcardProgress] = useState<FlashcardProgress[]>([]);
+  const [showNewsletterModal, setShowNewsletterModal] = useState(false);
+  const quizCompletionCountRef = useRef(0);
 
   const currentQuestion = questionQueue[currentQuestionIndex];
 
@@ -195,6 +200,16 @@ const App: React.FC = () => {
 
     setCurrentCategory(null);
     setQuestionQueue([]);
+
+    // Show newsletter modal after first quiz completion
+    quizCompletionCountRef.current++;
+    if (quizCompletionCountRef.current === 1) {
+      const alreadyAsked = localStorage.getItem('sf_newsletter_asked');
+      if (!alreadyAsked) {
+        setTimeout(() => setShowNewsletterModal(true), 1500);
+        localStorage.setItem('sf_newsletter_asked', 'true');
+      }
+    }
   };
 
   const handleNextQuestion = () => {
@@ -392,7 +407,7 @@ const App: React.FC = () => {
       case 'auth':
         return <AuthScreen />;
       case 'dashboard':
-        return <DashboardScreen onStartQuiz={() => setScreen('category_selection')} onShowLeaderboard={handleShowLeaderboard} onEditProfile={() => setScreen('profile_edit')} onCertPrep={handleCertPrep} />;
+        return <DashboardScreen onStartQuiz={() => setScreen('category_selection')} onShowLeaderboard={handleShowLeaderboard} onEditProfile={() => setScreen('profile_edit')} onCertPrep={handleCertPrep} onSFNews={() => setScreen('sf_news')} onBlog={() => setScreen('blog')} />;
       case 'profile_edit':
         return <ProfileEditScreen onBack={handleBackToDashboard} />;
       case 'category_selection':
@@ -480,6 +495,10 @@ const App: React.FC = () => {
           );
         }
         return null;
+      case 'sf_news':
+        return <SFNewsScreen onBack={handleBackToDashboard} />;
+      case 'blog':
+        return <BlogScreen onBack={handleBackToDashboard} />;
       default:
         return <AuthScreen />;
     }
@@ -530,6 +549,7 @@ const App: React.FC = () => {
            <PrizeAlert key={prizeAlert.name} prize={prizeAlert} onClose={() => setPrizeAlert(null)} />
         )}
          <FeedbackModal isOpen={isFeedbackModalOpen} onClose={handleCloseFeedback} question={feedbackQuestion} onSubmitFeedback={handleSubmitFeedback} />
+         <NewsletterModal isOpen={showNewsletterModal} onClose={() => setShowNewsletterModal(false)} />
       </main>
       {screen !== 'auth' && <Footer />}
     </div>

@@ -159,6 +159,24 @@ export interface ExamState {
 // NAVIGATION
 // =====================
 
+export interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string;
+  author: string;
+  published_at: string;
+  created_at: string;
+}
+
+export interface NewsItem {
+  title: string;
+  url: string;
+  source: string;
+  publishedAt: string;
+  description: string;
+}
+
 export type GameScreen =
   | 'auth'
   | 'dashboard'
@@ -173,4 +191,6 @@ export type GameScreen =
   | 'exam_setup'
   | 'exam_playing'
   | 'exam_results'
-  | 'premium_upgrade';
+  | 'premium_upgrade'
+  | 'sf_news'
+  | 'blog';

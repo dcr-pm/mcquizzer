@@ -9,9 +9,11 @@ interface DashboardScreenProps {
   onShowLeaderboard: () => void;
   onEditProfile: () => void;
   onCertPrep: () => void;
+  onSFNews: () => void;
+  onBlog: () => void;
 }
 
-const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLeaderboard, onEditProfile, onCertPrep }) => {
+const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLeaderboard, onEditProfile, onCertPrep, onSFNews, onBlog }) => {
   const { user, profile } = useAuth();
   const [history, setHistory] = useState<QuizHistoryEntry[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(true);
@@ -180,6 +182,34 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ onStartQuiz, onShowLe
             )}
           </button>
         </div>
+      </div>
+
+      {/* News & Blog Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6">
+        <button
+          onClick={onSFNews}
+          className="bg-gray-800/80 backdrop-blur-md rounded-xl border border-white/10 p-5 text-left hover:border-blue-500/30 hover:bg-gray-800 transition-all group"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center flex-shrink-0">
+              <i className="fa-solid fa-newspaper text-white"></i>
+            </div>
+            <h3 className="text-white font-bold group-hover:text-blue-300 transition-colors">SF News</h3>
+          </div>
+          <p className="text-gray-400 text-xs">Latest Salesforce ecosystem news in real time</p>
+        </button>
+        <button
+          onClick={onBlog}
+          className="bg-gray-800/80 backdrop-blur-md rounded-xl border border-white/10 p-5 text-left hover:border-purple-500/30 hover:bg-gray-800 transition-all group"
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+              <i className="fa-solid fa-pen-fancy text-white"></i>
+            </div>
+            <h3 className="text-white font-bold group-hover:text-purple-300 transition-colors" style={{ fontFamily: "'Great Vibes', cursive" }}>From the Founder</h3>
+          </div>
+          <p className="text-gray-400 text-xs">Thoughts and insights from the creator of SF Quizzer</p>
+        </button>
       </div>
 
       {/* Action Buttons */}

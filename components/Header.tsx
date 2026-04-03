@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Player, GameScreen } from '../types.ts';
 import { useAuth } from '../lib/AuthContext.tsx';
+import StockTicker from './StockTicker.tsx';
 
 interface HeaderProps {
   player: Player | null;
@@ -35,6 +36,9 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
       <div className="flex items-center gap-2 sm:gap-3">
         <i className="fa-solid fa-cloud text-2xl sm:text-3xl text-[#0F79AF]"></i>
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold">SF Quizzer</h1>
+        <div className="hidden sm:block">
+          <StockTicker />
+        </div>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
