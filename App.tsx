@@ -42,6 +42,34 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return shuffled;
 };
 
+// URL <-> screen mapping
+const SCREEN_PATHS: Record<string, GameScreen> = {
+  '/': 'home',
+  '/quiz': 'category_selection',
+  '/dashboard': 'dashboard',
+  '/leaderboard': 'leaderboard',
+  '/cert-prep': 'cert_hub',
+  '/upgrade': 'premium_upgrade',
+  '/study': 'study_mode',
+  '/flashcards': 'flashcards',
+  '/exam': 'exam_setup',
+  '/news': 'sf_news',
+  '/blog': 'blog',
+  '/jobs': 'sf_jobs',
+  '/testimonials': 'testimonials',
+  '/help': 'help',
+};
+
+const PATH_FOR_SCREEN: Record<string, string> = {};
+for (const [path, scr] of Object.entries(SCREEN_PATHS)) {
+  PATH_FOR_SCREEN[scr] = path;
+}
+
+const getScreenFromPath = (): GameScreen | null => {
+  const path = window.location.pathname;
+  return SCREEN_PATHS[path] || null;
+};
+
 const App: React.FC = () => {
   const { user, profile, loading: authLoading, signOut, refreshProfile } = useAuth();
 
@@ -74,6 +102,30 @@ const App: React.FC = () => {
   const quizCompletionCountRef = useRef(0);
 
   const currentQuestion = questionQueue[currentQuestionIndex];
+  const suppressPushRef = useRef(false);
+
+  // Push URL when screen changes
+  useEffect(() => {
+    if (screen === 'auth') return;
+    if (suppressPushRef.current) { suppressPushRef.current = false; return; }
+    const path = PATH_FOR_SCREEN[screen];
+    if (path && window.location.pathname !== path) {
+      window.history.pushState({ screen }, '', path);
+    }
+  }, [screen]);
+
+  // Handle browser back/forward
+  useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      const scr = e.state?.screen || getScreenFromPath();
+      if (scr && scr !== 'auth') {
+        suppressPushRef.current = true;
+        setScreen(scr);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Sync player state from auth profile
   useEffect(() => {
@@ -81,7 +133,11 @@ const App: React.FC = () => {
       setPlayer({ id: profile.id, name: profile.display_name, points: profile.points, level: profile.level });
       const existingPrizes = PRIZES.filter(prize => profile.points >= prize.points);
       setUnlockedPrizes(existingPrizes);
-      if (screen === 'auth') setScreen('home');
+      if (screen === 'auth') {
+        // Check if URL has a target screen
+        const urlScreen = getScreenFromPath();
+        setScreen(urlScreen && urlScreen !== 'auth' ? urlScreen : 'home');
+      }
     } else if (!authLoading && !user) {
       setPlayer(null);
       setScreen('auth');
