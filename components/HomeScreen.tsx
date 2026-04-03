@@ -11,9 +11,10 @@ interface HomeScreenProps {
   onDashboard: () => void;
   onLeaderboard: () => void;
   onSFJobs: () => void;
+  onTestimonials: () => void;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNews, onBlog, onHelp, onDashboard, onLeaderboard, onSFJobs }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNews, onBlog, onHelp, onDashboard, onLeaderboard, onSFJobs, onTestimonials }) => {
   const { profile } = useAuth();
 
   return (
@@ -91,13 +92,25 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
         {/* SF Jobs */}
         <button
           onClick={onSFJobs}
-          className="bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 sm:p-8 text-left hover:border-green-500/30 hover:bg-gray-800 transition-all group sm:col-span-2"
+          className="bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 sm:p-8 text-left hover:border-green-500/30 hover:bg-gray-800 transition-all group"
         >
           <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-green-500 to-teal-500 flex items-center justify-center mb-4">
             <i className="fa-solid fa-briefcase text-2xl text-white"></i>
           </div>
           <h2 className="text-xl font-bold text-white group-hover:text-green-300 transition-colors mb-2">Salesforce Jobs</h2>
           <p className="text-gray-400 text-sm">Browse the latest Salesforce job opportunities. Updated in near real-time from top job boards.</p>
+        </button>
+
+        {/* Testimonials */}
+        <button
+          onClick={onTestimonials}
+          className="bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 sm:p-8 text-left hover:border-amber-500/30 hover:bg-gray-800 transition-all group"
+        >
+          <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center mb-4">
+            <i className="fa-solid fa-comment-dots text-2xl text-white"></i>
+          </div>
+          <h2 className="text-xl font-bold text-white group-hover:text-amber-300 transition-colors mb-2">Testimonials</h2>
+          <p className="text-gray-400 text-sm">See what the community is saying about SF Quizzer. Share your own experience too!</p>
         </button>
       </div>
 

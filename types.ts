@@ -177,6 +177,14 @@ export interface NewsItem {
   description: string;
 }
 
+export interface Testimonial {
+  id: string;
+  user_id: string;
+  display_name: string;
+  content: string;
+  created_at: string;
+}
+
 export type GameScreen =
   | 'auth'
   | 'dashboard'
@@ -196,4 +204,5 @@ export type GameScreen =
   | 'blog'
   | 'home'
   | 'help'
-  | 'sf_jobs';
+  | 'sf_jobs'
+  | 'testimonials';

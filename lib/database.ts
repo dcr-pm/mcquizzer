@@ -1,5 +1,5 @@
 import { supabase, isSupabaseConfigured } from './supabase.ts';
-import { UserProfile, QuizHistoryEntry, ExamResult, FlashcardProgress } from '../types.ts';
+import { UserProfile, QuizHistoryEntry, ExamResult, FlashcardProgress, Testimonial } from '../types.ts';
 
 export async function fetchProfile(userId: string): Promise<UserProfile | null> {
   if (!isSupabaseConfigured) return null;
@@ -193,4 +193,36 @@ export async function saveStudySession(
     questions_reviewed: questionsReviewed,
     correct_answers: correctAnswers,
   });
+}
+
+// =====================
+// TESTIMONIALS
+// =====================
+
+export async function fetchTestimonials(): Promise<Testimonial[]> {
+  if (!isSupabaseConfigured) return [];
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error || !data) return [];
+  return data as Testimonial[];
+}
+
+export async function saveTestimonial(userId: string, displayName: string, content: string): Promise<Testimonial | null> {
+  if (!isSupabaseConfigured) return null;
+  const { data, error } = await supabase
+    .from('testimonials')
+    .insert({ user_id: userId, display_name: displayName, content })
+    .select()
+    .single();
+
+  if (error || !data) return null;
+  return data as Testimonial;
+}
+
+export async function deleteTestimonial(testimonialId: string): Promise<void> {
+  if (!isSupabaseConfigured) return;
+  await supabase.from('testimonials').delete().eq('id', testimonialId);
 }

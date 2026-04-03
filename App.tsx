@@ -30,6 +30,7 @@ import BlogScreen from './components/BlogScreen.tsx';
 import HomeScreen from './components/HomeScreen.tsx';
 import HelpScreen from './components/HelpScreen.tsx';
 import SFJobsScreen from './components/SFJobsScreen.tsx';
+import TestimonialsScreen from './components/TestimonialsScreen.tsx';
 import NewsletterModal from './components/NewsletterModal.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -420,6 +421,7 @@ const App: React.FC = () => {
             onDashboard={() => setScreen('dashboard')}
             onLeaderboard={handleShowLeaderboard}
             onSFJobs={() => setScreen('sf_jobs')}
+            onTestimonials={() => setScreen('testimonials')}
           />
         );
       case 'help':
@@ -519,6 +521,8 @@ const App: React.FC = () => {
         return <SFJobsScreen onBack={() => setScreen('home')} />;
       case 'blog':
         return <BlogScreen onBack={() => setScreen('home')} />;
+      case 'testimonials':
+        return <TestimonialsScreen onBack={() => setScreen('home')} />;
       default:
         return <AuthScreen />;
     }
