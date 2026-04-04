@@ -547,7 +547,7 @@ const App: React.FC = () => {
         return (
           <ExamSetupScreen
             cert={currentCert}
-            questions={PREMIUM_QUESTIONS.filter(q => q.certId === currentCert.id)}
+            questions={PREMIUM_QUESTIONS.filter(q => q.certId === currentCert.id && q.examEligible !== false)}
             onStartExam={handleStartExam}
             onBack={() => setScreen('cert_hub')}
           />

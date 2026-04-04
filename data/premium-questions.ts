@@ -2,11 +2,15 @@ import { PremiumQuestion } from '../types.ts';
 
 export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   // ============================================================
+  // STUDY-ONLY QUESTIONS (examEligible: false)
+  // ============================================================
+  // ============================================================
   // DOMAIN: email_design (Email Design & Content) — 15 questions
   // ============================================================
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'Horizon Fitness wants to send a promotional email where members see different workout plans based on their membership tier (Basic, Plus, or Elite). Which Content Builder feature should the email developer use?',
     options: [
       'A/B Testing with three variations',
@@ -20,6 +24,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'A developer at Bloom & Petal Florals is building an email template in Content Builder. The marketing team wants to lock the header and footer so regional marketers can only edit the middle content area. What should the developer use?',
     options: [
       'Create the template as a code snippet and share it via email',
@@ -33,6 +38,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'TechWave Solutions needs to display each subscriber\'s first name in the greeting line of a promotional email. If the first name is not available, it should default to "Valued Customer." Which AMPscript function is most appropriate?',
     options: [
       '%%=LOOKUP("FirstName","Valued Customer")=%%',
@@ -46,6 +52,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'GreenLeaf Organics is optimizing their weekly newsletter for mobile devices. Their current emails appear too wide on smartphones and require horizontal scrolling. What is the recommended approach?',
     options: [
       'Set the email width to 1200px to accommodate all screen sizes',
@@ -59,6 +66,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'UrbanStyle Apparel wants to add preheader text to their campaign email. The preheader should appear in the inbox preview but not be prominently visible in the email body itself. How should this be implemented?',
     options: [
       'Place the preheader text in the subject line after a pipe character',
@@ -72,6 +80,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'Coastal Adventures needs to pull a subscriber\'s upcoming trip destination from a data extension named "BookedTrips" and display it in a confirmation email. The data extension is keyed on SubscriberKey. Which AMPscript approach should the developer use?',
     options: [
       'Use the FORMAT function to retrieve data from BookedTrips',
@@ -85,6 +94,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'PetPals Supplies is creating an email with a hero image of a dog. To improve accessibility for subscribers who use screen readers, what must the developer include?',
     options: [
       'A tooltip attribute with the image file name',
@@ -98,6 +108,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'SunRise Energy is running an A/B test on subject lines for their quarterly newsletter. They want to send the winning version to the remaining audience automatically. What should they configure in Content Builder?',
     options: [
       'Create two separate emails and manually check results after sending',
@@ -111,6 +122,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'FreshBite Meals uses Content Builder to manage all their email assets. A marketer accidentally deleted a shared content block used across 12 campaigns. What is true about this situation?',
     options: [
       'The content block is permanently deleted and all 12 emails are broken immediately',
@@ -124,6 +136,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'CloudNine Travel is building an email that must display prices in the subscriber\'s local currency. Subscriber currency preference is stored in a profile attribute called "CurrencyCode." The pricing data lives in a DE called "TripPrices" with columns for USD, EUR, and GBP. Which approach is best?',
     options: [
       'Build three separate emails, one for each currency',
@@ -137,6 +150,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'NovaBright Cosmetics wants to ensure their emails render consistently across Outlook desktop clients. Their developer notices that Outlook ignores certain CSS properties. What is the primary rendering engine used by Outlook desktop (2013+)?',
     options: [
       'WebKit, the same engine used by Safari',
@@ -150,6 +164,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'PeakTrail Outdoors wants to create a reusable email component — a product card with an image, title, price, and CTA button — that can be dropped into any email. What Content Builder asset type is most appropriate?',
     options: [
       'A saved email that is copied each time',
@@ -163,6 +178,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'BrightSmile Dental sends appointment reminders using AMPscript. They need to format the appointment date "2026-04-15" as "April 15, 2026" in the email. Which AMPscript function should they use?',
     options: [
       'CONCAT("April", " ", "15", ", ", "2026")',
@@ -176,6 +192,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'Velvet & Thread Boutique is designing an email with a background image behind text in the hero section. The developer discovers that many email clients do not support CSS background-image. What is the recommended workaround?',
     options: [
       'Use JavaScript to set the background image dynamically',
@@ -189,6 +206,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'email_design',
+    examEligible: false,
     text: 'RapidShip Logistics sends shipment notification emails and wants to include a live, up-to-date tracking link unique to each package. The tracking URL follows the pattern https://track.rapidship.com/?id=XXXXX where XXXXX is stored in a DE field called "TrackingID." Which AMPscript produces the correct link?',
     options: [
       '<a href="%%=REDIRECT(CONCAT("https://track.rapidship.com/?id=", TrackingID))=%%">Track Package</a>',
@@ -206,6 +224,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'TechWave Solutions just purchased Marketing Cloud and has a brand-new dedicated IP address. Their email team wants to send 500,000 emails on the first day. What risk does this pose?',
     options: [
       'No risk — dedicated IPs have a pre-established good reputation',
@@ -219,6 +238,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'GreenLeaf Organics has implemented SPF and DKIM but is still seeing spoofed emails sent from their domain. What additional email authentication protocol should they configure to instruct receiving servers how to handle messages that fail SPF and DKIM?',
     options: [
       'TLS (Transport Layer Security)',
@@ -232,6 +252,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'Coastal Adventures notices that their open rates have dropped from 25% to 8% over three months. Investigation reveals a high number of hard bounces being sent to repeatedly. What should they do first?',
     options: [
       'Switch to a new IP address immediately',
@@ -245,6 +266,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'SunRise Energy has configured Sender Authentication Package (SAP) in Marketing Cloud. Which of the following does SAP provide?',
     options: [
       'Automatic content creation and email scheduling',
@@ -258,6 +280,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'FreshBite Meals receives a report showing that 40% of their emails to Yahoo addresses are landing in the spam folder. Their SPF and DKIM are correctly configured. What is the most likely cause?',
     options: [
       'Yahoo does not support SPF or DKIM',
@@ -271,6 +294,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'UrbanStyle Apparel is performing IP warming for their new dedicated IP. Which schedule represents a proper warming approach?',
     options: [
       'Send to the full list on day 1, then reduce volume each day',
@@ -284,6 +308,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'PetPals Supplies wants to make it easy for recipients to unsubscribe directly from the inbox without opening the email. What should they implement to support this?',
     options: [
       'Add a large "Unsubscribe" image in the email body',
@@ -297,6 +322,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'NovaBright Cosmetics sends from a shared IP in Marketing Cloud. They notice deliverability issues that seem unrelated to their own sending practices. What is the most likely explanation?',
     options: [
       'Shared IPs always have deliverability issues',
@@ -310,6 +336,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'Horizon Fitness uses Reply Mail Management (RMM) in Marketing Cloud. A subscriber replies to a campaign email with "REMOVE" in the body. How does RMM handle this?',
     options: [
       'It forwards the reply to the marketing manager\'s personal inbox',
@@ -323,6 +350,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'CloudNine Travel is migrating from another ESP to Marketing Cloud. They plan to transfer their full list of 2 million subscribers and start sending immediately. What critical step are they missing?',
     options: [
       'They need to convert all emails to plain-text format first',
@@ -336,6 +364,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'BrightSmile Dental sends appointment reminders that sometimes hit spam folders at Gmail. They examine their emails and find the text "ACT NOW — FREE CLEANING!!!" in the subject line. What deliverability principle is being violated?',
     options: [
       'Emails must be sent in all lowercase to avoid spam filters',
@@ -349,6 +378,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'deliverability',
+    examEligible: false,
     text: 'Velvet & Thread Boutique wants to send 1 million emails but their Marketing Cloud account is configured with email throttling at 100,000 per hour. What is the purpose of this throttle?',
     options: [
       'To reduce the cost of sending emails',
@@ -366,6 +396,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'PeakTrail Outdoors needs to store customer hiking preferences, shoe size, and last purchase date alongside their email addresses. The marketing team requires flexible querying capabilities. Should they use a Data Extension or a List?',
     options: [
       'A List, because it supports unlimited custom fields',
@@ -379,6 +410,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'Bloom & Petal Florals has a data extension called "Orders" and wants to send an email to every subscriber with at least one order. The data extension has fields: OrderID, SubscriberKey, OrderDate, and Amount. What must be true about this DE for it to be sendable?',
     options: [
       'It must contain a field named "EmailAddress" and have a relationship to a subscriber via a sendable field mapped to SubscriberKey or Email Address',
@@ -392,6 +424,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'TechWave Solutions writes a SQL query to find subscribers who opened an email in the last 30 days but did not click any link. Which two data views would they join?',
     options: [
       '_Subscribers and _Complaint',
@@ -405,6 +438,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'GreenLeaf Organics has a "Customers" data extension and a "Purchases" data extension. They want to link purchases to customers so they can query across both tables. What should they define?',
     options: [
       'A data filter between the two DEs',
@@ -418,6 +452,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'Coastal Adventures imports a CSV file into a data extension, but the import fails with an error about duplicate primary keys. What does this indicate?',
     options: [
       'The CSV file exceeds the maximum file size',
@@ -431,6 +466,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'SunRise Energy has a SQL Query activity that needs to find all subscribers who received an email in the last 7 days. Which data view and field should they query?',
     options: [
       '_Click data view, filtering on ClickDate',
@@ -444,6 +480,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'FreshBite Meals has a data extension with 10 million rows of order history. Performance is slow when querying it. What should they consider to improve performance?',
     options: [
       'Delete all the data and start over',
@@ -457,6 +494,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'UrbanStyle Apparel needs to create a data extension to store subscriber email preferences. The fields are: SubscriberKey (Text 254), EmailAddress (EmailAddress), OptInDate (Date), and IsActive (Boolean). What should SubscriberKey be set as?',
     options: [
       'A nullable text field with no constraints',
@@ -470,6 +508,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'PetPals Supplies runs a SQL query activity in Automation Studio. The query targets a data extension called "ActiveSubscribers" with the action type set to "Overwrite." What happens when the automation runs?',
     options: [
       'New records are appended to existing records in ActiveSubscribers',
@@ -483,6 +522,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'Horizon Fitness wants to import subscriber data from an SFTP location into a data extension automatically every night. What sequence of Automation Studio activities should they configure?',
     options: [
       'SQL Query Activity > Data Extract Activity',
@@ -496,6 +536,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'NovaBright Cosmetics has set a data retention policy on their "WebActivity" data extension to delete records older than 90 days. What happens to records on day 91?',
     options: [
       'Records are moved to a backup data extension automatically',
@@ -509,6 +550,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'CloudNine Travel creates a data filter in Email Studio to segment subscribers whose "TravelTier" attribute equals "Platinum." What is the result of applying this filter?',
     options: [
       'A new data extension containing only Platinum-tier subscriber records',
@@ -522,6 +564,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'RapidShip Logistics stores shipment data with a "ShipDate" field defined as a Text data type instead of Date. A developer tries to use DATEADD on this field in a SQL query and gets an error. Why?',
     options: [
       'DATEADD is not available in Marketing Cloud SQL',
@@ -535,6 +578,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'Bloom & Petal Florals wants to store only the most recent 10,000 orders in their "RecentOrders" data extension. New orders arrive daily via an import. Which combination of settings achieves this?',
     options: [
       'Set the DE maximum row count to 10,000 and use the "Append" import type',
@@ -548,6 +592,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'PeakTrail Outdoors needs to export a data extension to a CSV file on their external SFTP every week. What Automation Studio activities are required, and in what order?',
     options: [
       'Import File Activity > File Transfer Activity',
@@ -561,6 +606,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'BrightSmile Dental has an "Appointments" DE with these fields: AppointmentID (Number), PatientKey (Text 254), AppointmentDate (Date), and DentistName (Text 100). They need AppointmentID to auto-increment. Is this possible in Marketing Cloud data extensions?',
     options: [
       'Yes, by setting the field as an auto-increment primary key in the DE definition',
@@ -574,6 +620,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'data_management',
+    examEligible: false,
     text: 'Velvet & Thread Boutique needs to combine customer data from two data extensions — "OnlineCustomers" and "InStoreCustomers" — into a single "AllCustomers" DE, removing duplicates based on email address. Which SQL approach is correct?',
     options: [
       'Use INSERT INTO to copy both tables sequentially',
@@ -591,6 +638,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'Horizon Fitness adds a new subscriber to a data extension and sends an email, but the subscriber does not receive it. Upon investigation, the subscriber\'s status in All Subscribers is "Unsubscribed." What explains this behavior?',
     options: [
       'Data extensions override the All Subscribers status',
@@ -604,6 +652,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'GreenLeaf Organics wants to allow subscribers to choose which types of emails they receive — promotions, recipes, or sustainability updates. What Marketing Cloud feature supports this?',
     options: [
       'Create three separate Marketing Cloud accounts',
@@ -617,6 +666,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'Coastal Adventures notices that a subscriber\'s status is "Held" in All Subscribers. What does this status mean?',
     options: [
       'The subscriber is on a VIP hold list and receives priority delivery',
@@ -630,6 +680,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'TechWave Solutions has both a Marketing Cloud account and a Sales Cloud org. They use Marketing Cloud Connect. A subscriber unsubscribes in Marketing Cloud. What happens in Sales Cloud?',
     options: [
       'Nothing — the systems are completely independent',
@@ -643,6 +694,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'FreshBite Meals creates a suppression list called "CompetitorDomains" containing email addresses from competitor companies. How does this list function during a send?',
     options: [
       'It adds the competitor addresses to the send audience for competitive intelligence',
@@ -656,6 +708,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'SunRise Energy uses a custom preference center hosted on a CloudPage. When a subscriber updates their preferences, what should the CloudPage do on the back end?',
     options: [
       'Send an email to the admin with the updated preferences',
@@ -669,6 +722,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'UrbanStyle Apparel accidentally sends to a subscriber who previously unsubscribed. This happened because the subscriber was re-added to a data extension by an import. How can they prevent this in the future?',
     options: [
       'Delete the All Subscribers list to reset all statuses',
@@ -682,6 +736,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'PetPals Supplies has subscribers with the same email address but different subscriber keys (e.g., one from an e-commerce system and one from a loyalty program). How does Marketing Cloud handle this?',
     options: [
       'Marketing Cloud rejects duplicate email addresses automatically',
@@ -695,6 +750,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'NovaBright Cosmetics wants to build a re-engagement campaign targeting subscribers who have not opened any email in the past 6 months. If subscribers do not engage with the re-engagement email, they should be moved to a suppressed segment. Which approach is best?',
     options: [
       'Manually review each subscriber\'s activity and update a spreadsheet',
@@ -708,6 +764,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'RapidShip Logistics creates a subscriber record where the SubscriberKey is set to the email address "john@rapidship.com." Later, the subscriber changes their email to "john.doe@rapidship.com." What challenge arises?',
     options: [
       'No challenge — the system updates everything automatically',
@@ -721,6 +778,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'subscriber_mgmt',
+    examEligible: false,
     text: 'CloudNine Travel wants to ensure CAN-SPAM compliance. A marketing email is sent without an unsubscribe link. What is the consequence?',
     options: [
       'Nothing — unsubscribe links are optional for marketing emails',
@@ -738,6 +796,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'Horizon Fitness needs a nightly process that pulls subscriber data from SFTP, imports it into a data extension, runs a SQL query to segment active members, and then sends a triggered email. Which Marketing Cloud tool should they use?',
     options: [
       'Journey Builder with a single Email Activity',
@@ -751,6 +810,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'Bloom & Petal Florals wants to send a unique "Happy Birthday" email to each subscriber on their actual birthday. The email should enter them into a personalized journey. What is the best entry source for this Journey Builder journey?',
     options: [
       'A List entry with all subscribers',
@@ -764,6 +824,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'TechWave Solutions has an automation with three steps: Step 1 (SQL Query A and SQL Query B), Step 2 (SQL Query C), and Step 3 (Send Email). What is the execution behavior?',
     options: [
       'All three steps run simultaneously',
@@ -777,6 +838,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'GreenLeaf Organics wants to trigger an email immediately when a customer submits a contact form on their website. What Marketing Cloud feature should they use?',
     options: [
       'A scheduled Automation Studio send that runs every minute',
@@ -790,6 +852,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'Coastal Adventures has a Journey Builder journey for a post-booking welcome series. After the first email, they want to wait 3 days and then check if the subscriber opened it. If yes, send Email B; if not, send Email C. Which Journey Builder elements achieve this?',
     options: [
       'Email Activity > Exit Criteria > Two separate journeys',
@@ -803,6 +866,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'SunRise Energy has an Automation Studio automation that should only run when a specific file lands on the Enhanced FTP. What starting source should they configure?',
     options: [
       'Schedule-based starting source set to check every hour',
@@ -816,6 +880,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'FreshBite Meals uses a User-Initiated Send to allow their marketing manager to send weekly promotions at their discretion. How does a User-Initiated Send differ from a standard Guided Send?',
     options: [
       'They are identical in functionality',
@@ -829,6 +894,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'UrbanStyle Apparel has a journey that sends an abandoned cart email 2 hours after cart abandonment. The entry source is a Salesforce Data event. If a customer abandons their cart, completes the purchase 30 minutes later, and then the 2-hour timer expires, should the email still send?',
     options: [
       'Yes — once a subscriber enters a journey, all activities execute regardless of external changes',
@@ -842,6 +908,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'PetPals Supplies wants to extract tracking data from Marketing Cloud every week and deliver it to an external analytics platform via SFTP. What activities should the automation contain?',
     options: [
       'SQL Query Activity > Import File Activity',
@@ -855,6 +922,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'NovaBright Cosmetics has a Journey Builder journey that re-evaluates its data extension entry source every day. A subscriber enters the journey on Monday. On Tuesday, they still meet the entry criteria. Will they re-enter the journey?',
     options: [
       'Yes — subscribers always re-enter every time they meet the criteria',
@@ -868,6 +936,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'BrightSmile Dental has an automation scheduled to run daily at 6:00 AM. The SQL Query step takes 45 minutes, and the Send Email step depends on the query results. One morning, the query fails due to a timeout. What happens to the Send Email step?',
     options: [
       'The Send Email step runs anyway with whatever data was available before the failure',
@@ -881,6 +950,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'Velvet & Thread Boutique wants to use Journey Builder to send different email content based on a subscriber\'s loyalty status — Gold, Silver, or Bronze. Which Journey Builder element should they use?',
     options: [
       'Random Split to distribute subscribers into three paths equally',
@@ -894,6 +964,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'RapidShip Logistics needs to pause a live Journey Builder journey to fix a typo in one of the emails. What happens to subscribers currently in the journey when it is paused?',
     options: [
       'All subscribers are immediately ejected from the journey',
@@ -907,6 +978,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'automation',
+    examEligible: false,
     text: 'PeakTrail Outdoors sets up an Automation Studio automation with a Verification Activity after an Import File Activity. What does the Verification Activity do?',
     options: [
       'It verifies that the email addresses in the import are correctly formatted',
@@ -924,6 +996,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'CloudNine Travel sends a campaign to 100,000 subscribers. 5,000 emails bounce, 28,500 unique opens are recorded, and 9,500 unique clicks are recorded. What is the unique open rate?',
     options: [
       '28.5% — calculated as unique opens / total sent',
@@ -937,6 +1010,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'Horizon Fitness notices their open rate metrics have been inflated since late 2021. Many opens appear to come from Apple devices even when subscribers have not actually opened the email. What is causing this?',
     options: [
       'A bug in the Marketing Cloud tracking system',
@@ -950,6 +1024,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'GreenLeaf Organics wants to create a custom report showing which subscribers clicked specific links in their last 10 campaigns. Which data view should they query?',
     options: [
       '_Open',
@@ -963,6 +1038,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'SunRise Energy sees that a campaign has 15,000 unique opens but 42,000 total opens. What explains the difference between unique and total opens?',
     options: [
       'Total opens count only the first open per subscriber; unique opens count all opens',
@@ -976,6 +1052,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'FreshBite Meals sends a weekly newsletter and wants to track how many subscribers forwarded it. They notice the "Forward to a Friend" count is very low. Why might the standard tracking metrics not capture most forwards?',
     options: [
       'Marketing Cloud does not track any forwarding activity',
@@ -989,6 +1066,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'Coastal Adventures sends a campaign and checks the bounce report. They see both "Hard Bounces" and "Soft Bounces." What is the key difference?',
     options: [
       'Hard bounces are for emails over 1MB; soft bounces are for smaller emails',
@@ -1002,6 +1080,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'PetPals Supplies wants to determine which subject line performs better by comparing two versions. Version A has a 22% open rate and Version B has a 18% open rate, but Version B has a 12% click-through rate versus Version A\'s 6%. Which version drove more downstream engagement?',
     options: [
       'Version A — the higher open rate is always the most important metric',
@@ -1015,6 +1094,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
+    examEligible: false,
     text: 'TechWave Solutions wants to build a historical reporting dashboard that shows email performance trends over the past 12 months. They discover that Marketing Cloud tracking data views only retain data for a limited period. What should they do?',
     options: [
       'Contact Salesforce Support to extend data view retention indefinitely',
@@ -1024,5 +1104,2085 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
     ],
     correct: 1,
     explanation: 'Marketing Cloud system data views have retention limits (commonly 6 months for some views, though this varies). To preserve historical data beyond these limits, best practice is to create a recurring Automation Studio automation that queries tracking data views and writes the results into custom data extensions, which do not have the same automatic retention limits. This data can then power long-term reporting dashboards.',
+  },,
+
+  // ============================================================
+  // NEW SFMC CERT PREP QUESTIONS (examEligible: true)
+  // ============================================================
+  // Q1 - DoNotTrack attribute
+  {
+    text: 'Pinnacle Fitness has a segment of subscribers who have opted out of behavioral profiling under their privacy policy. The marketing team still wants to send emails to these subscribers but must stop recording their opens and clicks. Which subscriber-level attribute should the admin configure?',
+    options: [
+      'Set the ListUnsubscribe attribute to True for those subscribers',
+      'Enable the DoNotTrack attribute on the subscriber record',
+      'Remove the subscribers from all tracking data extensions manually',
+    ],
+    correct: 1,
+    explanation: 'The DoNotTrack attribute, when set to True on a subscriber record, tells Marketing Cloud to suppress open and click tracking for that individual. The subscriber still receives emails, but no engagement data is collected, satisfying privacy requirements without removing them from sends.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
   },
+  // Q2 - APIs for real-time subscriber updates
+  {
+    text: 'TechNova Solutions runs a customer portal where users update their email preferences in real time. The product team needs these changes to immediately reflect in Marketing Cloud so the next triggered send uses current data. Which approach best supports this requirement?',
+    options: [
+      'Schedule a nightly file import via Automation Studio',
+      'Use the Marketing Cloud REST or SOAP API to update subscriber attributes in real time',
+      'Have the portal team send a daily CSV over SFTP for batch processing',
+    ],
+    correct: 1,
+    explanation: 'The Marketing Cloud APIs (REST and SOAP) allow external systems to create, update, and retrieve subscriber records in real time. This ensures that preference changes made on a portal are immediately available for the next send, unlike batch methods that introduce delays.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q3 - Approval Workflow
+  {
+    text: 'Meridian Healthcare requires that all patient-facing emails pass through a legal review before they can be sent. The email team wants a built-in mechanism where a designated reviewer can approve or reject emails directly within the platform. Which feature should they enable?',
+    options: [
+      'A/B Testing with a manual winner selection step',
+      'Approvals in Email Studio, assigning a reviewer to the workflow',
+      'Send Throttling configured to hold emails until manually released',
+    ],
+    correct: 1,
+    explanation: 'The Approvals feature in Email Studio lets organizations define a proofing workflow where designated reviewers must approve an email before it can be sent. This is ideal for regulated industries like healthcare where legal or compliance sign-off is mandatory.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q4 - Publication Lists for communication preferences
+  {
+    text: 'Coastal Brewing sends three types of emails: weekly promotions, event invitations, and new product announcements. They store subscriber data in data extensions and want customers to choose which types of communication they receive. What should the email specialist set up?',
+    options: [
+      'Three separate All Subscribers lists with different business units',
+      'Publication Lists for each communication type, linked to subscriber preferences',
+      'Suppression lists that exclude subscribers from unwanted categories',
+    ],
+    correct: 1,
+    explanation: 'Publication Lists allow subscribers to opt in or out of specific communication themes while remaining active in the system. When combined with data extensions, they provide granular preference management so subscribers receive only the content categories they choose.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  // Q5 - Schedule report and email file
+  {
+    text: 'Atlas Financial needs their marketing director to receive a daily summary of all email sends from the previous day, delivered to their inbox each morning at 8 AM. Which Email Studio reporting feature meets this need?',
+    options: [
+      'Create a tracking extract and manually download it each morning',
+      'Use the Schedule Report feature to generate and email the report daily',
+      'Build a SQL query in Automation Studio that writes results to a shared data extension',
+    ],
+    correct: 1,
+    explanation: 'The Schedule Report feature lets you configure recurring reports and have them automatically emailed to specified recipients. This is the most straightforward way to deliver a daily send summary without any manual intervention or custom automation.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q6 - Preview and Test with subscriber data
+  {
+    text: 'Summit Education built an enrollment confirmation email using AMPscript to dynamically pull course names and start dates from a data extension. Before sending, the developer wants to verify the personalization renders correctly for specific subscriber records. Which tool should they use?',
+    options: [
+      'Send a live test email to an internal distribution list',
+      'Use Preview and Test in Content Builder, selecting specific subscriber records from the data extension',
+      'Review the raw AMPscript code in the HTML editor for syntax errors',
+    ],
+    correct: 1,
+    explanation: 'Preview and Test allows you to select individual subscriber records and render the email exactly as that subscriber would see it, including all AMPscript personalization. This catches data-driven rendering issues before a live send without actually sending the email.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q7 - Verification Activity
+  {
+    text: 'Velocity Auto runs a nightly automation that imports dealership inventory data, queries it for promotional targeting, and sends an email. Occasionally the import file is empty or missing rows, which causes the email to go out with broken personalization. What should the admin add to the automation?',
+    options: [
+      'A Wait Activity set to 30 minutes between the import and the send',
+      'A Verification Activity after the import to check row count before proceeding',
+      'A second import step that re-downloads the file as a backup',
+    ],
+    correct: 1,
+    explanation: 'A Verification Activity acts as a checkpoint in Automation Studio. It can validate that a data extension meets minimum row count thresholds before the automation continues. If the check fails, the automation stops and sends an alert, preventing emails with missing or broken data.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q8 - Email Overlay View
+  {
+    text: 'Bloom Botanicals sent a product launch email containing multiple links to different product pages, a blog post, and social media profiles. The marketing manager wants to quickly see which links got the most clicks, displayed visually on the email itself. Which reporting view should they use?',
+    options: [
+      'The Click Tracking data view queried via SQL',
+      'Email Overlay View in tracking, which highlights click data on the rendered email',
+      'A custom Datorama dashboard filtered to link-level metrics',
+    ],
+    correct: 1,
+    explanation: 'Email Overlay View renders the sent email with click metrics visually overlaid on each link. This gives marketers an intuitive, at-a-glance understanding of which areas of the email attracted the most engagement without needing to interpret tabular data.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q9 - Collecting emails at offline events
+  {
+    text: 'Redwood Hospitality is sponsoring a food and wine festival and wants to grow their email subscriber base by capturing attendee information at their booth. Which approach is most effective for building their Marketing Cloud audience from this offline event?',
+    options: [
+      'Collect email addresses on sign-up sheets or tablets at the event and import them into Marketing Cloud',
+      'Post their subscription link on a social media ad after the event ends',
+      'Add all festival attendees to the All Subscribers list without consent',
+    ],
+    correct: 0,
+    explanation: 'Collecting email addresses directly at offline events via sign-up sheets, tablets, or QR codes linked to a form is the most effective way to capture interested subscribers in person. The data can then be imported into Marketing Cloud with proper consent documentation.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  // Q10 - Different steps in automation for sequential sends
+  {
+    text: 'Quantum Analytics needs to send two emails in sequence as part of a product launch: first a teaser email, then a full announcement 24 hours later. Both emails should go to the same audience. How should this be configured in Automation Studio?',
+    options: [
+      'Place both send activities in the same automation step so they fire simultaneously',
+      'Create separate steps in the automation with a Wait Activity between them for sequential execution',
+      'Build two independent automations that run on overlapping schedules',
+    ],
+    correct: 1,
+    explanation: 'Automation Studio processes steps sequentially. By placing each email send in a separate step with a Wait Activity between them, you ensure the teaser goes out first and the announcement follows after the specified delay. Activities within the same step run in parallel, not sequentially.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q11 - Journey Builder + Engagement Split for birthday coupon
+  {
+    text: 'Pinnacle Fitness wants to send a birthday coupon email to members and then follow up three days later. Members who opened the coupon email should receive a reminder to redeem it, while those who did not open should get a different subject line. Which combination of tools achieves this?',
+    options: [
+      'Automation Studio with two scheduled sends and a SQL-based filter',
+      'Journey Builder with an Engagement Split that evaluates open activity after a Wait period',
+      'A triggered send with a dynamic content block based on open status',
+    ],
+    correct: 1,
+    explanation: 'Journey Builder combined with an Engagement Split is the right approach. The journey sends the initial coupon, waits three days, then uses an Engagement Split to route subscribers who opened the email down one path and non-openers down another. This enables different follow-up messaging based on real engagement.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q12 - Manage Files in File Transfer for encrypted import
+  {
+    text: 'Atlas Financial receives an encrypted CSV file from a partner bank each week containing customer records. The file lands on the Marketing Cloud SFTP and needs to be decrypted before it can be imported into a data extension. Where in Automation Studio should the team manage this file handling?',
+    options: [
+      'Use the Import Activity with built-in decryption settings',
+      'Use the File Transfer Activity with the Manage File option to decrypt the file before import',
+      'Write a SQL Query Activity to parse the encrypted file directly',
+    ],
+    correct: 1,
+    explanation: 'The File Transfer Activity in Automation Studio includes a Manage File option that can decrypt PGP-encrypted files on the SFTP. This step should be placed before the Import Activity in the automation so the file is decrypted and ready for a standard data extension import.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q13 - SAP with Private Domain and Dedicated IP
+  {
+    text: 'Coastal Brewing is planning a large-scale email program sending over 500,000 emails per month. They want full control over their sender reputation and to ensure their domain appears in the "from" address and authentication headers. Which combination should the admin configure?',
+    options: [
+      'Sender Authentication Package (SAP) with a private domain and dedicated IP address',
+      'A shared IP pool with a generic sender profile and default authentication',
+      'SPF records only, using Marketing Cloud default sending domain',
+    ],
+    correct: 0,
+    explanation: 'A Sender Authentication Package (SAP) bundles a private sending domain, dedicated IP address, and custom authentication (SPF/DKIM) together. This gives high-volume senders full control over their reputation, branded links, and deliverability, which is critical at 500K+ monthly sends.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q14 - "Download now" as best CTA
+  {
+    text: 'TechNova Solutions is designing an email to promote a free whitepaper download. The team is debating what text to use on the call-to-action button. Which option follows email design best practices for driving conversions?',
+    options: [
+      'Click Here',
+      'Download Now',
+      'Learn More About Our Various Whitepaper Offerings and Resources',
+    ],
+    correct: 1,
+    explanation: '"Download Now" is a clear, action-oriented CTA that tells the subscriber exactly what will happen when they click. Best practices recommend short, specific action verbs over vague phrases like "Click Here" or overly long descriptions that dilute the message.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q15 - Segmented lists to reduce unsubscribes
+  {
+    text: 'Meridian Healthcare has seen a spike in unsubscribes after increasing their email frequency to daily sends across all subscribers. The marketing team suspects over-messaging is the cause. What strategy should they implement to reduce unsubscribes while maintaining engagement?',
+    options: [
+      'Reduce all email sends to once per month regardless of subscriber interest',
+      'Segment their audience and send targeted content based on subscriber preferences and engagement',
+      'Remove the unsubscribe link to prevent opt-outs',
+    ],
+    correct: 1,
+    explanation: 'Segmenting the audience ensures that subscribers only receive content relevant to their interests and at a frequency they are comfortable with. This targeted approach reduces fatigue-driven unsubscribes while keeping engaged subscribers active. Removing unsubscribe links violates CAN-SPAM regulations.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  // Q16 - Import metadata tag index for searchable stock art
+  {
+    text: 'Redwood Hospitality has uploaded hundreds of property photos into Content Builder. The marketing team is struggling to find specific images when building emails. How should the admin organize these assets for easy search and discovery?',
+    options: [
+      'Rename every file with a unique numeric ID and maintain a spreadsheet externally',
+      'Add descriptive metadata tags during import so images are searchable by keyword in Content Builder',
+      'Store all images in a single folder and scroll through thumbnails to find them',
+    ],
+    correct: 1,
+    explanation: 'Content Builder supports metadata tagging on imported assets. By adding descriptive tags like property name, location, and image type during upload, the team can quickly search and filter images by keyword. This is far more scalable than external tracking or manual browsing.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q17 - Reference Content Block for seasonal content
+  {
+    text: 'Summit Education uses a promotional banner that appears in dozens of emails across multiple campaigns. The banner content changes every season. The team wants to update the banner once and have every email reflect the change automatically. Which Content Builder feature should they use?',
+    options: [
+      'Copy and paste the updated banner HTML into each email individually',
+      'Use a Reference Content Block so all emails pull from a single shared source',
+      'Create a new template each season and rebuild all emails from scratch',
+    ],
+    correct: 1,
+    explanation: 'A Reference Content Block is embedded by reference rather than copied. When you update the source block, every email that references it automatically displays the updated content. This is ideal for shared elements like seasonal banners that change frequently and appear across many emails.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q18 - Incorrect Sending Relationship causing send failure
+  {
+    text: 'Bloom Botanicals configured a new email for their loyalty program and attempted a Guided Send, but the send failed immediately with an error about the sending configuration. The email content and audience are correct. Which misconfiguration is the most likely cause?',
+    options: [
+      'The email subject line exceeds the character limit',
+      'The Send Classification has an incorrect or mismatched Sender Profile and Delivery Profile',
+      'The data extension has too many rows for a single send',
+    ],
+    correct: 1,
+    explanation: 'A Send Classification bundles the Sender Profile, Delivery Profile, and CAN-SPAM settings. If any of these components are misconfigured, missing, or mismatched, the send will fail before it even begins processing. This is one of the most common causes of immediate send failures in Email Studio.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q19 - Transactional Send Journey for password reset
+  {
+    text: 'Quantum Analytics needs to send password reset emails triggered by their web application. These emails must go out regardless of subscriber status, including to unsubscribed users, since they are operational in nature. Which sending method should the team use?',
+    options: [
+      'A standard Guided Send with the commercial send classification',
+      'A Transactional Send Journey configured for non-commercial operational messages',
+      'A Journey Builder multi-step journey with an entry event',
+    ],
+    correct: 1,
+    explanation: 'Transactional Send Journeys are designed for operational messages like password resets, order confirmations, and security alerts. They bypass commercial unsubscribe rules because these messages are required for the user experience, not marketing. This ensures delivery to all subscribers regardless of opt-in status.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q20 - Query data using specific date range
+  {
+    text: 'Velocity Auto discovered that a pricing error appeared in emails sent between March 1 and March 5. The team needs to identify all subscribers who received the incorrect pricing during that window. What is the best approach in Marketing Cloud?',
+    options: [
+      'Manually review each send log entry from the tracking tab one by one',
+      'Write a SQL Query Activity against the Send Log or data views, filtering by the specific date range',
+      'Re-send the corrected email to the entire subscriber list',
+    ],
+    correct: 1,
+    explanation: 'A SQL Query Activity can filter the Send Log data extension or system data views (like _Sent) by date range to extract exactly which subscribers received sends during the affected window. This is the most precise and scalable way to identify impacted recipients for follow-up communication.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q21 - Bounced contacts from previous sends
+  {
+    text: 'Pinnacle Fitness imported 50,000 subscribers into a data extension and sent a campaign, but only 47,000 were delivered. The team confirmed no exclusions or suppression lists were applied. What is the most likely reason for the missing 3,000 subscribers?',
+    options: [
+      'The email content was too large and timed out for some subscribers',
+      'Those contacts had previously bounced and were automatically excluded by the platform',
+      'The data extension reached its maximum row capacity during the send',
+    ],
+    correct: 1,
+    explanation: 'Marketing Cloud automatically suppresses subscribers whose email addresses have previously hard bounced. These contacts are held at the platform level and excluded from future sends even if they appear in the sending data extension. This protects sender reputation by preventing repeated delivery attempts to invalid addresses.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q22 - Test sends not in Send Log
+  {
+    text: 'Atlas Financial configured a Send Log data extension to track every email sent for audit purposes. After running several test sends through Preview and Test, the compliance team noticed those test sends do not appear in the Send Log. Why is this happening?',
+    options: [
+      'The Send Log data extension has reached its storage limit',
+      'Test sends are not recorded in the Send Log DE by design; only production sends are logged',
+      'The Send Log must be manually refreshed after each test send',
+    ],
+    correct: 1,
+    explanation: 'By design, test sends performed through Preview and Test or the test send function are not written to the Send Log data extension. Only actual production sends populate the Send Log. The team should use production sends to a small internal list if they need audit records of test communications.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q23 - Exit criteria in Journey Builder
+  {
+    text: 'Coastal Brewing has a welcome journey with multiple decision splits checking whether a subscriber has made a purchase. If a subscriber purchases at any point in the journey, they should immediately leave and enter a post-purchase journey instead. How can the team simplify this logic?',
+    options: [
+      'Add a Decision Split before every single activity in the journey',
+      'Configure Exit Criteria on the journey that removes subscribers when they meet the purchase condition',
+      'Use an Engagement Split after each email to check purchase status',
+    ],
+    correct: 1,
+    explanation: 'Exit Criteria in Journey Builder continuously evaluate subscribers against a defined condition throughout the entire journey. When a subscriber meets the criteria (e.g., makes a purchase), they are automatically removed from the journey at any point, eliminating the need for repetitive decision splits.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q24 - Personalization string for business unit ID in links
+  {
+    text: 'TechNova Solutions operates multiple business units in Marketing Cloud. Their email developer needs to dynamically insert the sending business unit\'s MID (Member ID) into a tracking link so the landing page knows which BU the click originated from. Which approach is correct?',
+    options: [
+      'Hard-code each business unit ID into separate email templates',
+      'Use a SQL query at send time to look up the business unit ID',
+      'Insert a personalization string that resolves to the business unit MID at send time',
+    ],
+    correct: 2,
+    explanation: 'Marketing Cloud provides system personalization strings that dynamically resolve at send time, including the MemberID for the sending business unit. Embedding this in a link parameter avoids hard-coding and ensures the correct BU identifier is always appended, regardless of which BU triggers the send.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q25 - Primary Key for unique email
+  {
+    text: 'Bloom Botanicals is creating a data extension to store newsletter subscribers. Each subscriber should appear only once, identified by their email address. What must the developer configure on the EmailAddress field to enforce uniqueness?',
+    options: [
+      'Set the field type to Phone and enable validation',
+      'Mark the EmailAddress field as the Primary Key of the data extension',
+      'Create a SQL query that deduplicates records after each import',
+    ],
+    correct: 1,
+    explanation: 'Setting a field as the Primary Key on a data extension enforces uniqueness at the database level. Any attempt to insert a duplicate value for that field will either update the existing row or be rejected, depending on the import settings. This is the standard way to prevent duplicate subscribers.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q26 - Is Testable for test send DE
+  {
+    text: 'Redwood Hospitality wants to designate a specific data extension of internal QA testers that the email team can quickly select when performing test sends in Content Builder. Which data extension property must be enabled?',
+    options: [
+      'Mark the data extension as "Is Sendable"',
+      'Enable the "Is Testable" property on the data extension',
+      'Set the data extension retention policy to "Delete after 30 days"',
+    ],
+    correct: 1,
+    explanation: 'The "Is Testable" property on a data extension makes it available in the test send interface within Content Builder. When enabled, the DE appears in the list of available test audiences, allowing the team to quickly send proofs to their QA testers without searching for the DE manually.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q27 - Multi-Step journey for testing Einstein vs static
+  {
+    text: 'Summit Education wants to compare the performance of Einstein product recommendations against manually curated course suggestions in their emails. They need to test both approaches on different audience segments simultaneously. Which Journey Builder configuration supports this?',
+    options: [
+      'Send both versions in a single email using dynamic content rules',
+      'Use a Multi-Step Journey with a Random Split to route contacts to an Einstein path and a static content path',
+      'Create two separate automations in Automation Studio and compare results manually',
+    ],
+    correct: 1,
+    explanation: 'A Multi-Step Journey with a Random Split divides the audience into test groups. One path can include Einstein recommendations while the other uses static curated content. Both paths run simultaneously in the same journey, enabling a fair, controlled comparison of performance metrics.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q28 - Email and Journey Overview Dashboard in Datorama
+  {
+    text: 'Meridian Healthcare needs a pre-built reporting dashboard that shows overall email performance metrics across all campaigns and journeys in a single view. Their analyst does not want to build custom SQL queries. Which reporting option should they use?',
+    options: [
+      'Export tracking data to a spreadsheet and create pivot tables manually',
+      'Use the Email and Journey Overview Dashboard in Datorama Reports for Marketing Cloud',
+      'Build individual tracking reports for each campaign and compare them side by side',
+    ],
+    correct: 1,
+    explanation: 'Datorama Reports for Marketing Cloud includes pre-built dashboards like the Email Overview and Journey Overview that aggregate performance metrics across campaigns. These require no SQL or custom configuration and provide a consolidated view of key email KPIs like opens, clicks, bounces, and unsubscribes.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q29 - List Detective preventing sends
+  {
+    text: 'Quantum Analytics imported a batch of leads from a trade show and attempted to send a follow-up email, but noticed several addresses were automatically excluded at send time. The excluded addresses include domains like "test.com" and "example.com." Which platform feature caused this?',
+    options: [
+      'The spam filter blocked emails containing certain keywords',
+      'List Detective automatically flagged and suppressed known invalid or risky email domains',
+      'The data extension import rejected rows with invalid formatting',
+    ],
+    correct: 1,
+    explanation: 'List Detective is a built-in Marketing Cloud feature that automatically identifies and suppresses email addresses with known invalid, disposable, or role-based domains (like test.com, example.com, or mailinator.com). It runs at send time to protect sender reputation and deliverability.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q30 - Delivery Profile for specific IP and subdomain
+  {
+    text: 'Velocity Auto has both a marketing email program and a transactional email program. They want marketing emails to send from a shared IP pool with a "marketing.velocityauto.com" subdomain and transactional emails to use a dedicated IP with "mail.velocityauto.com." How should this be configured?',
+    options: [
+      'Create two separate Delivery Profiles, each specifying the appropriate IP allocation and subdomain',
+      'Use a single Delivery Profile and switch the settings manually before each send',
+      'Configure the IP and subdomain at the business unit level and use separate BUs',
+    ],
+    correct: 0,
+    explanation: 'A Delivery Profile defines which IP address or pool and which sending subdomain an email uses. By creating two Delivery Profiles -- one for marketing and one for transactional -- each program can use its own IP allocation and subdomain without manual switching or separate business units.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q31 - Automation Studio + Journey Builder for congrats + follow-up
+  {
+    text: 'Atlas Financial wants to send a congratulations email when a customer\'s mortgage application is approved, followed by a drip series of onboarding tips over the next 30 days. The approval data comes from a nightly file import. Which combination of tools best supports this workflow?',
+    options: [
+      'Two separate Guided Sends scheduled at different intervals',
+      'Automation Studio to import the data and inject contacts into a Journey Builder journey that handles the drip series',
+      'A single Automation Studio automation with multiple email send activities and wait steps',
+    ],
+    correct: 1,
+    explanation: 'Automation Studio handles the nightly data import and can fire an event that injects approved applicants into a Journey Builder journey. Journey Builder then manages the drip series with wait activities, engagement splits, and multiple email sends over 30 days. This combines the strengths of both tools.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q32 - Update Email Now for template changes
+  {
+    text: 'Bloom Botanicals recently updated their master email template to include a new brand logo and footer. However, emails that were previously created from the old template still show the old logo. What must the email team do to apply the template change to existing emails?',
+    options: [
+      'Delete the old emails and recreate them from the updated template',
+      'Click "Update Email Now" on each email to pull in the latest template changes',
+      'The changes will automatically propagate to all existing emails overnight',
+    ],
+    correct: 1,
+    explanation: '"Update Email Now" is a feature in Content Builder that refreshes an email with the latest version of its parent template. Template changes do not automatically propagate to existing emails. Each email must be explicitly updated to pull in the new template content.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q33 - Einstein STO Activity
+  {
+    text: 'Redwood Hospitality sends a weekly promotional email to their loyalty members. They want each subscriber to receive the email at the time of day they are most likely to engage, based on historical open patterns. Which Einstein feature should the team add to their journey?',
+    options: [
+      'Einstein Content Selection to personalize the subject line',
+      'Einstein Send Time Optimization (STO) Activity to deliver at each subscriber\'s optimal engagement window',
+      'Einstein Engagement Scoring to rank subscribers before sending',
+    ],
+    correct: 1,
+    explanation: 'Einstein Send Time Optimization (STO) analyzes each subscriber\'s historical engagement patterns and determines the optimal time window for delivery. When added as an activity in Journey Builder, it holds and releases each email at the predicted best time for that individual subscriber.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q34 - List-Unsubscribe header causing RMM unsubscribes
+  {
+    text: 'Pinnacle Fitness noticed a sudden increase in unsubscribes, but many of those subscribers say they never clicked the unsubscribe link in the email body. The admin sees these unsubscribes are categorized as "List Unsubscribe" in tracking. What is causing this?',
+    options: [
+      'A bot is clicking all links in the email including the unsubscribe link',
+      'The List-Unsubscribe header allows email clients like Gmail to show a native unsubscribe button, which subscribers are using',
+      'The suppression list is automatically unsubscribing inactive subscribers',
+    ],
+    correct: 1,
+    explanation: 'The List-Unsubscribe header is a standard email header that enables email clients (like Gmail, Yahoo, and Apple Mail) to display a native unsubscribe button at the top of the message. When subscribers click that client-level button, it triggers an unsubscribe recorded as "List Unsubscribe" in tracking, separate from the in-body link.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q35 - API Event Entry Source for third-party forms
+  {
+    text: 'TechNova Solutions has a third-party webinar platform that captures registrations. When someone registers, the platform should immediately inject that contact into a Marketing Cloud journey to receive confirmation and reminder emails. Which journey entry source should the team configure?',
+    options: [
+      'A scheduled automation that checks for new registrations every hour',
+      'An API Event entry source that the webinar platform calls to inject contacts into the journey in real time',
+      'A file drop entry source that monitors the SFTP for new registration files',
+    ],
+    correct: 1,
+    explanation: 'An API Event entry source allows external systems to fire a REST API call that injects a contact directly into a running journey in real time. This is the best option for third-party integrations where immediate journey entry is required upon an external action like a form submission.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q36 - Dashboard in Datorama for custom reports
+  {
+    text: 'Coastal Brewing\'s CMO wants a single custom reporting view that combines email engagement metrics with revenue data from their e-commerce platform. The data needs to be visualized with charts and filters. Which Marketing Cloud reporting solution supports this?',
+    options: [
+      'The standard Email Studio tracking tab with export to CSV',
+      'A custom dashboard in Datorama Reports with connected data sources and visualizations',
+      'A Send Log data extension queried with SQL and exported manually',
+    ],
+    correct: 1,
+    explanation: 'Datorama Reports for Marketing Cloud supports custom dashboards that can combine Marketing Cloud engagement data with external data sources. It provides drag-and-drop visualization tools, filters, and the ability to connect multiple data streams into a unified reporting view.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q37 - Verification Activity as guardrail for audience count
+  {
+    text: 'Meridian Healthcare runs a weekly automation that sends appointment reminders. Last week, a data error caused the audience data extension to contain only 5 records instead of the usual 10,000. The team wants to automatically halt the automation if the audience falls below a minimum threshold. What should they add?',
+    options: [
+      'A Decision Split in Journey Builder that checks audience size',
+      'A Verification Activity that validates the data extension row count meets a minimum before proceeding',
+      'A Filter Activity that removes records below a quality threshold',
+    ],
+    correct: 1,
+    explanation: 'A Verification Activity in Automation Studio can be configured to check whether a data extension meets a minimum row count. If the count falls below the defined threshold, the automation stops and an error notification is sent, preventing erroneous sends to an incomplete audience.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q38 - Einstein Content Selection
+  {
+    text: 'Summit Education sends a monthly newsletter featuring multiple course promotions. They want the email to automatically display the course offer each subscriber is most likely to engage with, based on their past behavior. Which Einstein feature should they implement?',
+    options: [
+      'Einstein Send Time Optimization to time the delivery',
+      'Einstein Content Selection to dynamically choose the highest-performing content for each subscriber',
+      'Einstein Engagement Scoring to rank subscribers by likelihood to engage',
+    ],
+    correct: 1,
+    explanation: 'Einstein Content Selection uses machine learning to evaluate each subscriber\'s engagement history and automatically selects the content asset (from a pool of options) that the individual is most likely to interact with. It personalizes content at the individual level without manual segmentation.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q39 - Based on Subscriber Preview List for team proofing
+  {
+    text: 'Velocity Auto\'s marketing team of eight people all need to review how a personalized email renders for different subscriber profiles before launch. The lead wants everyone to see the same set of preview records. Which Content Builder feature supports this?',
+    options: [
+      'Send a test email to each team member\'s personal inbox',
+      'Use the "Based on Subscriber Preview List" option to share a defined set of subscriber records for the team to preview',
+      'Export the email as a PDF and circulate it via Slack',
+    ],
+    correct: 1,
+    explanation: 'The "Based on Subscriber Preview List" feature in Content Builder allows a team to define a shared set of subscriber records for previewing. Each team member can view the email rendered with the same subscriber data, ensuring consistent proofing and review across the team.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q40 - Contacts Analytics for cross-channel population changes
+  {
+    text: 'Atlas Financial wants to monitor how their overall contact population is changing across email, SMS, and push channels over time. They need to see trends in subscriber growth, churn, and channel overlap. Which Marketing Cloud analytics feature provides this view?',
+    options: [
+      'Email Studio tracking reports filtered by channel',
+      'Contact Analytics in Contact Builder, which shows population trends across channels',
+      'A custom SQL query against the _Subscribers data view',
+    ],
+    correct: 1,
+    explanation: 'Contact Analytics in Contact Builder provides a cross-channel view of contact population changes over time. It visualizes subscriber growth, churn, and overlap across email, mobile push, and SMS channels in a single dashboard, giving marketers a holistic view of their audience health.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q41 - Use for triggered send checkbox on DE
+  {
+    text: 'Bloom Botanicals is setting up a triggered send email that fires when a new subscriber is added to a data extension via the API. The developer configured the email and triggered send definition, but receives an error that the data extension cannot be used. What property is likely missing?',
+    options: [
+      'The "Is Testable" checkbox is not enabled on the data extension',
+      'The "Used for Triggered Send" checkbox is not enabled on the data extension',
+      'The data extension is missing a date field for scheduling',
+    ],
+    correct: 1,
+    explanation: 'When a data extension is used as the source for a triggered send, the "Used for Triggered Send" (or "Is Triggered Send" in some UI versions) checkbox must be enabled during creation. This property cannot be changed after creation, so the DE may need to be recreated with this option selected.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q42 - File Drop with filename pattern
+  {
+    text: 'Quantum Analytics receives data files from various third-party sources at unpredictable times throughout the day. Each file follows a naming convention like "leads_YYYYMMDD.csv." The team wants the automation to kick off automatically whenever a matching file lands on the SFTP. Which starting source should they use?',
+    options: [
+      'Schedule the automation to run every hour and check for new files',
+      'Use a File Drop starting source with a filename pattern matching "leads_*.csv"',
+      'Have the third party call the Marketing Cloud API to trigger the automation',
+    ],
+    correct: 1,
+    explanation: 'The File Drop starting source in Automation Studio monitors the SFTP Enhanced directory for files matching a specified naming pattern. When a file matching the pattern (like "leads_*.csv") is detected, the automation triggers automatically. This is ideal for variable-cadence file deliveries.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q43 - Frequency Split for holiday
+  {
+    text: 'Redwood Hospitality is entering the holiday season and plans to increase email frequency significantly. The marketing manager is concerned that bombarding less-engaged subscribers could drive unsubscribes. Which Journey Builder activity helps manage this risk?',
+    options: [
+      'An Engagement Split based on open rates from the current journey only',
+      'A Frequency Split that evaluates how many emails a subscriber has already received and routes high-frequency contacts to a lighter touch path',
+      'A Random Split that sends 50% of the audience down a reduced-frequency path',
+    ],
+    correct: 1,
+    explanation: 'A Frequency Split in Journey Builder evaluates how many commercial emails a subscriber has received within a defined period. Subscribers who have already received a high volume can be routed to a different path with fewer or no additional sends, preventing fatigue-driven unsubscribes during peak seasons.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q44 - Import subscriber data as first automation step
+  {
+    text: 'Pinnacle Fitness is building their first automation in Automation Studio. They have a CSV file of new gym members on the SFTP that needs to be loaded into a data extension before any further processing. What should be the first activity in the automation?',
+    options: [
+      'A SQL Query Activity to transform the data before it arrives',
+      'An Import Activity that loads the CSV file from the SFTP into the target data extension',
+      'An Email Send Activity to welcome the new members immediately',
+    ],
+    correct: 1,
+    explanation: 'The Import Activity should be the first step because the subscriber data needs to be in a data extension before any queries, filters, or sends can act on it. Without importing the data first, subsequent activities would have no records to process.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q45 - CloudPages for social channel collection
+  {
+    text: 'Coastal Brewing wants to run a social media campaign on Instagram where followers can tap a link in their bio to sign up for the brewery\'s email newsletter. The sign-up form needs to be hosted and connected to Marketing Cloud. Which tool should the team use?',
+    options: [
+      'Build a standalone HTML page and embed an API call to Marketing Cloud',
+      'Use CloudPages to create a landing page with a Smart Capture form that writes directly to a Marketing Cloud data extension',
+      'Post the Marketing Cloud subscription center URL directly on Instagram',
+    ],
+    correct: 1,
+    explanation: 'CloudPages provides hosted landing pages with Smart Capture forms that write subscriber data directly into Marketing Cloud data extensions. This is the native, no-code-required way to collect subscriber information from social channels and immediately make it available for email sends.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  // Q46 - Data Designer for sendable DE from multiple tables
+  {
+    text: 'TechNova Solutions has customer data split across three data extensions: Contacts, Purchases, and Preferences. The marketing team needs to create a single sendable audience combining attributes from all three tables. Which Contact Builder tool should the developer use to model these relationships?',
+    options: [
+      'Write a SQL query that joins all three tables into a flat data extension',
+      'Use Data Designer in Contact Builder to define relationships between the data extensions and create a linked, sendable data model',
+      'Manually merge the data extensions into one large CSV and re-import',
+    ],
+    correct: 1,
+    explanation: 'Data Designer in Contact Builder allows you to visually define relationships between data extensions, creating a unified data model. By linking Contacts, Purchases, and Preferences through shared keys, you can build a sendable audience that draws attributes from all three sources without flattening the data into a single table.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q47 - Not Sent Tracking Extract
+  {
+    text: 'Velocity Auto sent a service recall email to 100,000 vehicle owners but found that 2,000 were not included in the final send. The compliance team needs a detailed list of those excluded subscribers and the reason each was skipped. Which reporting feature should the admin use?',
+    options: [
+      'Review the bounce report in the Email Studio tracking tab',
+      'Run a Not Sent tracking extract to get a list of subscribers excluded from the send and the exclusion reasons',
+      'Compare the sending data extension against the _Sent data view using a SQL query',
+    ],
+    correct: 1,
+    explanation: 'The Not Sent tracking extract provides a detailed list of subscribers who were excluded from a send along with the specific reason (e.g., bounced, unsubscribed, List Detective exclusion). This is the most direct way to audit why specific contacts did not receive an email.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q48 - Nested tags for content hierarchy
+  {
+    text: 'Atlas Financial has hundreds of content blocks in Content Builder organized across multiple campaigns, brands, and regions. The content team wants a hierarchical tagging system where they can filter assets by campaign, then by brand, then by region. Which Content Builder capability supports this?',
+    options: [
+      'Create deeply nested folder structures with strict naming conventions',
+      'Use nested tags in Content Builder to build a multi-level classification hierarchy for content assets',
+      'Maintain an external spreadsheet that maps content block IDs to categories',
+    ],
+    correct: 1,
+    explanation: 'Content Builder supports nested tags that allow you to create a hierarchical taxonomy for content assets. Tags can be organized in parent-child relationships (e.g., Campaign > Brand > Region), enabling teams to filter and search assets across multiple levels of categorization.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q49 - Schedule automation to refresh filter daily
+  {
+    text: 'Meridian Healthcare uses a filter activity to segment patients who have an upcoming appointment in the next 7 days. The appointment data changes daily as new bookings come in. How should the team ensure the filtered audience is always current?',
+    options: [
+      'Manually run the filter activity each morning before the send',
+      'Schedule an automation that runs the filter activity daily to refresh the filtered data extension',
+      'Set the filter to auto-refresh by enabling real-time evaluation on the data extension',
+    ],
+    correct: 1,
+    explanation: 'Filter activities in Automation Studio do not auto-refresh. To keep the filtered audience current with daily appointment changes, the team should schedule an automation that runs the filter activity on a recurring daily schedule, repopulating the target data extension with up-to-date results each time.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q50 - Increase font size over 16pt for accessibility
+  {
+    text: 'Summit Education is auditing their emails for accessibility compliance. A consultant flagged that their body text is set at 10px, making it difficult for visually impaired subscribers to read. What is the recommended minimum font size for accessible email body text?',
+    options: [
+      '8px or larger, which is the web standard minimum',
+      '14px to 16px or larger, following email accessibility best practices',
+      '24px or larger to ensure maximum readability on all devices',
+    ],
+    correct: 1,
+    explanation: 'Email accessibility best practices recommend body text of at least 14px to 16px for comfortable readability. This size works well across desktop and mobile clients and helps visually impaired subscribers read content without zooming. Anything below 14px is generally considered too small for accessible email.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q51 - Send Preview for checking rendering
+  {
+    text: 'Bloom Botanicals designed a rich HTML email with custom fonts and a complex layout. Before sending to their full audience, the designer wants to see how the email renders across Gmail, Outlook, Apple Mail, and Yahoo. Which feature should they use?',
+    options: [
+      'Send test emails to personal accounts on each email client and check manually',
+      'Use the Send Preview feature in Content Builder to simulate rendering across multiple email clients',
+      'Review the email in the Content Builder WYSIWYG editor, which accurately represents all email clients',
+    ],
+    correct: 1,
+    explanation: 'Send Preview (powered by Litmus integration in some accounts) allows you to see how an email renders across dozens of email clients and devices without sending test emails. This saves time and catches rendering issues in clients like Outlook that often display HTML differently than expected.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q52 - Journey Builder for CRM record update on click
+  {
+    text: 'Quantum Analytics wants to update a contact\'s CRM record in Salesforce when that person clicks a specific link in a marketing email. The update should happen automatically without manual intervention. Which Marketing Cloud tool should the team use?',
+    options: [
+      'An Automation Studio workflow triggered by a tracking data extract',
+      'A Journey Builder journey with an Update Contact activity that fires after a link click engagement event',
+      'A manual report export followed by a Salesforce data import',
+    ],
+    correct: 1,
+    explanation: 'Journey Builder can detect engagement events like email clicks and trigger downstream activities. An Update Contact activity can write data back to Salesforce CRM records. By combining a click-based engagement event with an Update Contact activity, the CRM update happens automatically when the link is clicked.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q53 - Multilingual Content Blocks
+  {
+    text: 'Redwood Hospitality operates hotels in six countries and needs to send a single promotional email campaign that renders in the subscriber\'s preferred language. Managing six separate emails is becoming unsustainable. Which Content Builder feature streamlines this?',
+    options: [
+      'Dynamic Content blocks with a rule for each language variant',
+      'Multilingual Content Blocks that manage all language versions within a single content block and auto-select based on a locale attribute',
+      'Six separate emails organized in language-specific folders',
+    ],
+    correct: 1,
+    explanation: 'Multilingual Content Blocks allow you to manage multiple language versions of the same content within a single block. At send time, the platform automatically selects the correct language version based on the subscriber\'s locale or language attribute, dramatically simplifying management of multi-language campaigns.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q54 - Exclusion SQL in separate step before audience SQL
+  {
+    text: 'Velocity Auto runs a weekly automation that first queries for all customers in a target segment, then excludes customers who purchased in the last 30 days. The email developer placed both queries in the same automation step, but the exclusion is not working correctly. What should they change?',
+    options: [
+      'Combine both queries into a single SQL statement with a NOT IN clause',
+      'Move the exclusion SQL query into a separate step that runs before the audience query step',
+      'Add a Verification Activity between the two queries in the same step',
+    ],
+    correct: 1,
+    explanation: 'Activities within the same Automation Studio step run in parallel, not sequentially. If the exclusion query and the audience query are in the same step, the exclusion may not finish before the audience query reads the data. Moving the exclusion to a prior step ensures it completes first.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q55 - Nightly automation with filter activity for fresh data
+  {
+    text: 'Atlas Financial sends a daily email to customers whose account balance exceeds a certain threshold. The balance data is updated nightly by an external system writing to a data extension. How should the team ensure the email always targets the most recent data?',
+    options: [
+      'Use a static list that the admin manually updates each morning',
+      'Run a nightly automation with a filter activity that refreshes the audience data extension after the balance data lands',
+      'Configure the email to query the data extension at the moment of send using inline AMPscript',
+    ],
+    correct: 1,
+    explanation: 'A nightly automation with a filter activity ensures the audience data extension is repopulated with fresh results after the external system updates the balance data. Scheduling the automation to run after the data load guarantees the filter operates on the latest records.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q56 - Contrasting colors for accessibility
+  {
+    text: 'Pinnacle Fitness is redesigning their email templates for better accessibility. Their current design uses light gray text on a white background, which has received complaints from subscribers with low vision. What design change should they prioritize?',
+    options: [
+      'Switch to an all-image email so the text is embedded in graphics',
+      'Use high-contrast color combinations, such as dark text on a light background, meeting WCAG contrast ratios',
+      'Reduce the amount of text to minimize the accessibility issue',
+    ],
+    correct: 1,
+    explanation: 'WCAG (Web Content Accessibility Guidelines) require a minimum contrast ratio between text and background colors. Using high-contrast combinations like dark text on a light background ensures readability for subscribers with low vision or color blindness. All-image emails actually worsen accessibility because screen readers cannot parse them.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q58 - Subject/Preheader Validation for prefix prevention
+  {
+    text: 'Coastal Brewing has a policy that no email subject line should begin with the word "TEST" or any internal code prefix before going to production. The team wants the platform to automatically flag emails that violate this rule before they are sent. Which feature supports this?',
+    options: [
+      'A custom AMPscript function that checks the subject line at render time',
+      'Subject Line and Preheader Validation rules that flag or block sends with restricted text patterns',
+      'An Approval Workflow where the reviewer manually checks every subject line',
+    ],
+    correct: 1,
+    explanation: 'Marketing Cloud supports validation rules for subject lines and preheaders that can flag or block emails containing restricted text patterns. This automated guardrail catches mistakes like internal test prefixes before they reach production audiences without relying on manual review.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q59 - Journey Builder for iterative drip testing
+  {
+    text: 'TechNova Solutions wants to run an iterative drip campaign where they test different onboarding email sequences. Each quarter, the team adjusts the messaging and wait times to optimize conversion rates. Which tool provides the flexibility to version, test, and iterate on these multi-step sequences?',
+    options: [
+      'Automation Studio with multiple send activities and static schedules',
+      'Journey Builder, which supports versioning, A/B path testing, and easy modification of multi-step drip sequences',
+      'Guided Sends scheduled at fixed intervals with manual tracking',
+    ],
+    correct: 1,
+    explanation: 'Journey Builder is purpose-built for multi-step drip campaigns with built-in versioning, path testing, and wait activities. Teams can create new versions of a journey each quarter, test variations with path splits, and adjust timing without rebuilding from scratch.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q60 - Content Detective for spam flags
+  {
+    text: 'Bloom Botanicals drafted a promotional email for a flash sale. Before sending, the email developer wants to check whether any words or phrases in the email content might trigger spam filters. Which built-in tool should they use?',
+    options: [
+      'Send a test email and check if it lands in the spam folder',
+      'Run Content Detective in Content Builder to scan for spam-trigger words and phrases',
+      'Review the email against a third-party spam word checklist manually',
+    ],
+    correct: 1,
+    explanation: 'Content Detective is a built-in Content Builder tool that scans email content for words, phrases, and patterns commonly associated with spam filtering. It flags potential issues before the send so the team can revise the content and reduce the risk of inbox placement problems.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q61 - Scale back sending for specific ISPs
+  {
+    text: 'Meridian Healthcare notices that their emails to Yahoo and AOL domains are increasingly landing in the spam folder, while Gmail and Outlook delivery remains strong. A deliverability consultant recommends temporarily adjusting their sending approach for the problematic domains. What action should the team take?',
+    options: [
+      'Stop sending to all Yahoo and AOL subscribers permanently',
+      'Scale back sending volume to Yahoo and AOL domains gradually, focusing on engaged subscribers to rebuild reputation with those ISPs',
+      'Switch to a new IP address dedicated exclusively to Yahoo and AOL sends',
+    ],
+    correct: 1,
+    explanation: 'When specific ISPs show deliverability issues, the recommended approach is to scale back volume to those domains and focus on sending only to highly engaged subscribers. This mimics an IP warming strategy for those ISPs, gradually rebuilding trust and reputation rather than abandoning the audience entirely.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q62 - Verification Activity for file drop empty file
+  {
+    text: 'Summit Education has a file drop automation that triggers when a partner uploads student enrollment data to the SFTP. Occasionally, the partner accidentally uploads an empty file, which causes the automation to process zero records and send a blank email. How should the admin prevent this?',
+    options: [
+      'Add a Wait Activity after the file drop to give the partner time to fix the file',
+      'Add a Verification Activity after the import step to halt the automation if the data extension has zero rows',
+      'Configure the file drop to only accept files larger than 1 MB',
+    ],
+    correct: 1,
+    explanation: 'A Verification Activity placed after the import step checks the imported data extension for a minimum row count. If the file was empty and zero rows were imported, the verification fails and stops the automation, preventing downstream activities like email sends from executing on bad data.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q63 - Data Filter for quick record count
+  {
+    text: 'Quantum Analytics has a large data extension with millions of records and needs to quickly see how many subscribers match a specific criteria (e.g., last purchase within 90 days) without writing SQL. Which Marketing Cloud feature provides a fast, visual way to get this count?',
+    options: [
+      'Export the entire data extension to Excel and apply a filter',
+      'Use a Data Filter in Email Studio to define the criteria and preview the matching record count',
+      'Create a Journey Builder entry event and check the estimated audience size',
+    ],
+    correct: 1,
+    explanation: 'Data Filters provide a point-and-click interface for defining segmentation criteria against a data extension. After setting up the filter, you can preview the count of matching records without writing any SQL. This is the quickest no-code way to get a record count for specific criteria.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q64 - Automation to populate Entry Source DE for multiple daily runs
+  {
+    text: 'Redwood Hospitality runs a journey that needs fresh contacts injected multiple times per day as reservations come in. The entry source is a data extension. How should the team ensure the journey receives updated contacts on each run?',
+    options: [
+      'Manually add contacts to the entry source DE before each injection',
+      'Schedule an automation that repopulates the entry source data extension on a recurring schedule throughout the day, with the journey set to evaluate new entries',
+      'Configure the journey to re-evaluate the same static audience multiple times',
+    ],
+    correct: 1,
+    explanation: 'By scheduling an Automation Studio automation to run multiple times per day, the entry source data extension is refreshed with new reservation contacts before each journey evaluation. The journey picks up net-new entries on each scheduled evaluation, ensuring timely injection throughout the day.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q65 - Web Conversion in Path Optimizer
+  {
+    text: 'Velocity Auto is testing two different email variations in a journey using Path Optimizer. Instead of measuring just opens and clicks, they want the winning path to be determined by which variation drives more website purchases. Which Path Optimizer metric should they select?',
+    options: [
+      'Open Rate as the optimization metric',
+      'Web Conversion as the optimization metric to track downstream website purchases',
+      'Click-to-Open Rate as the optimization metric',
+    ],
+    correct: 1,
+    explanation: 'Path Optimizer supports multiple optimization metrics including Web Conversion, which tracks whether subscribers who went down a particular path completed a conversion event on the website. This lets the optimizer select the winning path based on actual business outcomes rather than just email engagement.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q66 - Filter activity to populate shared DEs for child BUs
+  {
+    text: 'Atlas Financial has a parent business unit with a master subscriber data extension. Three child business units each need a filtered subset of that data based on region. The admin wants to automate this distribution daily. What approach should they use?',
+    options: [
+      'Manually export and re-import the data into each child BU daily',
+      'Use filter activities in an automation to populate shared data extensions accessible to each child business unit',
+      'Give each child BU direct query access to the parent BU data extension',
+    ],
+    correct: 1,
+    explanation: 'Filter activities can segment a parent-level data extension into regional subsets and write the results to shared data extensions. Each child business unit can then access its shared DE for sends. Scheduling this in a daily automation keeps the regional data fresh without manual intervention.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q67 - Double opt-in for valid email addresses
+  {
+    text: 'Pinnacle Fitness is seeing a high bounce rate from their online sign-up form because people are entering fake or mistyped email addresses. The deliverability consultant recommended a strategy to ensure only valid, engaged addresses enter the system. What should the team implement?',
+    options: [
+      'Use a CAPTCHA on the sign-up form to block bots',
+      'Implement a double opt-in process that requires new subscribers to confirm their email address by clicking a verification link',
+      'Restrict the form to only accept addresses from major ISPs like Gmail and Outlook',
+    ],
+    correct: 1,
+    explanation: 'Double opt-in (also called confirmed opt-in) sends a verification email to the submitted address and only adds the subscriber after they click a confirmation link. This confirms the address is real, reachable, and owned by the person who submitted it, dramatically reducing bounces from fake or mistyped addresses.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q68 - Analytics Dashboard for journey cross-channel
+  {
+    text: 'Coastal Brewing runs a multi-channel journey that includes email, SMS, and push notifications. The marketing director wants a single dashboard that shows performance across all three channels for that journey. Which reporting tool should they use?',
+    options: [
+      'Individual channel tracking reports combined into a spreadsheet',
+      'The Journey Analytics Dashboard, which provides cross-channel performance metrics for a specific journey',
+      'A SQL query against the _Sent and _Open data views',
+    ],
+    correct: 1,
+    explanation: 'The Journey Analytics Dashboard provides a unified view of journey performance across all channels (email, SMS, push) in a single interface. It shows entry counts, channel-specific engagement, goal completion, and path performance without requiring manual data aggregation.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q69 - SQL Query + Filter Definition + Journey Entry Source
+  {
+    text: 'TechNova Solutions needs to build a targeted audience for a re-engagement journey. The process involves: (1) querying inactive subscribers from data views, (2) applying additional business rules to narrow the segment, and (3) injecting the final audience into a journey. Which three components should the team use in order?',
+    options: [
+      'Import Activity, Data Filter, Triggered Send',
+      'SQL Query Activity to pull inactive subscribers, a Filter Definition to apply business rules, and a Journey Entry Source data extension to inject them into the journey',
+      'CloudPages form, Publication List, Guided Send',
+    ],
+    correct: 1,
+    explanation: 'This workflow uses a SQL Query Activity to extract inactive subscribers from data views, a Filter Definition to layer on additional segmentation criteria, and a data extension configured as a Journey Entry Source to inject the final audience into Journey Builder. Each component handles a distinct stage of the pipeline.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q70 - Einstein Copy Insights for subject line analysis
+  {
+    text: 'Bloom Botanicals wants to understand what linguistic elements (urgency, curiosity, discount mentions) in their past subject lines correlated with higher open rates. Which Einstein feature analyzes historical subject line performance?',
+    options: [
+      'Einstein Send Time Optimization, which recommends the best time to send',
+      'Einstein Copy Insights, which analyzes subject line language patterns and their correlation with engagement',
+      'Einstein Engagement Scoring, which predicts subscriber likelihood to engage',
+    ],
+    correct: 1,
+    explanation: 'Einstein Copy Insights analyzes the language, tone, and structure of your historical subject lines and correlates them with open rate performance. It identifies which linguistic elements (like urgency words, questions, or emoji usage) tend to drive higher engagement for your specific audience.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q71 - Interactive Email Form for post-purchase feedback
+  {
+    text: 'Redwood Hospitality wants guests to rate their stay directly within a post-checkout email without leaving their inbox. The guest should be able to select a star rating and submit a short comment. Which Content Builder feature enables this in-email interaction?',
+    options: [
+      'A hyperlink to an external survey tool like SurveyMonkey',
+      'An Interactive Email Form block that captures the rating and comment input directly within the email',
+      'A dynamic content block that shows different content based on past feedback',
+    ],
+    correct: 1,
+    explanation: 'Interactive Email Forms allow subscribers to input data (text fields, radio buttons, dropdowns) directly within the email and submit it without navigating to an external page. Supported email clients render the form natively, while others can fall back to a web link.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q72 - Einstein Engagement Frequency
+  {
+    text: 'Summit Education is unsure how many emails per week they should send to their student audience. Some students seem to disengage after two emails, while others engage with five or more. Which Einstein feature helps determine the optimal sending frequency for each subscriber?',
+    options: [
+      'Einstein Send Time Optimization, which determines the best time of day to send',
+      'Einstein Engagement Frequency, which analyzes each subscriber\'s engagement to recommend the ideal number of emails per time period',
+      'Einstein Content Selection, which picks the best content for each subscriber',
+    ],
+    correct: 1,
+    explanation: 'Einstein Engagement Frequency evaluates each subscriber\'s historical engagement patterns to recommend the optimal number of emails they should receive in a given time period. It helps marketers avoid both under-messaging (missed opportunities) and over-messaging (subscriber fatigue) on an individual level.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  // Q73 - Send canceled when approval withdrawn
+  {
+    text: 'Quantum Analytics has Approvals enabled and a reviewer initially approved an email send scheduled for tomorrow morning. Later that evening, the reviewer realized an error in the legal disclaimer and withdrew the approval. What happens to the scheduled send?',
+    options: [
+      'The email sends as originally scheduled since it was already approved once',
+      'The scheduled send is automatically canceled when the approval is withdrawn',
+      'The email moves to a draft state but remains on the schedule',
+    ],
+    correct: 1,
+    explanation: 'When an approval is withdrawn in the Email Studio approval workflow, any associated scheduled send is automatically canceled. The email cannot proceed to send without a valid, active approval. The team must correct the issue, re-submit for approval, and reschedule the send.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  // Q74 - Goals in Journey Builder
+  {
+    text: 'Meridian Healthcare has a patient onboarding journey that sends educational emails over 60 days. The journey\'s success metric is whether the patient completes their first appointment. Additionally, patients who complete the appointment should stop receiving onboarding emails. Which Journey Builder feature achieves both measurement and exit?',
+    options: [
+      'An Exit Criteria set to remove subscribers who complete the appointment, with a separate tracking report for measurement',
+      'A Goal configured to track appointment completion as the success metric, with the option to eject contacts from the journey upon reaching the goal',
+      'A Decision Split at each step checking whether the appointment was completed',
+    ],
+    correct: 1,
+    explanation: 'Journey Builder Goals let you define a measurable success condition and optionally eject subscribers who meet it. By setting the goal to "appointment completed," the journey tracks its success rate and automatically removes patients who no longer need onboarding content, in one configuration.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  // Q75 - Sending volume > 250k/month as dedicated IP differentiator (Q75)
+  {
+    text: 'Velocity Auto is evaluating whether to use a shared IP pool or a dedicated IP address for their email program. Their monthly sending volume is approximately 400,000 emails. Which factor most strongly supports choosing a dedicated IP?',
+    options: [
+      'They want to save money by sharing infrastructure with other senders',
+      'Their monthly sending volume exceeds 250,000, giving them enough volume to build and maintain a consistent reputation on a dedicated IP',
+      'They only send emails once per quarter and want to avoid IP warming',
+    ],
+    correct: 1,
+    explanation: 'A dedicated IP is recommended for senders with monthly volumes above approximately 250,000 emails. At this volume, the sender generates enough consistent traffic to build and maintain a stable IP reputation. Lower-volume senders benefit from shared pools where multiple senders collectively maintain the IP reputation.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  // Q76 - Data filter for low-code segmentation (from Q76)
+  {
+    text: 'Atlas Financial has a team of marketing coordinators who need to create audience segments from data extensions but do not know SQL. They need a visual, drag-and-drop approach to define criteria like "age > 30 AND state = Ontario." Which tool should the admin recommend?',
+    options: [
+      'Write SQL queries in Automation Studio and share the results',
+      'Use Data Filters, which provide a point-and-click interface for building segmentation criteria without code',
+      'Export the data extension to Excel and filter it there',
+    ],
+    correct: 1,
+    explanation: 'Data Filters offer a no-code, visual interface for defining segmentation rules against data extensions. Users can combine multiple criteria with AND/OR logic using dropdown menus and form fields, making it accessible to team members who do not have SQL skills.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  // Q79 - Web Studio for capturing social channel user data (from Q79)
+  {
+    text: 'Bloom Botanicals wants to create a mobile-optimized microsite where social media followers can browse seasonal collections and sign up for email updates. The team needs the site hosted within Marketing Cloud. Which feature should they use?',
+    options: [
+      'Build an email with embedded web content and send it as a landing page',
+      'Use CloudPages in Web Studio to create and host a mobile-friendly microsite connected to Marketing Cloud data',
+      'Link to an externally hosted WordPress site with a Marketing Cloud API integration',
+    ],
+    correct: 1,
+    explanation: 'CloudPages within Web Studio lets you create, host, and publish mobile-responsive landing pages and microsites directly within Marketing Cloud. These pages can include Smart Capture forms that write subscriber data into data extensions, making it easy to collect information from social media traffic.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  // Q80 - Copy filtered DE with additional criteria (from Q80)
+  {
+    text: 'Redwood Hospitality already has a filtered data extension of loyalty members who stayed in the past 6 months. Now they need a further-refined segment: loyalty members who stayed in the past 6 months AND have a preference for spa services. Rather than rebuilding the filter from scratch, what is the most efficient approach?',
+    options: [
+      'Write a SQL query that duplicates the original filter logic and adds the spa preference condition',
+      'Copy the existing filtered data extension and add the spa preference criteria as an additional filter condition',
+      'Manually review the existing filtered DE and remove non-spa contacts by hand',
+    ],
+    correct: 1,
+    explanation: 'Marketing Cloud allows you to copy an existing filtered data extension and modify the copy with additional criteria. This preserves the original filter logic while layering on new conditions like the spa preference, saving time compared to rebuilding the entire filter from scratch.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },,
+  // ============================================================
+  // DOMAIN: automation — Questions 76-90
+  // ============================================================
+  {
+    text: 'Cascade Brewing is launching a new loyalty journey and wants to test two different welcome paths -- one with a discount offer and another with a brewery tour invite. They want Marketing Cloud to automatically choose the best-performing path over time. Which Journey Builder feature should they use?',
+    options: [
+      'A/B Testing Activity',
+      'Path Optimizer',
+      'Decision Split with random assignment',
+    ],
+    correct: 1,
+    explanation: 'Path Optimizer allows you to test multiple journey paths and automatically routes more contacts toward the winning path based on engagement metrics. Unlike a simple A/B test on a single email, Path Optimizer evaluates entire journey branches.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'FrostByte Gaming runs a nightly automation that queries subscriber data and exports it to their analytics platform via SFTP. The data extract runs successfully, but no file appears on the SFTP server. Which activity is most likely missing from the automation?',
+    options: [
+      'Import Activity',
+      'File Transfer Activity',
+      'Verification Activity',
+    ],
+    correct: 1,
+    explanation: 'A Data Extract activity creates the file inside Marketing Cloud, but it does not automatically send it to an external location. A File Transfer activity is required as the next step to move the extracted file from Marketing Cloud to the SFTP server.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Ironclad Security receives daily opt-out files from a partner system at unpredictable times throughout the day. They need an automation that kicks off as soon as each file lands on the SFTP. Which automation starting source should they configure?',
+    options: [
+      'Schedule-based starting source with hourly checks',
+      'Triggered Automation with an API call',
+      'File Drop starting source',
+    ],
+    correct: 2,
+    explanation: 'The File Drop starting source monitors a designated SFTP folder and triggers the automation as soon as a new file is detected. This is ideal when file delivery timing is unpredictable, as it eliminates the need for fixed schedules or API integration.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Nimbus Software wants to send a welcome email through Journey Builder, then wait until the subscriber makes a purchase before continuing the journey. If no purchase occurs within 7 days, the subscriber should exit. Which Journey Builder activity handles this?',
+    options: [
+      'Wait By Duration set to 7 days',
+      'Wait Until Event with a 7-day timeout',
+      'Engagement Split with a 7-day evaluation period',
+    ],
+    correct: 1,
+    explanation: 'Wait Until Event pauses the contact in the journey until a specified event occurs (such as a purchase logged in a data extension). You can configure a timeout period, after which the contact continues down an alternate path or exits. This is different from a simple duration wait, which always waits the full period regardless of events.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Pacific Retail needs to send its weekly newsletter to a main subscriber list plus a seed list for internal inbox-rendering tests. The marketing team wants this handled in a single send within Automation Studio. What should they configure?',
+    options: [
+      'Two separate Email Activities in the same automation',
+      'An Email Activity with both the subscriber list and seed list selected',
+      'A Triggered Send linking to both lists via API',
+    ],
+    correct: 1,
+    explanation: 'The Email Activity in Automation Studio allows you to specify both a primary audience and a seed list in a single send configuration. The seed list receives the same email for testing purposes without requiring a separate send activity.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Starline Aviation has no SFTP access but needs to trigger an automation in Marketing Cloud whenever a booking is confirmed in their reservation system. Which approach should they use?',
+    options: [
+      'Schedule the automation to run every 5 minutes',
+      'Trigger the automation via the Marketing Cloud REST API',
+      'Use a File Drop starting source with a cloud storage mount',
+    ],
+    correct: 1,
+    explanation: 'When SFTP is not available, the Marketing Cloud REST API can programmatically trigger automations. The reservation system can make an API call to start the automation whenever a booking event occurs, providing real-time responsiveness.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'BrightPath Learning runs a complex daily campaign that first segments students by course enrollment using SQL queries in Automation Studio, then sends personalized study reminders via Journey Builder. What is the recommended approach?',
+    options: [
+      'Build the entire workflow in Journey Builder using filter splits',
+      'Use Automation Studio for the SQL query and data prep, then inject contacts into Journey Builder',
+      'Schedule individual Guided Sends for each course segment',
+    ],
+    correct: 1,
+    explanation: 'The recommended pattern is to use Automation Studio for heavy data manipulation (SQL queries, imports, extracts) and Journey Builder for orchestrating the customer experience. Automation Studio can populate a data extension that serves as the journey entry source.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Ember Fitness built a welcome journey that should only process each new member once, even if their record appears in the entry source data extension multiple times. Which journey entry setting should they configure?',
+    options: [
+      'Re-entry anytime',
+      'Re-entry only after exiting',
+      'No re-entry',
+    ],
+    correct: 2,
+    explanation: 'Setting the contact entry mode to "No re-entry" ensures that once a contact enters the journey, they cannot enter again, even if they reappear in the entry data extension. This prevents duplicate welcome messages for the same subscriber.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Polaris Ventures wants to pilot a new onboarding journey to only 20% of new subscribers while the remaining 80% receive no communication. They want to measure the pilot group against the holdback group. Which Journey Builder feature supports this?',
+    options: [
+      'Random Split with 20/80 distribution',
+      'Path Optimizer with a holdback group',
+      'Engagement Split filtering for top 20% engaged contacts',
+    ],
+    correct: 1,
+    explanation: 'Path Optimizer includes a holdback group feature that withholds a percentage of contacts from any journey path. This creates a true control group, allowing marketers to measure the incremental impact of the journey compared to no communication at all.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Sapphire Insurance wants to include different email content for highly engaged policyholders versus those with low engagement in a renewal journey. Which Journey Builder activity should they use to branch contacts based on their email engagement history?',
+    options: [
+      'Decision Split based on a data extension field',
+      'Engagement Split',
+      'Random Split',
+    ],
+    correct: 1,
+    explanation: 'The Engagement Split activity uses Einstein engagement data to branch contacts based on their historical email engagement (opens, clicks, etc.). This lets Sapphire Insurance deliver tailored renewal content to highly engaged versus less engaged policyholders.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'GreenLeaf Organics wants to define what counts as a successful outcome for their seasonal promotion journey so they can see conversion metrics on the journey canvas. What should they configure in Journey Builder?',
+    options: [
+      'An Exit Criteria rule',
+      'A Goal for the journey',
+      'An Einstein Engagement Score threshold',
+    ],
+    correct: 1,
+    explanation: 'Defining a Goal in Journey Builder allows you to specify what a successful conversion looks like (e.g., a purchase event or a specific attribute change). Journey Builder then tracks and displays the percentage of contacts who meet the goal, giving you conversion metrics directly on the canvas.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Urban Eats Delivery has a post-order journey that includes a decision split before every email to remove subscribers who have opted out. The journey canvas has become overly complex. What should the team do to simplify it?',
+    options: [
+      'Replace each decision split with a Wait activity',
+      'Use Exit Criteria to automatically remove opted-out subscribers from the journey',
+      'Combine all emails into a single send activity',
+    ],
+    correct: 1,
+    explanation: 'Exit Criteria in Journey Builder evaluate contacts at every step and automatically remove those who meet the specified conditions (such as opting out). This eliminates the need for repetitive decision splits before each email, greatly simplifying the journey canvas.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Horizon Media wants Journey Builder to only admit subscribers from their Platinum segment into a VIP early-access journey. Where should they define this segmentation rule?',
+    options: [
+      'In the Email Activity audience settings',
+      'In the Entry Source contact filter criteria',
+      'In a Decision Split immediately after entry',
+    ],
+    correct: 1,
+    explanation: 'The Entry Source in Journey Builder supports contact filter criteria that evaluate contacts before they enter the journey. By setting a filter for the Platinum segment, only qualifying subscribers are admitted, which is more efficient than filtering after entry.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Crestview Properties has subscribers who opt in to marketing via both email and SMS. They need their welcome series in Journey Builder to honor each subscriber\'s original opt-in channel. What should they configure?',
+    options: [
+      'A single Entry Source with a Decision Split on channel preference',
+      'A separate Entry Source for each messaging channel',
+      'Two entirely separate journeys with no shared logic',
+    ],
+    correct: 1,
+    explanation: 'Creating a separate Entry Source for each messaging channel (email and SMS) ensures the journey can properly differentiate how each subscriber opted in and route them to the appropriate welcome content for their chosen channel.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+  {
+    text: 'Nimbus Software receives nightly compliance files from their data warehouse containing opt-out updates. If an import fails, the compliance team must be alerted immediately to manually rerun. Where should they configure this alert?',
+    options: [
+      'Import Activity Notification Settings',
+      'Automation Notification Settings',
+      'Journey Builder Alert Activity',
+    ],
+    correct: 1,
+    explanation: 'Automation Notification Settings allow you to configure email alerts when an automation completes, errors, or skips. This is the appropriate place to set up failure notifications for the entire automation workflow, ensuring the compliance team is promptly alerted.',
+    certId: 'mc_email_specialist',
+    domainId: 'automation',
+    examEligible: true,
+  },
+
+  // ============================================================
+  // DOMAIN: data_management — Questions 91-105
+  // ============================================================
+  {
+    text: 'Cascade Brewing receives a daily file from their POS system containing only currently active customers. Each day\'s file should completely replace the previous data in the target data extension. Which import update type should they select?',
+    options: [
+      'Add and Update',
+      'Overwrite',
+      'Update Only',
+    ],
+    correct: 1,
+    explanation: 'The Overwrite import type deletes all existing rows in the target data extension before importing the new data. This is the correct approach when the source file represents a complete snapshot of active records and old records should not persist.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Polaris Ventures has a data extension storing prospect records. A SQL Query Activity in Automation Studio needs to update this DE with new lead scores each night. What must be defined on the target data extension for the query to correctly update existing rows?',
+    options: [
+      'A SendableRelationship',
+      'A Primary Key on the matching field',
+      'A Default Value for every column',
+    ],
+    correct: 1,
+    explanation: 'When a SQL Query Activity writes results to a data extension using an "Update" action, the target DE must have a Primary Key defined. The primary key tells Marketing Cloud which existing rows to match and update. Without it, the query cannot identify which rows to overwrite.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Ironclad Security needs to automatically remove records older than 30 days from a data extension that stores temporary verification codes. Which feature should they configure?',
+    options: [
+      'A scheduled SQL Query Activity that deletes old records',
+      'Data Retention Policy on the data extension',
+      'An Automation that truncates the DE monthly',
+    ],
+    correct: 1,
+    explanation: 'Data Retention Policies can be configured at the data extension level to automatically delete records based on their age. Setting a 30-day retention period ensures that expired verification codes are purged without manual intervention or custom SQL.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'BrightPath Learning syncs student data from Sales Cloud into Marketing Cloud using Marketing Cloud Connect. A new custom field was recently added to the Contact object in Sales Cloud, but it does not appear in Marketing Cloud. What should the admin do?',
+    options: [
+      'Create a matching field manually in the All Subscribers list',
+      'Edit the fields in the synchronized data source to map the new field',
+      'Reinstall Marketing Cloud Connect from scratch',
+    ],
+    correct: 1,
+    explanation: 'When new fields are added to a synchronized CRM object, you need to edit the synchronized data source configuration in Contact Builder to include the new field. This maps the additional field into Marketing Cloud without requiring a reinstallation.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Starline Aviation needs a data extension in Marketing Cloud to be accessible across three different business units so that all regional teams can use the same suppression data. Where should this data extension be created?',
+    options: [
+      'In the root-level Shared Data Extensions folder',
+      'In each business unit\'s local data extension folder',
+      'In Contact Builder as a custom attribute group',
+    ],
+    correct: 0,
+    explanation: 'Data extensions created in the Shared Data Extensions folder are accessible to all business units within the Enterprise account. This is the standard approach for cross-BU data such as global suppression lists.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Pacific Retail wants to create a filtered subset of their master customer data extension that auto-refreshes with only customers in the "Gold" loyalty tier. They do not want to write SQL. Which feature should they use?',
+    options: [
+      'Filter Activity in Automation Studio',
+      'A Query Activity with a WHERE clause',
+      'A Random Data Extension split',
+    ],
+    correct: 0,
+    explanation: 'A Filter Activity in Automation Studio allows marketers to define criteria (such as loyalty tier equals Gold) using a point-and-click interface, then automatically refresh a filtered data extension on a schedule. No SQL knowledge is required.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Sapphire Insurance needs to pull subscriber data from three different data extensions -- Policies, Claims, and Contact Preferences -- into a single send-ready data extension for a renewal campaign. Which activity is best suited for combining data from multiple sources?',
+    options: [
+      'Filter Activity with multiple conditions',
+      'SQL Query Activity with JOIN statements',
+      'Import Activity with multiple file sources',
+    ],
+    correct: 1,
+    explanation: 'SQL Query Activity is the appropriate tool when you need to combine data from multiple data extensions using JOIN statements. It provides the flexibility to select specific fields, apply filters, and merge records from disparate sources into a single target DE.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'FrostByte Gaming needs to import subscriber data from an Amazon S3 bucket into a data extension on a nightly schedule. Which Automation Studio activity handles this external file import?',
+    options: [
+      'File Transfer Activity',
+      'Import Activity with an external source',
+      'Data Extract Activity',
+    ],
+    correct: 1,
+    explanation: 'The Import Activity in Automation Studio supports importing data from external locations including Amazon S3, FTP, and SFTP. You configure the source location, file pattern, and target data extension within the Import Activity settings.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Ember Fitness wants to deliver a weekly subscriber report to their Azure Blob storage. The automation should query the data, extract it as a CSV, and transfer it externally. What is the correct sequence of Automation Studio activities?',
+    options: [
+      'SQL Query Activity > Import Activity > File Transfer Activity',
+      'SQL Query Activity > Data Extract Activity > File Transfer Activity',
+      'Data Extract Activity > SQL Query Activity > File Transfer Activity',
+    ],
+    correct: 1,
+    explanation: 'The correct sequence is: (1) SQL Query Activity to prepare the data into a staging DE, (2) Data Extract Activity to generate a CSV file from that DE, and (3) File Transfer Activity to send the file to the external Azure Blob storage location.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'GreenLeaf Organics needs to schedule a daily file delivery of order data from Marketing Cloud to an AWS S3 bucket for their data warehouse team. Which Automation Studio activity should handle the external file delivery?',
+    options: [
+      'Import Activity',
+      'File Transfer Activity',
+      'Data Extract Activity',
+    ],
+    correct: 1,
+    explanation: 'The File Transfer Activity moves files between Marketing Cloud and external locations such as AWS S3, SFTP servers, or other cloud storage. It is the activity responsible for the actual delivery of files to destinations outside Marketing Cloud.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Horizon Media wants to split their primary customer data extension into 10 random, equally sized segments for A/B testing different campaign strategies. Which Marketing Cloud feature should they use?',
+    options: [
+      'SQL Query Activity with a ROW_NUMBER function',
+      'Random Data Extension',
+      'Filter Activity with 10 separate criteria',
+    ],
+    correct: 1,
+    explanation: 'The Random Data Extension feature in Marketing Cloud automatically splits a source data extension into a specified number of equally sized random segments. This is the simplest and most reliable way to create random test groups without writing SQL.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Crestview Properties manages encrypted property listing files from their MLS partner. The files arrive on the Marketing Cloud SFTP in PGP-encrypted format. Which File Transfer Activity option should they use to handle decryption?',
+    options: [
+      'Manage Files with decryption enabled',
+      'Import Activity with a PGP key field',
+      'Data Extract Activity with decryption settings',
+    ],
+    correct: 0,
+    explanation: 'The "Manage Files" option within the File Transfer Activity supports PGP encryption and decryption operations. When receiving encrypted files, you configure the activity to decrypt the file using the appropriate PGP key before further processing.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Urban Eats Delivery wants to compare this year\'s holiday engagement metrics against last year\'s data. Tracking data from both periods needs to be queried. What should the marketing analyst use?',
+    options: [
+      'Tracking Data Extract for both time periods',
+      'SQL Query Activity using data views',
+      'Datorama Reports with a date range filter',
+    ],
+    correct: 1,
+    explanation: 'SQL Query Activities using data views (such as _Open, _Click, _Sent) allow analysts to query historical engagement data with custom date ranges and comparisons. Data views retain data for an extended period, making them suitable for year-over-year analysis.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+  {
+    text: 'Nimbus Software\'s customer data extension has a SubscriberKey field and an EmailAddress field. A long-time subscriber updated their email address in the data extension, but they still receive emails at their old address. What is preventing the update?',
+    options: [
+      'The new email domain is blocklisted',
+      'The email address has not been updated in All Subscribers',
+      'The subscriber needs to re-confirm their opt-in',
+    ],
+    correct: 1,
+    explanation: 'In Marketing Cloud, the email address stored in All Subscribers takes precedence for sending. Even if a data extension contains an updated email address, the All Subscribers record must also be updated for sends to use the new address. This is a common oversight when managing subscriber data across multiple locations.',
+    certId: 'mc_email_specialist',
+    domainId: 'data_management',
+    examEligible: true,
+  },
+
+  // ============================================================
+  // DOMAIN: deliverability — Questions 106-118
+  // ============================================================
+  {
+    text: 'Sapphire Insurance recently imported a purchased list and noticed their open rates dropped significantly across all campaigns. Their deliverability specialist suspects sender reputation damage. Which metric should they analyze first as an indicator of reputation issues?',
+    options: [
+      'Click-to-open rate',
+      'Block bounces',
+      'Total send volume',
+    ],
+    correct: 1,
+    explanation: 'Block bounces indicate that ISPs are actively rejecting your emails, which is a direct signal of sender reputation problems. A spike in block bounces after a list import suggests that the new addresses triggered spam traps or generated complaints, causing ISPs to block delivery.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Cascade Brewing is planning a massive product announcement email to 500,000 subscribers -- far more than their typical daily send volume. Their deliverability consultant warns this could hurt their metrics. Which feature should they use to manage this large send?',
+    options: [
+      'Einstein Engagement Frequency',
+      'Send Throttling',
+      'Sender Authentication Package',
+    ],
+    correct: 1,
+    explanation: 'Send Throttling controls the rate at which emails are delivered, spreading a large send over a defined time period. This prevents overwhelming ISPs with a sudden volume spike, which could trigger throttling or blocking by the receiving mail servers.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'FrostByte Gaming is launching email campaigns from a brand-new dedicated IP address. Their deliverability team wants to monitor domain-level metrics during the warm-up period. Which Marketing Cloud report provides IP warming performance broken down by receiving domain?',
+    options: [
+      'Account Send Summary',
+      'Email Performance by Domain',
+      'Datorama Reports - Deliverability Dashboard',
+    ],
+    correct: 1,
+    explanation: 'The Email Performance by Domain report breaks down delivery metrics (delivered, bounced, opened, clicked) by receiving domain (Gmail, Yahoo, Outlook, etc.). This is essential during IP warming to identify which domains are accepting or blocking your messages.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Polaris Ventures is seeing a 23% bounce rate on a recent campaign to a newly acquired subscriber list. What is the most critical immediate action to improve their sender reputation?',
+    options: [
+      'Increase send frequency to re-engage subscribers',
+      'Remove bounced email addresses from the list',
+      'Switch to a new IP address',
+    ],
+    correct: 1,
+    explanation: 'A 23% bounce rate is dangerously high and will damage sender reputation. The immediate priority is to remove all bounced addresses from future sends. Continuing to send to known-bad addresses compounds reputation damage. List hygiene is the most critical step before any other remediation.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Ember Fitness is relaunching its loyalty program emails after a 6-month hiatus. Their list has not been cleaned since the pause. What should they do before sending to improve deliverability?',
+    options: [
+      'Send to the entire list at once to maximize reach',
+      'Purge inactive subscribers and start with engaged contacts only',
+      'Change the From name to avoid reputation history',
+    ],
+    correct: 1,
+    explanation: 'After a long sending hiatus, many addresses may have become invalid, abandoned, or converted to spam traps. Purging inactive subscribers and starting with your most engaged segment helps rebuild sender reputation gradually and avoids triggering spam trap hits.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Ironclad Security sends time-sensitive security alert emails. During a recent campaign, their website experienced performance issues because all 200,000 emails were delivered simultaneously, causing a surge in click traffic. Which feature should they enable for future sends?',
+    options: [
+      'Send Throttle to limit the email delivery rate',
+      'Einstein Send Time Optimization',
+      'Dedicated IP with higher throughput',
+    ],
+    correct: 0,
+    explanation: 'Send Throttle limits the number of emails delivered per hour, spreading the send over time. This prevents a sudden flood of recipients clicking through to the website simultaneously, protecting website performance from traffic spikes caused by large email sends.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'BrightPath Learning receives multiple spam complaints from a small subset of subscribers who claim they never signed up. The deliverability team wants to automatically suppress these complainers from all future Commercial sends. Where should they add these subscribers?',
+    options: [
+      'To the master unsubscribe list',
+      'To the Auto-Suppression List for the Commercial Send Classification',
+      'To a filtered data extension excluded from sends',
+    ],
+    correct: 1,
+    explanation: 'The Auto-Suppression List is tied to a Send Classification (such as Commercial) and automatically suppresses listed subscribers from any send using that classification. This is the most reliable method because it works globally without requiring manual exclusion lists on each send.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Starline Aviation needs to configure authenticated sending for their marketing emails. Their IT team has already set up SPF and DKIM records. Which Marketing Cloud package bundles private domain, dedicated IP, and authenticated sending together?',
+    options: [
+      'Deliverability Insights Package',
+      'Sender Authentication Package (SAP)',
+      'Einstein Deliverability Suite',
+    ],
+    correct: 1,
+    explanation: 'The Sender Authentication Package (SAP) is Marketing Cloud\'s bundled solution that includes a private domain (branded sending domain), dedicated IP address, and authentication features including SPF and DKIM alignment. It is the standard setup for authenticated, branded email sending.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Pacific Retail wants to ensure that all verified sending addresses are properly managed and wants to add a new From address for their holiday campaign. Where should they go in Email Studio?',
+    options: [
+      'Send Classification settings',
+      'From Address Management',
+      'Delivery Profile configuration',
+    ],
+    correct: 1,
+    explanation: 'From Address Management in Email Studio is where you add, verify, and manage all From addresses used for sending. New addresses must be verified before they can be used in sends, ensuring compliance and proper sender identity.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'GreenLeaf Organics is warming up a new IP address for a new product line. They want to move some lower-volume transactional sends to this new IP first. Where should they update the IP assignment for these sends?',
+    options: [
+      'Sender Profile',
+      'Delivery Profile',
+      'From Address Management',
+    ],
+    correct: 1,
+    explanation: 'The Delivery Profile controls which IP address is used for a given send. By updating the Delivery Profile associated with their transactional sends, GreenLeaf Organics can route those messages through the new IP while keeping other sends on the existing IP.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Horizon Media has a subscriber with key "HM-4521" appearing in their Auto-Suppression List with a Held status, but the same subscriber key also exists in their send data extension. What is the most likely cause of this duplicate-key conflict?',
+    options: [
+      'The subscriber was manually added to the suppression list and the send list simultaneously',
+      'The Auto-Suppression List created a Held record that conflicts with the existing subscriber key',
+      'The data extension primary key is not set correctly',
+    ],
+    correct: 1,
+    explanation: 'When a subscriber is added to an Auto-Suppression List, Marketing Cloud can create a Held status record. If the same subscriber key already exists in the system, this can create a conflict where the subscriber appears as both active and held, leading to unexpected send behavior.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Crestview Properties wants to ensure that transactional emails like appointment confirmations can still reach subscribers who have unsubscribed from marketing communications. Which Email Studio component controls this behavior?',
+    options: [
+      'Publication List',
+      'Send Classification set to Transactional',
+      'Suppression List with exclusions',
+    ],
+    correct: 1,
+    explanation: 'A Send Classification marked as Transactional overrides the subscriber\'s unsubscribe status for marketing emails. Transactional sends (such as appointment confirmations, password resets, and receipts) are allowed to reach unsubscribed subscribers because they contain essential non-marketing information.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+  {
+    text: 'Urban Eats Delivery sends 50,000 promotional emails every Friday. On Monday, the marketing team manually sifts through hundreds of out-of-office and unsubscribe reply emails. Which feature should automate the handling of these reply messages?',
+    options: [
+      'Reply Mail Management (RMM)',
+      'Auto-Forwarding Rules in Email Studio',
+      'Publication List auto-processing',
+    ],
+    correct: 0,
+    explanation: 'Reply Mail Management (RMM) automatically processes reply emails by categorizing them (out-of-office, unsubscribe requests, transactional replies, etc.) and taking appropriate actions. It can auto-unsubscribe requestors and filter out-of-office messages, saving the team from manual processing.',
+    certId: 'mc_email_specialist',
+    domainId: 'deliverability',
+    examEligible: true,
+  },
+
+  // ============================================================
+  // DOMAIN: email_design — Questions 119-128
+  // ============================================================
+  {
+    text: 'Nimbus Software wants to identify which specific line of business each email comes from (Support, Sales, or Marketing). They need the "From Name" to reflect the department. Which Email Studio component should they configure?',
+    options: [
+      'Delivery Profile',
+      'Sender Profile',
+      'Send Classification',
+    ],
+    correct: 1,
+    explanation: 'The Sender Profile defines the From Name and From Address for an email send. By creating separate Sender Profiles for each department (Support, Sales, Marketing), the correct business identity appears in the subscriber\'s inbox.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Cascade Brewing wants each email to display the recipient\'s assigned sales rep name in the "From" field. The rep assignment is stored in a data extension. Which approach should the email developer use?',
+    options: [
+      'Create a separate Sender Profile for each sales rep',
+      'Use a Sender Profile with AMPscript Lookup to dynamically populate the From Name',
+      'Hard-code each rep name using Dynamic Content rules',
+    ],
+    correct: 1,
+    explanation: 'A Sender Profile can use AMPscript to dynamically set the From Name at send time. By using a Lookup function to retrieve the assigned rep name from a data extension, each subscriber sees their own rep\'s name in the From field without creating dozens of static Sender Profiles.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'FrostByte Gaming includes three CTA buttons in their promotional emails, all linking to the same URL but placed at the top, middle, and bottom of the email. They want to track which button position generates the most clicks. What should they add to differentiate these links in tracking?',
+    options: [
+      'Different UTM parameters on each URL',
+      'The alias (linkname) tag on each link',
+      'Separate link-click data extensions for each button',
+    ],
+    correct: 1,
+    explanation: 'The alias or linkname tag allows you to assign unique identifiers to links that share the same URL. This lets Marketing Cloud track clicks separately for each button position, so you can analyze which placement drives the most engagement without altering the destination URL.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Sapphire Insurance is deploying an Interactive Email Form to collect policyholder satisfaction ratings directly within the email. However, the form will not render in Gmail. What should the developer provide for Gmail recipients?',
+    options: [
+      'A plain-text alternative with a survey link',
+      'Fallback content that displays when the form is unsupported',
+      'A separate email version sent only to Gmail addresses',
+    ],
+    correct: 1,
+    explanation: 'Interactive Email Forms are not supported in all email clients. Marketing Cloud allows you to configure fallback content that automatically displays when the recipient\'s email client (such as Gmail) does not support the interactive form. This ensures all recipients have a functional experience.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Polaris Ventures wants to let subscribers update their profile preferences (name, interests, communication frequency) directly from within an email without visiting an external page. Which Content Builder feature enables this?',
+    options: [
+      'Smart Capture Form',
+      'Interactive Email Form',
+      'CloudPages form embedded via iframe',
+    ],
+    correct: 1,
+    explanation: 'Interactive Email Forms in Content Builder allow subscribers to submit data directly within the email in supported email clients. This can be used for profile updates, surveys, and preference collection without requiring the subscriber to click through to a web page.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'BrightPath Learning has hundreds of reusable content blocks in Content Builder. Their team is struggling to find the right assets. Which Content Builder organizational feature should they implement?',
+    options: [
+      'Naming conventions with date prefixes',
+      'Descriptive tags on content blocks',
+      'Separate Content Builder accounts per team',
+    ],
+    correct: 1,
+    explanation: 'Tags in Content Builder allow you to apply descriptive labels to content assets, making them searchable and filterable. This is the recommended organizational approach when dealing with large volumes of reusable content blocks, as it enables quick discovery without relying solely on folder structures or naming.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Ember Fitness needs to quickly make their existing desktop-optimized email templates work on mobile devices with minimal effort. Which Email Studio feature provides the fastest path to mobile-friendly emails?',
+    options: [
+      'Rebuild all templates from scratch with responsive code',
+      'Apply Mobile Responsive design settings in Content Builder',
+      'Create separate mobile-only email versions',
+    ],
+    correct: 1,
+    explanation: 'Content Builder\'s Mobile Responsive design settings can be applied to existing templates to automatically optimize the layout for mobile screens. This is the quickest approach compared to rebuilding templates or maintaining separate mobile versions.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Pacific Retail has approved a shared email template for use across all business units. A regional marketer needs to make edits to the template, but the system prevents any changes. What permission does the marketer need?',
+    options: [
+      'Content Builder Admin role',
+      'Edit Globally permission for shared templates',
+      'Business Unit Owner permissions',
+    ],
+    correct: 1,
+    explanation: 'Shared templates that have been approved require the "Edit Globally" permission to modify. Without this permission, users can only use the template as-is. This permission model protects brand-approved content from unauthorized modifications.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Starline Aviation approved an email for sending through the approval workflow, but now needs to make a last-minute copy change. The system will not allow edits to the approved email. What must be done first?',
+    options: [
+      'Delete the email and recreate it with the changes',
+      'Withdraw the email from approval before editing',
+      'Duplicate the email and edit the copy',
+    ],
+    correct: 1,
+    explanation: 'Once an email is approved in the approval workflow, it becomes locked for editing. You must first withdraw it from the approved state before any modifications can be made. After editing, it would need to go through the approval process again.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'Ironclad Security has a shared, approved email template used across multiple business units. A marketer in one BU needs to update the legal disclaimer. Before they can edit, what must happen to the shared approved email?',
+    options: [
+      'The email must be moved to a local folder first',
+      'The email must be unshared before it can be edited',
+      'The email must be duplicated into the local BU',
+    ],
+    correct: 1,
+    explanation: 'A shared approved email must first be unshared (removing it from the shared state) before any edits can be made. This prevents changes from unexpectedly affecting other business units that may be using the same shared asset.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+  {
+    text: 'GreenLeaf Organics builds a loyalty email that needs to display each subscriber\'s point balance, recent purchase items, and personalized product recommendations. This data is spread across three different data extensions. Which approach should the developer use?',
+    options: [
+      'Personalization Strings referencing subscriber attributes',
+      'AMPscript Lookup functions to pull data from each data extension',
+      'Enhanced Dynamic Content blocks with attribute rules',
+    ],
+    correct: 1,
+    explanation: 'AMPscript Lookup (and LookupRows) functions can retrieve data from multiple data extensions at send time, allowing you to pull the point balance, purchase history, and recommendations from their respective DEs into a single email. This provides the flexibility needed for multi-source personalization.',
+    certId: 'mc_email_specialist',
+    domainId: 'email_design',
+    examEligible: true,
+  },
+
+  // ============================================================
+  // DOMAIN: subscriber_mgmt — Questions 129-135
+  // ============================================================
+  {
+    text: 'Horizon Media uses data extensions for subscriber management and wants to build a Subscription Center where subscribers can choose which email topics they receive (News, Promotions, Events). Which approach should they use?',
+    options: [
+      'Create a separate All Subscribers list for each topic',
+      'Use Publication Lists mapped to a Subscription Center page',
+      'Build a custom preference center with no Marketing Cloud integration',
+    ],
+    correct: 1,
+    explanation: 'Publication Lists are designed specifically for Subscription Centers. Each list represents a communication category (News, Promotions, Events), and subscribers can toggle their preferences. Publication Lists integrate natively with Marketing Cloud\'s compliance and send infrastructure.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  {
+    text: 'FrostByte Gaming wants to display a [For APPROVAL] warning in the subject line preview when emails contain placeholder content that has not been finalized. Which Email Studio validation feature triggers this kind of warning?',
+    options: [
+      'Content Detective scan',
+      'Subject and Preheader Validation rules',
+      'Send Preview with approval flags',
+    ],
+    correct: 1,
+    explanation: 'Subject and Preheader Validation rules can be configured to flag emails that contain specific patterns or placeholder text in the subject line. This helps catch emails with incomplete content before they are sent or approved.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  {
+    text: 'Crestview Properties wants to quickly check the delivery rate and basic performance metrics for a recent campaign without running any reports. Where in Email Studio can they find this at-a-glance information?',
+    options: [
+      'The Reports tab under Analytics Builder',
+      'The Overview tab in Email Studio',
+      'The Tracking Extracts section in Automation Studio',
+    ],
+    correct: 1,
+    explanation: 'The Overview tab in Email Studio provides a quick summary dashboard showing recent send performance including delivery rate, open rate, click rate, and bounce rate. It is the fastest way to check high-level metrics without navigating to detailed reports.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  {
+    text: 'Urban Eats Delivery scheduled a promotional email for tomorrow at 9 AM, but just discovered an error in the offer terms. They need to stop the send before it goes out. Where should they go to cancel the scheduled send?',
+    options: [
+      'Journey Builder activity history',
+      'The Overview tab in Email Studio to find and cancel the scheduled send',
+      'Automation Studio activity log',
+    ],
+    correct: 1,
+    explanation: 'Scheduled sends can be found and canceled from the Overview tab in Email Studio. This tab displays upcoming scheduled sends and provides the option to cancel them before they execute, giving marketers a safety net for last-minute corrections.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  {
+    text: 'Nimbus Software discovered that a sent email contains a broken promotional link. Hundreds of subscribers have already received the email. Is there a way to fix the URL for subscribers who have not yet clicked?',
+    options: [
+      'Resend the email with the corrected link to all subscribers',
+      'Update the URL in the Job Links tab under My Tracking',
+      'There is no way to update links after an email has been sent',
+    ],
+    correct: 1,
+    explanation: 'The Job Links tab in My Tracking allows you to update the destination URL for links in emails that have already been sent. Since Marketing Cloud uses link-tracking redirects, updating the tracked link destination will redirect future clicks to the corrected URL.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  {
+    text: 'Cascade Brewing is building a welcome journey for new customers who enter via a data extension. The journey needs to reference the customer\'s loyalty status, which is stored in an attribute group in Contact Builder. What must be true about the entry source data extension?',
+    options: [
+      'It must contain all attribute group fields as columns',
+      'It must have a primary key and subscriber key to link to the contact model',
+      'It must be a shared data extension',
+    ],
+    correct: 1,
+    explanation: 'For Journey Builder to look up related data from attribute groups in Contact Builder, the entry source data extension must have a primary key and a subscriber key (or contact key). These keys establish the link between the entry record and the broader contact model, enabling the journey to access related data.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+  {
+    text: 'Sapphire Insurance wants to build a personalized welcome journey with dynamic content in each email. They want the system to automatically select the best-performing content variation for each subscriber in real time using AI. Which feature should they use?',
+    options: [
+      'Einstein Copy Insights',
+      'Einstein Content Selection',
+      'Enhanced Dynamic Content blocks',
+    ],
+    correct: 1,
+    explanation: 'Einstein Content Selection uses machine learning to analyze which content assets perform best for different subscriber segments and automatically selects the optimal variation for each individual at send time. This goes beyond static dynamic content rules by continuously optimizing based on real-time performance data.',
+    certId: 'mc_email_specialist',
+    domainId: 'subscriber_mgmt',
+    examEligible: true,
+  },
+
+  // ============================================================
+  // DOMAIN: tracking_reporting — Questions 136-150
+  // ============================================================
+  {
+    text: 'Polaris Ventures wants to extract "Not Sent" data from a recent campaign to identify which subscribers were excluded and why. What is the correct sequence of Automation Studio activities to get this data to their analytics team via SFTP?',
+    options: [
+      'SQL Query Activity > File Transfer Activity > Import Activity',
+      'Tracking Extract (Not Sent) > File Transfer Activity',
+      'Data Extract Activity > Import Activity > File Transfer Activity',
+    ],
+    correct: 1,
+    explanation: 'A Tracking Extract configured for "Not Sent" data generates a file containing subscribers who were excluded from the send. A File Transfer Activity then moves this file to the SFTP server. No import is needed since the goal is to export data, not bring it into Marketing Cloud.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'BrightPath Learning wants to identify all subscribers who opened at least one email in the past 12 months. Which Marketing Cloud data view should they query?',
+    options: [
+      '_Subscribers',
+      '_Open',
+      '_Bounce',
+    ],
+    correct: 1,
+    explanation: 'The _Open data view contains a record for each email open event, including the subscriber key and event date. By querying this view with a date filter for the past 12 months and selecting distinct subscriber keys, the team can identify all subscribers who opened at least one email.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Ember Fitness\'s analytics team needs automated daily data feeds of all email tracking metrics to power an external BI dashboard. Which Marketing Cloud feature should provide this data on a scheduled basis?',
+    options: [
+      'Google Analytics integration',
+      'Tracking Extracts scheduled in Automation Studio',
+      'Report Snapshots emailed daily',
+    ],
+    correct: 1,
+    explanation: 'Tracking Extracts in Automation Studio can be scheduled to run daily, generating files containing detailed tracking data (opens, clicks, bounces, unsubscribes, etc.). These files can then be transferred to an external location via File Transfer Activity to feed BI dashboards.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Starline Aviation\'s VP of Marketing wants a dashboard showing the success rate of customers who completed their Welcome Series journey in the past 7 days. Where should the team find this pre-built dashboard?',
+    options: [
+      'Journey Builder - Journey History tab',
+      'Datorama Reports - Journey Performance',
+      'Analytics Builder - Reports tab',
+    ],
+    correct: 1,
+    explanation: 'Datorama Reports includes a pre-built Journey Performance dashboard that shows key metrics including success rates, engagement, and completion data for journeys. It supports date filtering and provides the executive-level view the VP is looking for.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Pacific Retail wants to explore their email send data interactively -- slicing by date, campaign, and audience segment -- without writing SQL. Which Datorama feature should they use?',
+    options: [
+      'Custom SQL query widget',
+      'Pivot table in Datorama',
+      'Tracking Extract download',
+    ],
+    correct: 1,
+    explanation: 'Datorama pivot tables allow marketers to drag and drop dimensions and metrics to explore send data interactively. You can slice by date, campaign, segment, and more without any SQL knowledge, making it ideal for self-service data exploration.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'GreenLeaf Organics built a complex Datorama dashboard with many sections. Stakeholders complain it is hard to navigate. What Datorama feature should the team use to improve usability and organization?',
+    options: [
+      'Create separate dashboards for each section',
+      'Add Tabs to organize the dashboard into logical sections',
+      'Export the dashboard as a PDF with a table of contents',
+    ],
+    correct: 1,
+    explanation: 'Tabs in Datorama dashboards allow you to organize content into logical sections (e.g., Overview, Email Performance, Journey Metrics). This improves navigation and usability without requiring separate dashboards, keeping all related data in one place.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Ironclad Security wants to understand the impact of changing their CTA button color on subscriber engagement. Which Einstein feature provides insights into how content changes affect email performance?',
+    options: [
+      'Einstein Send Time Optimization',
+      'Einstein Engagement Scoring',
+      'Einstein Copy Insights',
+    ],
+    correct: 1,
+    explanation: 'Einstein Engagement Scoring predicts how likely subscribers are to engage with emails. While it does not directly A/B test button colors, comparing engagement scores before and after content changes helps assess the impact on overall subscriber engagement patterns.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Horizon Media is looking for an AI-powered tool in Marketing Cloud that automatically alerts them when email performance deviates from normal patterns, such as a sudden drop in open rates. Which feature provides these automated warnings?',
+    options: [
+      'Einstein Copy Insights',
+      'Einstein Messaging Insights',
+      'Einstein Email Recommendations',
+    ],
+    correct: 1,
+    explanation: 'Einstein Messaging Insights uses AI to monitor email performance and automatically generates alerts when metrics deviate significantly from normal patterns. It identifies anomalies like sudden drops in open rates or spikes in unsubscribes and provides recommendations for corrective action.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Crestview Properties wants to target their most loyal and engaged subscribers for a new premium property listing campaign. Which Einstein feature helps them identify the most engaged audience segment?',
+    options: [
+      'Einstein Content Selection',
+      'Einstein Engagement Scoring',
+      'Einstein Send Time Optimization',
+    ],
+    correct: 1,
+    explanation: 'Einstein Engagement Scoring uses machine learning to predict each subscriber\'s likelihood of engaging with emails (opening, clicking). By targeting subscribers with high engagement scores, Crestview Properties can focus their premium campaign on the audience most likely to respond.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'FrostByte Gaming needs a quick listing of all emails sent across all business units in the past calendar year, including basic metrics like delivered, opened, and clicked for each send. Which out-of-the-box report should they use?',
+    options: [
+      'Account Send Summary',
+      'Email Performance Over Time',
+      'Email Sends by User',
+    ],
+    correct: 0,
+    explanation: 'The Account Send Summary report provides a comprehensive listing of all email sends across business units with basic performance metrics. It is an out-of-the-box report that requires no custom configuration and is ideal for cross-BU annual performance reviews.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Urban Eats Delivery sends hundreds of different email campaigns monthly and their tracking results are becoming hard to manage. What should they set up to organize their email tracking data?',
+    options: [
+      'Export tracking data to an external system monthly',
+      'Create folders in My Tracking and select the destination folder when sending',
+      'Rename old campaigns with archived prefixes',
+    ],
+    correct: 1,
+    explanation: 'My Tracking supports folders for organizing tracking results. By creating a folder structure (e.g., by month, campaign type, or brand) and selecting the appropriate folder at send time, the team can keep tracking results organized and easy to find.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Sapphire Insurance wants to restrict the types of content blocks that can be placed within a specific content area of their branded email template. Marketing has noticed that teams are inserting off-brand images. What should they configure?',
+    options: [
+      'User permissions to restrict template editing',
+      'Content Area restrictions to limit allowed block types',
+      'A separate Content Builder folder with limited access',
+    ],
+    correct: 1,
+    explanation: 'Content Area restrictions allow template designers to specify which types of content blocks (text, image, HTML, etc.) are permitted within a given content slot. This enforces brand guidelines by preventing unauthorized content types from being inserted into the template.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Nimbus Software needs to create a Send Log data extension to capture a record of every email sent, including subscriber key, email name, and send date. What is the primary benefit of implementing a Send Log?',
+    options: [
+      'It improves email deliverability by tracking bounces',
+      'It provides a queryable record of all sends for auditing and personalization logic',
+      'It automatically suppresses duplicate sends to the same subscriber',
+    ],
+    correct: 1,
+    explanation: 'A Send Log data extension captures a row for every email sent, storing details like subscriber key, email name, send date, and any additional fields you configure. This queryable log is invaluable for auditing, compliance reporting, and building personalization logic based on send history.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Polaris Ventures wants to see a visual heatmap of where subscribers clicked within a specific email, showing which content areas received the most attention. Which Marketing Cloud feature provides this visualization?',
+    options: [
+      'Click Tracking Report in Analytics Builder',
+      'Email Overlay in Tracking',
+      'Datorama click-through dashboard',
+    ],
+    correct: 1,
+    explanation: 'Email Overlay (also called Click Map) provides a visual representation of click activity overlaid on the actual email design. It shows which links and areas received the most clicks, helping marketers understand content engagement patterns and optimize layout decisions.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },
+  {
+    text: 'Cascade Brewing needs to monitor customer loyalty tier changes as subscribers flow through a post-purchase journey. The tier data is connected to the contact in an attribute group. What configuration is required on the entry source data extension for the journey to reference this data?',
+    options: [
+      'The entry DE must contain all loyalty tier fields as columns',
+      'The entry DE must have a primary key and subscriber key linking to the contact model',
+      'The entry DE must be a synchronized data source from Sales Cloud',
+    ],
+    correct: 1,
+    explanation: 'For Journey Builder to access related data from attribute groups in Contact Builder, the entry source data extension must have a properly defined primary key and subscriber key (contact key). This establishes the relationship between the entry record and the broader contact data model, allowing the journey to look up attribute group values.',
+    certId: 'mc_email_specialist',
+    domainId: 'tracking_reporting',
+    examEligible: true,
+  },,
 ];

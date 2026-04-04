@@ -105,6 +105,7 @@ export interface PremiumQuestion {
   explanation: string;
   certId: string;
   domainId: string;
+  examEligible?: boolean;
 }
 
 export interface Flashcard {
