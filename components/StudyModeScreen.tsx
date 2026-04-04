@@ -1,5 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { Certification, PremiumQuestion } from '../types.ts';
+import { useAuth } from '../lib/AuthContext.tsx';
+import { fetchStudyNotes, saveStudyNote } from '../lib/database.ts';
 import Confetti from './Confetti.tsx';
 
 interface StudyModeScreenProps {
@@ -9,12 +11,53 @@ interface StudyModeScreenProps {
 }
 
 const StudyModeScreen: React.FC<StudyModeScreenProps> = ({ cert, questions, onExit }) => {
+  const { user } = useAuth();
   const [domainFilter, setDomainFilter] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [stats, setStats] = useState({ correct: 0, total: 0 });
+
+  // Notes state
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [currentNote, setCurrentNote] = useState('');
+  const [noteSaving, setNoteSaving] = useState(false);
+  const [noteSaved, setNoteSaved] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
+
+  // Load all notes on mount
+  useEffect(() => {
+    if (user) {
+      fetchStudyNotes(user.id).then(setNotes);
+    }
+  }, [user]);
+
+  // Sync current note when question changes or notes load
+  const syncNoteForQuestion = useCallback((questionText: string) => {
+    setCurrentNote(notes[questionText] || '');
+    setNoteSaved(false);
+    setShowNotes(!!(notes[questionText]));
+  }, [notes]);
+
+  // Handle saving a note
+  const handleSaveNote = async () => {
+    if (!user || !question) return;
+    setNoteSaving(true);
+    await saveStudyNote(user.id, question.text, currentNote);
+    setNotes(prev => {
+      const updated = { ...prev };
+      if (currentNote.trim()) {
+        updated[question.text] = currentNote.trim();
+      } else {
+        delete updated[question.text];
+      }
+      return updated;
+    });
+    setNoteSaving(false);
+    setNoteSaved(true);
+    setTimeout(() => setNoteSaved(false), 2000);
+  };
 
   const filteredQuestions = useMemo(() => {
     const filtered = domainFilter
@@ -30,6 +73,14 @@ const StudyModeScreen: React.FC<StudyModeScreenProps> = ({ cert, questions, onEx
   }, [questions, domainFilter]);
 
   const question = filteredQuestions[currentIndex];
+
+  // Sync note when current question changes (filter change, notes load)
+  useEffect(() => {
+    if (question) {
+      setCurrentNote(notes[question.text] || '');
+      setShowNotes(!!(notes[question.text]));
+    }
+  }, [question?.text, notes]);
 
   if (!question || filteredQuestions.length === 0) {
     return (
@@ -69,9 +120,11 @@ const StudyModeScreen: React.FC<StudyModeScreenProps> = ({ cert, questions, onEx
 
   const handleNext = () => {
     if (currentIndex < filteredQuestions.length - 1) {
-      setCurrentIndex(i => i + 1);
+      const nextIndex = currentIndex + 1;
+      setCurrentIndex(nextIndex);
       setSelectedOption(null);
       setShowAnswer(false);
+      syncNoteForQuestion(filteredQuestions[nextIndex].text);
     } else {
       setCurrentIndex(filteredQuestions.length); // triggers complete screen
     }
@@ -142,6 +195,52 @@ const StudyModeScreen: React.FC<StudyModeScreenProps> = ({ cert, questions, onEx
         {showAnswer && (
           <div className="bg-gray-900/50 p-4 rounded-lg mb-4">
             <p className="text-sm text-gray-300"><i className="fa-solid fa-lightbulb text-yellow-400 mr-2"></i>{question.explanation}</p>
+          </div>
+        )}
+
+        {/* Personal Notes */}
+        {showAnswer && (
+          <div className="mb-4">
+            <button
+              onClick={() => setShowNotes(!showNotes)}
+              className="text-sm text-yellow-400 hover:text-yellow-300 transition-colors mb-2"
+            >
+              <i className={`fa-solid ${showNotes ? 'fa-chevron-down' : 'fa-chevron-right'} mr-1`}></i>
+              <i className="fa-solid fa-sticky-note mr-1"></i>
+              {notes[question.text] ? 'View/Edit Notes' : 'Add Notes'}
+            </button>
+            {showNotes && (
+              <div className="bg-yellow-500/5 border border-yellow-500/20 rounded-lg p-4 animate-fade-in-up">
+                <textarea
+                  value={currentNote}
+                  onChange={(e) => { setCurrentNote(e.target.value); setNoteSaved(false); }}
+                  placeholder="Write your personal notes for this question..."
+                  className="w-full bg-gray-900/60 border border-gray-700 rounded-lg p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-yellow-500/50 focus:border-transparent h-24 resize-none"
+                  maxLength={1000}
+                />
+                <div className="flex items-center justify-between mt-2">
+                  <p className="text-xs text-gray-600">{currentNote.length}/1000</p>
+                  <div className="flex items-center gap-2">
+                    {noteSaved && (
+                      <span className="text-xs text-green-400 animate-fade-in-up">
+                        <i className="fa-solid fa-check mr-1"></i>Saved
+                      </span>
+                    )}
+                    <button
+                      onClick={handleSaveNote}
+                      disabled={noteSaving}
+                      className="text-xs px-3 py-1.5 bg-yellow-500/20 text-yellow-300 rounded-lg hover:bg-yellow-500/30 transition-colors disabled:opacity-50"
+                    >
+                      {noteSaving ? (
+                        <><i className="fa-solid fa-spinner fa-spin mr-1"></i>Saving...</>
+                      ) : (
+                        <><i className="fa-solid fa-floppy-disk mr-1"></i>Save Note</>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
 

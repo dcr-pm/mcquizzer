@@ -226,3 +226,47 @@ export async function deleteTestimonial(testimonialId: string): Promise<void> {
   if (!isSupabaseConfigured) return;
   await supabase.from('testimonials').delete().eq('id', testimonialId);
 }
+
+// =====================
+// STUDY NOTES
+// =====================
+
+export interface StudyNote {
+  id?: string;
+  user_id: string;
+  question_text: string;
+  note: string;
+  updated_at?: string;
+}
+
+export async function fetchStudyNotes(userId: string): Promise<Record<string, string>> {
+  if (!isSupabaseConfigured) return {};
+  const { data, error } = await supabase
+    .from('study_notes')
+    .select('question_text, note')
+    .eq('user_id', userId);
+
+  if (error || !data) return {};
+  const notesMap: Record<string, string> = {};
+  for (const row of data) {
+    notesMap[row.question_text] = row.note;
+  }
+  return notesMap;
+}
+
+export async function saveStudyNote(userId: string, questionText: string, note: string): Promise<void> {
+  if (!isSupabaseConfigured) return;
+  if (!note.trim()) {
+    await supabase.from('study_notes').delete().eq('user_id', userId).eq('question_text', questionText);
+    return;
+  }
+  await supabase.from('study_notes').upsert(
+    {
+      user_id: userId,
+      question_text: questionText,
+      note: note.trim(),
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id,question_text' }
+  );
+}
