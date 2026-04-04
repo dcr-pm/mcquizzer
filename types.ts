@@ -205,4 +205,5 @@ export type GameScreen =
   | 'home'
   | 'help'
   | 'sf_jobs'
-  | 'testimonials';
+  | 'testimonials'
+  | 'feedback';

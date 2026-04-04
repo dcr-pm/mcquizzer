@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 interface HelpScreenProps {
   onBack: () => void;
+  onFeedback: () => void;
 }
 
 interface Section {
@@ -23,7 +24,7 @@ const SECTIONS: Section[] = [
       },
       {
         q: 'How do I sign in?',
-        a: 'Enter your name and email address on the sign-in screen. We will send you an 8-digit code to your email. Enter that code to sign in. Use a personal email like Gmail, Outlook, or Yahoo for the best experience.',
+        a: 'Enter your name and email address on the sign-in screen. We will send you a 6-digit code to your email. Enter that code to sign in. Use a personal email like Gmail, Outlook, or Yahoo for the best experience.',
       },
       {
         q: 'Is SF Quizzer free?',
@@ -92,7 +93,7 @@ const SECTIONS: Section[] = [
     items: [
       {
         q: 'How do I change my display name?',
-        a: 'Go to your Dashboard and click the edit (pencil) icon on your profile card. You can update your display name there.',
+        a: 'Display name changes are not currently available in the app. If you need to update your display name, please submit a request through the Feedback form and we will update it for you.',
       },
       {
         q: 'How do I sign out?',
@@ -100,13 +101,13 @@ const SECTIONS: Section[] = [
       },
       {
         q: 'I have feedback or found a bug. How do I report it?',
-        a: 'During a quiz, you can click the feedback button on any question to report issues. You can also reach out to the founder on LinkedIn at linkedin.com/in/darrenross-pm.',
+        a: 'Use the Feedback form to report bugs, request features, or share your thoughts. During a quiz, you can also click the feedback button on any question to report question-specific issues.',
       },
     ],
   },
 ];
 
-const HelpScreen: React.FC<HelpScreenProps> = ({ onBack }) => {
+const HelpScreen: React.FC<HelpScreenProps> = ({ onBack, onFeedback }) => {
   const [openSection, setOpenSection] = useState<number>(0);
   const [openItem, setOpenItem] = useState<string | null>(null);
 
@@ -163,6 +164,19 @@ const HelpScreen: React.FC<HelpScreenProps> = ({ onBack }) => {
             </div>
           );
         })}
+      </div>
+
+      {/* Feedback CTA */}
+      <div className="mt-8 bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 text-center">
+        <i className="fa-solid fa-paper-plane text-2xl text-blue-400 mb-3"></i>
+        <h3 className="text-white font-bold mb-2">Have Feedback?</h3>
+        <p className="text-gray-400 text-sm mb-4">Found a bug, have an idea, or want to share your thoughts? We'd love to hear from you.</p>
+        <button
+          onClick={onFeedback}
+          className="px-6 py-2.5 bg-gradient-to-r from-blue-500 to-teal-400 text-white text-sm font-bold rounded-lg hover:scale-105 transform transition-transform"
+        >
+          <i className="fa-solid fa-paper-plane mr-2"></i>Send Feedback
+        </button>
       </div>
     </div>
   );
