@@ -110,24 +110,8 @@ const PremiumUpgradeScreen: React.FC<PremiumUpgradeScreenProps> = ({ onBack }) =
             </div>
           )}
 
-          {/* CTA */}
-          <button
-            onClick={handleUpgrade}
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-4 rounded-xl shadow-lg hover:scale-105 transform transition-transform text-lg disabled:opacity-50 disabled:hover:scale-100"
-          >
-            {loading ? (
-              <><i className="fa-solid fa-spinner fa-spin mr-2"></i>Redirecting to checkout...</>
-            ) : (
-              <><i className="fa-solid fa-unlock mr-2"></i>Get Cert Prep Pro</>
-            )}
-          </button>
-          <p className="text-center text-gray-500 text-xs mt-3">
-            <i className="fa-solid fa-tag mr-1"></i>Have a discount code? You can enter it at checkout.
-          </p>
-
           {/* ProPass Section */}
-          <div className="mt-6 pt-6 border-t border-gray-700">
+          <div>
             {proPassSuccess ? (
               <div className="bg-green-500/20 border border-green-500/50 text-green-300 text-sm p-4 rounded-xl text-center">
                 <i className="fa-solid fa-circle-check text-2xl mb-2"></i>
@@ -136,8 +120,8 @@ const PremiumUpgradeScreen: React.FC<PremiumUpgradeScreenProps> = ({ onBack }) =
               </div>
             ) : (
               <>
-                <p className="text-center text-gray-400 text-sm mb-3">
-                  <i className="fa-solid fa-key mr-1"></i>Have a ProPass code?
+                <p className="text-center text-gray-300 text-sm font-semibold mb-3">
+                  <i className="fa-solid fa-key mr-1"></i>Enter your ProPass code to unlock
                 </p>
                 <div className="flex gap-2">
                   <input
