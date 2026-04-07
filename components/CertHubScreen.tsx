@@ -8,10 +8,11 @@ interface CertHubScreenProps {
   onStudyMode: () => void;
   onFlashcards: () => void;
   onPracticeExam: () => void;
+  onLearningPath: () => void;
   onBack: () => void;
 }
 
-const CertHubScreen: React.FC<CertHubScreenProps> = ({ cert, onStudyMode, onFlashcards, onPracticeExam, onBack }) => {
+const CertHubScreen: React.FC<CertHubScreenProps> = ({ cert, onStudyMode, onFlashcards, onPracticeExam, onLearningPath, onBack }) => {
   const { user } = useAuth();
   const [examHistory, setExamHistory] = useState<ExamResult[]>([]);
 
@@ -29,6 +30,7 @@ const CertHubScreen: React.FC<CertHubScreenProps> = ({ cert, onStudyMode, onFlas
     { key: 'study', icon: 'fa-book-open', title: 'Study Mode', desc: 'Learn at your own pace with untimed quizzes', color: 'from-blue-500 to-blue-600', onClick: onStudyMode },
     { key: 'flash', icon: 'fa-clone', title: 'Flashcards', desc: 'Review key concepts and track your mastery', color: 'from-purple-500 to-purple-600', onClick: onFlashcards },
     { key: 'exam', icon: 'fa-file-circle-check', title: 'Practice Exam', desc: `${cert.examQuestionCount} questions, ${cert.examTimeLimitMinutes} min, ${cert.passingScore}% to pass`, color: 'from-orange-500 to-red-500', onClick: onPracticeExam },
+    { key: 'learn', icon: 'fa-route', title: 'Learning Paths', desc: 'Follow a real-world scenario through every exam domain', color: 'from-cyan-500 to-blue-500', onClick: onLearningPath },
   ];
 
   return (
@@ -58,7 +60,7 @@ const CertHubScreen: React.FC<CertHubScreenProps> = ({ cert, onStudyMode, onFlas
       </div>
 
       {/* Action Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         {cards.map(card => (
           <button
             key={card.key}

@@ -5,6 +5,7 @@ import { ALL_QUESTIONS } from './questions.ts';
 import { CERTIFICATIONS } from './data/certifications.ts';
 import { PREMIUM_QUESTIONS } from './data/premium-questions.ts';
 import { FLASHCARDS } from './data/flashcards.ts';
+import { LEARNING_PATHS } from './data/learning-paths.ts';
 import { useAuth } from './lib/AuthContext.tsx';
 import { saveQuizResult, fetchLeaderboard, saveFeedback, saveExamResult, fetchFlashcardProgress, upsertFlashcardProgress } from './lib/database.ts';
 import Header from './components/Header.tsx';
@@ -32,6 +33,7 @@ import HelpScreen from './components/HelpScreen.tsx';
 import SFJobsScreen from './components/SFJobsScreen.tsx';
 import TestimonialsScreen from './components/TestimonialsScreen.tsx';
 import FeedbackScreen from './components/FeedbackScreen.tsx';
+import LearningPathScreen from './components/LearningPathScreen.tsx';
 import NewsletterModal from './components/NewsletterModal.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -60,6 +62,7 @@ const SCREEN_PATHS: Record<string, GameScreen> = {
   '/testimonials': 'testimonials',
   '/help': 'help',
   '/feedback': 'feedback',
+  '/learning-path': 'learning_path',
 };
 
 const PATH_FOR_SCREEN: Record<string, string> = {};
@@ -522,6 +525,7 @@ const App: React.FC = () => {
             onStudyMode={() => setScreen('study_mode')}
             onFlashcards={() => setScreen('flashcards')}
             onPracticeExam={() => setScreen('exam_setup')}
+            onLearningPath={() => setScreen('learning_path')}
             onBack={handleBackToDashboard}
           />
         );
@@ -575,6 +579,13 @@ const App: React.FC = () => {
           );
         }
         return null;
+      case 'learning_path': {
+        const learningPath = LEARNING_PATHS.find(lp => lp.certId === currentCert.id);
+        if (learningPath) {
+          return <LearningPathScreen path={learningPath} onExit={() => setScreen('cert_hub')} />;
+        }
+        return null;
+      }
       case 'sf_news':
         return <SFNewsScreen onBack={() => setScreen('home')} />;
       case 'sf_jobs':

@@ -108,6 +108,43 @@ export interface PremiumQuestion {
   examEligible?: boolean;
 }
 
+// =====================
+// LEARNING PATHS
+// =====================
+
+export interface LearningSlide {
+  type: 'context' | 'teach' | 'question';
+  title: string;
+  // For context/teach slides
+  content?: string;
+  // For question slides
+  question?: string;
+  options?: string[];
+  correct?: number;
+  explanation?: string;
+  // Metadata
+  domainId: string;
+  chapter: number;
+}
+
+export interface LearningPathChapter {
+  title: string;
+  domainId: string;
+  icon: string;
+}
+
+export interface LearningPath {
+  id: string;
+  certId: string;
+  title: string;
+  company: string;
+  description: string;
+  icon: string;
+  gradient: string;
+  chapters: LearningPathChapter[];
+  slides: LearningSlide[];
+}
+
 export interface Flashcard {
   id: string;
   certId: string;
@@ -207,4 +244,5 @@ export type GameScreen =
   | 'help'
   | 'sf_jobs'
   | 'testimonials'
-  | 'feedback';
+  | 'feedback'
+  | 'learning_path';

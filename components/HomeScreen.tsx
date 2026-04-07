@@ -53,8 +53,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
           onClick={onCertPrep}
           className="bg-gray-800/80 backdrop-blur-md rounded-2xl border border-white/10 p-6 sm:p-8 text-left hover:border-cyan-500/30 hover:bg-gray-800 transition-all group"
         >
-          <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mb-4">
-            <i className="fa-solid fa-certificate text-2xl text-white"></i>
+          <div className="flex items-start justify-between mb-4">
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+              <i className="fa-solid fa-certificate text-2xl text-white"></i>
+            </div>
+            <span className="text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-2.5 py-1 rounded-full">
+              <i className="fa-solid fa-star mr-1"></i>Pro
+            </span>
           </div>
           <h2 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors mb-2">Cert Prep Pro</h2>
           <p className="text-gray-400 text-sm">Study quizzes, flashcards, and timed practice exams for Salesforce certifications. Everything you need in one place.</p>
