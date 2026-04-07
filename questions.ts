@@ -902,5 +902,505 @@ export const ALL_QUESTIONS: Question[] = [
     ],
     correct: 3,
     explanation: "The `_Bounce` data view stores records of every bounce event, including the SubscriberKey, JobID, and bounce reason. It is the correct source for analyzing bounce data."
-  }
+  },
+
+  // ============================================================
+  // SALES CLOUD
+  // ============================================================
+  {
+    categoryId: 'sales_cloud',
+    text: "A sales rep converts a Lead that has an existing Account match in Salesforce. What happens by default during Lead conversion?",
+    options: [
+      "A new Account is always created regardless of matches",
+      "The rep can choose to merge the Lead into the existing Account",
+      "The Lead is automatically deleted and a Task is created on the existing Account",
+      "The system blocks conversion until the duplicate Account is removed"
+    ],
+    correct: 1,
+    explanation: "During Lead conversion, Salesforce identifies existing Account matches and allows the rep to select an existing Account rather than creating a new one, preventing duplicates."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A sales manager wants Opportunity stages to follow a specific sequence where reps cannot skip stages. Which feature should be configured?",
+    options: [
+      "Validation Rules on the Stage field",
+      "A Sales Process with a guided selling path",
+      "Workflow Rules that auto-update the Stage field",
+      "Record Types with separate page layouts per stage"
+    ],
+    correct: 0,
+    explanation: "Validation Rules can enforce that the Stage field only moves forward in a defined sequence. A Sales Process defines which stages are available but does not prevent skipping stages on its own."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A company uses Person Accounts. A marketing user notices that Person Accounts do not appear when creating a Campaign Member. What is the most likely reason?",
+    options: [
+      "Person Accounts cannot be added as Campaign Members",
+      "The user needs to search under Contacts, since Person Accounts have an implicit Contact record",
+      "Campaign Members only support Leads and business Accounts",
+      "The Person Account record type is not associated with the Campaign"
+    ],
+    correct: 1,
+    explanation: "Person Accounts have an underlying Contact record. When adding Campaign Members, you search for the Person Account under Contacts, not Accounts."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A sales director wants to see a report of all Opportunities closing this quarter, grouped by Stage, with a bar chart showing total Amount per Stage. Which report format should be used?",
+    options: [
+      "Tabular report with a chart",
+      "Summary report grouped by Stage",
+      "Matrix report grouped by Stage and Close Date",
+      "Joined report combining Opportunities and Activities"
+    ],
+    correct: 1,
+    explanation: "A Summary report grouped by Stage allows grouping and summarizing the Amount field, and supports adding a bar chart. Tabular reports do not support groupings or charts."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A company sells products at different prices depending on the customer's region. What is the recommended approach to manage this in Salesforce?",
+    options: [
+      "Create separate Products for each region",
+      "Use one standard Price Book and apply discounts via Workflow Rules",
+      "Create custom Price Books for each region with region-specific prices",
+      "Use a formula field on the Opportunity Product to calculate the regional price"
+    ],
+    correct: 2,
+    explanation: "Custom Price Books allow the same Product to have different prices for different regions. The standard Price Book holds the default list price, while custom Price Books hold region-specific pricing."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A VP of Sales enables Collaborative Forecasting and wants managers to be able to adjust their direct reports' forecast amounts without changing the underlying Opportunity data. Which feature supports this?",
+    options: [
+      "Opportunity Amount override",
+      "Manager Judgment adjustments",
+      "Forecast Quota adjustments",
+      "Cumulative Forecast Rollup settings"
+    ],
+    correct: 1,
+    explanation: "Manager Judgment (manager adjustments) in Collaborative Forecasting allows managers to adjust a subordinate's forecast amount at the forecast level without modifying the actual Opportunity records."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A sales rep creates an Opportunity but cannot select any Products to add. The Opportunity has no Price Book assigned. What must happen first?",
+    options: [
+      "The admin must add Products directly to the Opportunity",
+      "The rep must select a Price Book on the Opportunity before adding Products",
+      "Products are automatically added based on the Opportunity Record Type",
+      "The rep must create a Quote first, then Products sync to the Opportunity"
+    ],
+    correct: 1,
+    explanation: "An Opportunity must have a Price Book associated with it before Products (Opportunity Line Items) can be added. The rep selects the appropriate Price Book, then chooses Products from it."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A company wants to track which marketing Campaigns influenced won Opportunities, even if the Campaign was not the primary source. Which feature should they use?",
+    options: [
+      "Campaign ROI reports filtered by won Opportunities",
+      "Campaign Influence (multi-touch attribution) with Customizable Campaign Influence",
+      "A lookup relationship from Opportunity to Campaign",
+      "Campaign Hierarchy rollup fields"
+    ],
+    correct: 1,
+    explanation: "Customizable Campaign Influence allows multiple Campaigns to receive attribution credit on a single Opportunity, enabling multi-touch attribution beyond just the primary Campaign Source."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "An Account has both a billing address and a shipping address. When a new Contact is created under this Account, which address is auto-populated on the Contact's mailing address?",
+    options: [
+      "The Account's Billing Address",
+      "The Account's Shipping Address",
+      "Both addresses are copied to the Contact",
+      "No address is auto-populated on the Contact"
+    ],
+    correct: 0,
+    explanation: "When a Contact is created on an Account, Salesforce auto-populates the Contact's Mailing Address with the Account's Billing Address by default."
+  },
+  {
+    categoryId: 'sales_cloud',
+    text: "A sales team uses a Sales Process called 'Enterprise Sales' with stages: Prospecting, Qualification, Proposal, Negotiation, Closed Won, Closed Lost. A new requirement asks that the 'SMB Sales' team skip Negotiation entirely. What is the best approach?",
+    options: [
+      "Remove the Negotiation stage from the global picklist values",
+      "Create a new Sales Process called 'SMB Sales' that excludes Negotiation and assign it via a Record Type",
+      "Use a Validation Rule to block SMB reps from selecting Negotiation",
+      "Create a separate Opportunity object for SMB deals"
+    ],
+    correct: 1,
+    explanation: "Creating a separate Sales Process with only the relevant stages and associating it with an SMB Record Type is the standard approach. This keeps the Enterprise process intact while giving SMB a tailored stage path."
+  },
+
+  // ============================================================
+  // SERVICE CLOUD
+  // ============================================================
+  {
+    categoryId: 'service_cloud',
+    text: "A support manager wants to automatically route cases to agents based on their current workload and skill set. Which feature should they configure?",
+    options: [
+      "Case Assignment Rules",
+      "Omni-Channel with Skills-Based Routing",
+      "Escalation Rules",
+      "Workflow Rules"
+    ],
+    correct: 1,
+    explanation: "Omni-Channel with Skills-Based Routing automatically routes work items to agents based on their skills and current capacity, ensuring balanced workloads and appropriate matching of cases to agent expertise."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A service agent frequently sends the same paragraph explaining return policies. They want to insert this text into case comments with a few keystrokes. Which feature best addresses this need?",
+    options: [
+      "Macros",
+      "Quick Text",
+      "Email Templates",
+      "Auto-Response Rules"
+    ],
+    correct: 1,
+    explanation: "Quick Text allows agents to create reusable text snippets that can be inserted into fields like case comments, emails, and chats using a keyboard shortcut, saving time on repetitive typing."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A company wants to ensure that high-priority cases from platinum customers are reassigned to a senior support tier if not resolved within 4 hours. Which feature should they use?",
+    options: [
+      "Case Assignment Rules",
+      "Auto-Response Rules",
+      "Escalation Rules",
+      "Entitlement Processes"
+    ],
+    correct: 2,
+    explanation: "Escalation Rules automatically reassign or notify users when cases meet specified criteria and remain unresolved after a defined time period, ensuring critical cases receive timely attention."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "An agent needs to perform multiple repetitive steps on a case: change the status, update a field, and send an email. They want to do this in a single click from the Service Console. What should they use?",
+    options: [
+      "Quick Text",
+      "Flow",
+      "Macros",
+      "Process Builder"
+    ],
+    correct: 2,
+    explanation: "Macros in the Service Console allow agents to execute multiple actions on a record with a single click, such as updating fields, sending emails, and changing statuses, streamlining repetitive multi-step tasks."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A company offers different support response times based on customer contracts: Gold customers get 4-hour response, Silver gets 8-hour response. Which two features work together to enforce this?",
+    options: [
+      "Escalation Rules and Case Assignment Rules",
+      "Entitlements and Milestones",
+      "Service Level Agreements and Workflow Rules",
+      "Omni-Channel and Queue Management"
+    ],
+    correct: 1,
+    explanation: "Entitlements define the level of support a customer is entitled to, while Milestones are time-dependent steps within an Entitlement Process that track required response and resolution times, together enforcing SLA commitments."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A support team wants their Knowledge Articles to appear as suggested solutions when an agent opens a case, based on the case subject and description. Which Service Console feature enables this?",
+    options: [
+      "Knowledge Sidebar with Suggested Articles",
+      "Einstein Search Personalization",
+      "Article Quick Find",
+      "Global Search Override"
+    ],
+    correct: 0,
+    explanation: "The Knowledge Sidebar in the Service Console can be configured to automatically suggest relevant Knowledge Articles based on case field values like subject and description, helping agents find solutions faster."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A new case is created via Web-to-Case. The company wants the case automatically assigned to different queues based on the product and region specified by the customer. What should the admin configure?",
+    options: [
+      "Omni-Channel Routing Configuration",
+      "Case Assignment Rules with multiple rule entries",
+      "A record-triggered Flow on Case creation",
+      "Territory Management Rules"
+    ],
+    correct: 1,
+    explanation: "Case Assignment Rules evaluate rule entries in order and assign cases to users or queues based on criteria such as product and region. They are the standard declarative tool for routing new cases to the correct queue on creation."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "An agent is working in the Service Console and needs to view a case, its related contact, and a Knowledge Article side by side without losing context. Which Service Console capability supports this?",
+    options: [
+      "Split View and subtabs",
+      "Multi-monitor support",
+      "Pinned lists and workspace tabs",
+      "Utility Bar components"
+    ],
+    correct: 0,
+    explanation: "The Service Console supports Split View and subtabs, allowing agents to open related records as subtabs within a workspace tab so they can view and work with multiple records side by side without navigating away from their current case."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A customer service team notices that some cases are stuck in the New status because no assignment rule matched them. What is the most likely cause and fix?",
+    options: [
+      "The default case owner is not set; configure a default case owner in Support Settings",
+      "Case auto-response rules need to be activated",
+      "The Omni-Channel presence status is set to offline",
+      "Escalation Rules are overriding the Assignment Rules"
+    ],
+    correct: 0,
+    explanation: "When no assignment rule entry matches a case, the case is assigned to the default case owner defined in Support Settings. If no default owner is set, cases may remain unassigned. Configuring a default case owner ensures all cases have an owner."
+  },
+  {
+    categoryId: 'service_cloud',
+    text: "A manager wants to track whether agents are responding to cases within the contractual first-response time. Milestone tracking shows some milestones as violated. Where in the entitlement configuration is the first-response deadline defined?",
+    options: [
+      "On the Case record type page layout",
+      "In the Milestone record within the Entitlement Process",
+      "In the Escalation Rule time trigger",
+      "On the Service Contract line item"
+    ],
+    correct: 1,
+    explanation: "First-response deadlines are defined as Milestones within an Entitlement Process. Each Milestone specifies the time limit and can trigger warning and violation actions, allowing managers to track and enforce contractual response times."
+  },
+
+  // ============================================================
+  // DATA CLOUD
+  // ============================================================
+  {
+    categoryId: 'data_cloud',
+    text: "A company wants to bring in real-time website interaction data from their custom application into Data Cloud. Which ingestion method is most appropriate?",
+    options: [
+      "Ingestion API with Streaming connector",
+      "MuleSoft connector with batch schedule",
+      "SFTP file upload",
+      "Salesforce CRM connector"
+    ],
+    correct: 0,
+    explanation: "The Ingestion API with a Streaming connector is designed for real-time data ingestion from external custom applications, making it ideal for capturing live website interactions as they occur."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "An admin notices that two customer records from different data streams are not being merged into a single Unified Profile despite having the same email address. What should they check first?",
+    options: [
+      "Whether the Activation Target is correctly configured",
+      "Whether the Identity Resolution ruleset includes an email-based match rule",
+      "Whether Calculated Insights have been refreshed",
+      "Whether the Data Space has segmentation enabled"
+    ],
+    correct: 1,
+    explanation: "Identity Resolution rulesets define the match and reconciliation rules that determine how records are unified. If email is not included as a match rule, records sharing the same email will not be merged into a single Unified Profile."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "A marketing team wants to create a segment of customers who have spent more than $500 in the last 90 days. The purchase amount is spread across multiple transaction records. What must be configured before building the segment?",
+    options: [
+      "An Activation Target pointing to Marketing Cloud",
+      "A Calculated Insight that aggregates total spend per customer over 90 days",
+      "A new Data Stream for purchase summaries",
+      "A Data Action to sum purchase amounts"
+    ],
+    correct: 1,
+    explanation: "Calculated Insights allow you to create aggregate metrics like total spend per customer over a defined time window. This computed value can then be used as a filter criterion when building segments."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "A company has three business units that should not see each other's customer data within Data Cloud. How should the administrator handle this requirement?",
+    options: [
+      "Create three separate Salesforce orgs",
+      "Use Permission Sets to restrict record-level access",
+      "Configure separate Data Spaces for each business unit",
+      "Build three different Identity Resolution rulesets"
+    ],
+    correct: 2,
+    explanation: "Data Spaces provide logical data separation within a single Data Cloud instance, allowing different business units to maintain isolated views of their data while sharing the same underlying infrastructure."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "After setting up a new Data Stream from an S3 source, an admin sees that data is ingested but the fields are not available for segmentation. What is the most likely missing step?",
+    options: [
+      "The admin has not created an Activation Target",
+      "The Data Stream fields have not been mapped to a Data Model Object (DMO)",
+      "The Identity Resolution ruleset needs to be rerun",
+      "The Ingestion API endpoint has not been whitelisted"
+    ],
+    correct: 1,
+    explanation: "Data from Data Streams must be mapped to Data Model Objects (DMOs) in the data model before the fields become available for downstream use in segmentation, Calculated Insights, and other features."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "A retailer wants to push a Data Cloud segment to Google Ads for targeted advertising. What must be configured in Data Cloud to enable this?",
+    options: [
+      "A Data Action with a webhook to Google Ads",
+      "A Calculated Insight filtered by the segment criteria",
+      "An Activation Target configured for Google Ads with the segment published to it",
+      "A new Data Stream that exports to Google Ads"
+    ],
+    correct: 2,
+    explanation: "Activation Targets define the external destinations where segments can be published. To send a segment to Google Ads, you must configure Google Ads as an Activation Target and then activate the segment to that target."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "An organization is mapping ingested data to the Data Cloud data model. They have customer purchase records that include both buyer information and product details. How should this data be modeled?",
+    options: [
+      "Map everything to a single Engagement DMO",
+      "Map buyer fields to an Individual DMO and product fields to a separate Product DMO, linked through a Sales Order DMO",
+      "Create a custom Calculated Insight to separate the data",
+      "Store all fields in a single Data Stream without mapping"
+    ],
+    correct: 1,
+    explanation: "Data Cloud's data model follows a normalized structure. Buyer information maps to the Individual DMO, product details map to the Product DMO, and the transactional relationship is captured through the Sales Order DMO, maintaining proper relational integrity."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "A Data Cloud admin needs to trigger an outbound action in real time when a customer's unified profile meets certain criteria, such as a loyalty score dropping below a threshold. Which feature should they use?",
+    options: [
+      "Scheduled Segmentation with daily refresh",
+      "Data Actions triggered from a Data Cloud-triggered flow",
+      "A Calculated Insight with an email alert",
+      "An Activation Target refresh schedule"
+    ],
+    correct: 1,
+    explanation: "Data Actions, when used with Data Cloud-triggered flows, enable near-real-time responses to profile changes. When a unified profile meets specified criteria, the flow fires and the Data Action can trigger outbound calls, notifications, or updates in external systems."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "During Identity Resolution, a company finds that too many unrelated records are being merged together, creating overly large unified profiles. Which adjustment would help resolve this?",
+    options: [
+      "Increase the number of Data Streams",
+      "Tighten the match rules by requiring more matching fields or using exact match instead of fuzzy match",
+      "Add more Activation Targets",
+      "Increase the Calculated Insight refresh frequency"
+    ],
+    correct: 1,
+    explanation: "Overly broad match rules, such as relying on a single fuzzy match criterion, can cause unrelated records to merge. Tightening match rules by requiring multiple fields to match or switching from fuzzy to exact matching reduces false-positive merges."
+  },
+  {
+    categoryId: 'data_cloud',
+    text: "A company ingests data from Salesforce CRM, a mobile app via Ingestion API, and a marketing platform via connector. They want a single view of engagement across all sources for each customer. What is the correct sequence of steps?",
+    options: [
+      "Create segments, then configure Activation Targets, then run Identity Resolution",
+      "Map data to DMOs, run Identity Resolution to create Unified Profiles, then build Calculated Insights or segments on the unified data",
+      "Run Identity Resolution first, then ingest data, then map to DMOs",
+      "Build Calculated Insights on raw Data Streams, then run Identity Resolution"
+    ],
+    correct: 1,
+    explanation: "The correct Data Cloud workflow is: ingest data and map it to DMOs in the data model, then run Identity Resolution to unify records into Unified Profiles, and finally leverage the unified data for Calculated Insights, segmentation, and activations."
+  },
+
+  // ============================================================
+  // EXPERIENCE CLOUD
+  // ============================================================
+  {
+    categoryId: 'experience_cloud',
+    text: "A company wants to allow unauthenticated users to view Knowledge articles on their Experience Cloud site, but restrict access to case creation. Which approach should the administrator configure?",
+    options: [
+      "Create a custom permission set for guest users and assign it to the site's guest user profile",
+      "Configure the Guest User Profile with object permissions for Knowledge and remove case creation from the public page layout",
+      "Enable 'Allow guest users to access public APIs' and use sharing rules to limit case access",
+      "Set up a sharing set that grants guest users read access to Knowledge objects only"
+    ],
+    correct: 1,
+    explanation: "The Guest User Profile controls what unauthenticated visitors can access on an Experience Cloud site. By granting Knowledge object read permissions and removing case object permissions from this profile, admins can allow article viewing while restricting case creation."
+  },
+  {
+    categoryId: 'experience_cloud',
+    text: "A nonprofit organization needs to give partner users access to the same set of Accounts and Contacts that their portal account's parent organization owns. Which feature should be configured?",
+    options: [
+      "Organization-Wide Defaults set to Public Read/Write for Accounts and Contacts",
+      "A sharing set that maps the partner user's Account to the Account record",
+      "A sharing rule based on the partner user's role in the role hierarchy",
+      "An Apex managed sharing class that runs on partner user login"
+    ],
+    correct: 1,
+    explanation: "Sharing sets in Experience Cloud grant portal or community users access to records based on a relationship between the user's profile (such as their Account) and the records. This is the standard mechanism for giving partner users access to records owned by their parent organization."
+  },
+  {
+    categoryId: 'experience_cloud',
+    text: "A marketing team wants to display different banner content on their Experience Cloud site depending on whether a visitor is a returning customer or a new prospect. Which feature supports this requirement?",
+    options: [
+      "Dynamic Forms on the site's Lightning record pages",
+      "Audience targeting with criteria-based audiences in Experience Builder",
+      "A Flow component embedded on the home page with decision elements",
+      "Customization through a custom Aura component using $Browser global variable"
+    ],
+    correct: 1,
+    explanation: "Audience targeting in Experience Builder allows administrators to define audiences based on criteria such as profile, location, or user attributes, and then show different page variations or component content to each audience segment without code."
+  },
+  {
+    categoryId: 'experience_cloud',
+    text: "A company using Experience Cloud CMS wants content authors to create articles once and publish them across both their customer portal and their public marketing site. What should the architect recommend?",
+    options: [
+      "Create separate CMS workspaces for each site and use a scheduled Flow to sync content",
+      "Use a single CMS workspace and connect it to multiple Experience Cloud sites as channels",
+      "Export CMS content as JSON and import it into each site using the CMS API",
+      "Enable cross-site content sharing in Setup and add each site to a content sharing group"
+    ],
+    correct: 1,
+    explanation: "Salesforce CMS workspaces support multiple channels. By adding multiple Experience Cloud sites as channels within the same workspace, content authors can create content once and make it available across all connected sites."
+  },
+  {
+    categoryId: 'experience_cloud',
+    text: "An Experience Cloud site is not appearing in Google search results despite being publicly accessible. Which combination of actions should the administrator take to improve SEO?",
+    options: [
+      "Enable public access and add meta tags through the site's Head Markup; search engines will index automatically",
+      "Enable public access, verify the site's SEO properties in Builder, and submit the auto-generated sitemap to Google Search Console",
+      "Create a Visualforce page with meta tags and set it as the site's default landing page",
+      "Contact Salesforce support to enable the SEO indexing feature, which is disabled by default"
+    ],
+    correct: 1,
+    explanation: "Experience Cloud sites generate a sitemap automatically when public access is enabled. To maximize SEO, admins should configure page-level SEO properties (titles, descriptions) in Experience Builder and submit the sitemap.xml to Google Search Console for indexing."
+  },
+
+  // ============================================================
+  // COMMERCE CLOUD
+  // ============================================================
+  {
+    categoryId: 'commerce_cloud',
+    text: "A B2B Commerce customer needs to support account-specific negotiated pricing where different buyer accounts see different prices for the same product. Which pricing approach is most appropriate?",
+    options: [
+      "Use standard price books and assign each buyer account a different price book via entitlement policies",
+      "Create a custom pricing engine using Apex that queries a custom pricing object at checkout",
+      "Configure tiered pricing rules in the Commerce pricing workspace and assign them to buyer groups",
+      "Set up discount schedules on each product and associate them with individual account records"
+    ],
+    correct: 0,
+    explanation: "B2B Commerce on Lightning supports account-specific pricing through price books associated with buyer accounts via entitlement policies. This allows each account or buyer group to see negotiated prices from their assigned price book while keeping configuration declarative."
+  },
+  {
+    categoryId: 'commerce_cloud',
+    text: "A retail company wants its storefront to load quickly with modern front-end frameworks while still using Salesforce for back-end commerce services. Which architecture should the solution architect recommend?",
+    options: [
+      "A SiteGenesis-based storefront with embedded Lightning Web Components",
+      "A Salesforce Composable Storefront (PWA Kit) using headless commerce APIs",
+      "A custom Visualforce storefront hosted on Salesforce servers with commerce controllers",
+      "A SFRA storefront with a React front-end overlay compiled at build time"
+    ],
+    correct: 1,
+    explanation: "Salesforce Composable Storefront (formerly PWA Kit) is the headless commerce solution for B2C Commerce that decouples the front-end from the back-end. It allows teams to use modern JavaScript frameworks while leveraging B2C Commerce APIs for catalog, pricing, and order management."
+  },
+  {
+    categoryId: 'commerce_cloud',
+    text: "A Commerce Cloud merchant wants to run a promotion that offers 20% off all items in the 'Summer Collection' category, but only for orders above $100, and it should not stack with any other cart-level discounts. How should this be configured?",
+    options: [
+      "Create a product-level promotion with a category qualifier, a cart amount condition, and set the promotion's exclusivity to 'Class'",
+      "Create a cart-level promotion with the discount applied to qualifying products and set stacking rules to 'No Stacking'",
+      "Use a coupon-based promotion with the category assigned as the qualifying group and a minimum order threshold",
+      "Create an order-level promotion with a product qualifier and configure mutual exclusion in the promotion campaign"
+    ],
+    correct: 0,
+    explanation: "This scenario requires a product-level promotion scoped to a specific category with a cart-level qualifying condition (order above $100). Setting the promotion exclusivity to 'Class' prevents it from combining with other promotions in the same class, effectively blocking stacking with other cart-level discounts."
+  },
+  {
+    categoryId: 'commerce_cloud',
+    text: "A B2B Commerce implementation requires that buyers can only see and purchase products that their organization has been approved for. Which feature should the developer configure to enforce this?",
+    options: [
+      "Product catalog permission sets assigned to each buyer's community user profile",
+      "Entitlement policies linked to buyer groups that define product access and pricing",
+      "Custom product visibility rules written in Apex and triggered on product page load",
+      "Category access controls in the Commerce app builder with role-based restrictions"
+    ],
+    correct: 1,
+    explanation: "B2B Commerce uses entitlement policies to control which products and price books are available to specific buyer groups. By associating buyer accounts with buyer groups and configuring entitlement policies, administrators can restrict product visibility to only approved items for each organization."
+  },
+  {
+    categoryId: 'commerce_cloud',
+    text: "A merchant's Commerce Cloud storefront is experiencing slow product search results and poor relevance. Which combination of actions should improve the search experience?",
+    options: [
+      "Increase the server hardware allocation and enable Elasticsearch caching in Business Manager",
+      "Configure search refinements, adjust searchable attributes, and set up synonym lists in Business Manager",
+      "Migrate to a custom SOSL-based search implementation with fuzzy matching enabled",
+      "Enable Einstein Search Recommendations and disable the default search index to avoid conflicts"
+    ],
+    correct: 1,
+    explanation: "B2C Commerce search performance and relevance are improved through Business Manager configurations: defining which product attributes are searchable and their ranking weight, setting up search refinements (facets) for filtering, and creating synonym lists so customers find products regardless of exact terminology."
+  },
 ];

@@ -93,7 +93,7 @@ const SECTIONS: Section[] = [
     items: [
       {
         q: 'How do I change my display name?',
-        a: 'Display name changes are not currently available in the app. If you need to update your display name, please submit a request through the Feedback form and we will update it for you.',
+        a: 'Go to your Dashboard and tap the edit icon on your profile card. You can update your display name there (up to 20 characters).',
       },
       {
         q: 'How do I sign out?',

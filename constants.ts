@@ -58,6 +58,46 @@ export const CATEGORIES: Omit<Category, 'questions'>[] = [
     color: '#FF9E1B',
     gradient: 'from-orange-400 to-orange-600',
   },
+  {
+    id: 'sales_cloud',
+    name: 'Sales Cloud',
+    description: 'Leads, opportunities, forecasting, and the full sales lifecycle.',
+    icon: 'fa-handshake',
+    color: '#1B96FF',
+    gradient: 'from-blue-500 to-indigo-600',
+  },
+  {
+    id: 'service_cloud',
+    name: 'Service Cloud',
+    description: 'Cases, knowledge, entitlements, and omni-channel service.',
+    icon: 'fa-headset',
+    color: '#F59E0B',
+    gradient: 'from-amber-400 to-amber-600',
+  },
+  {
+    id: 'data_cloud',
+    name: 'Data Cloud',
+    description: 'Unified profiles, segmentation, identity resolution, and activations.',
+    icon: 'fa-cloud',
+    color: '#8B5CF6',
+    gradient: 'from-violet-400 to-violet-600',
+  },
+  {
+    id: 'experience_cloud',
+    name: 'Experience Cloud',
+    description: 'Digital experiences, portals, communities, and CMS.',
+    icon: 'fa-globe',
+    color: '#10B981',
+    gradient: 'from-emerald-400 to-emerald-600',
+  },
+  {
+    id: 'commerce_cloud',
+    name: 'Commerce Cloud',
+    description: 'B2B and B2C commerce, storefronts, and order management.',
+    icon: 'fa-cart-shopping',
+    color: '#EC4899',
+    gradient: 'from-pink-400 to-pink-600',
+  },
 ];
 
 export const INITIAL_LEADERBOARD: Player[] = [

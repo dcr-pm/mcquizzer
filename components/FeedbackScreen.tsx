@@ -31,10 +31,11 @@ const FeedbackScreen: React.FC<FeedbackScreenProps> = ({ onBack }) => {
 
     try {
       if (isSupabaseConfigured) {
-        await supabase.from('feedback').insert({
+        await supabase.from('general_feedback').insert({
           user_id: user.id,
-          question_text: `[${category.toUpperCase()}] General Feedback`,
-          feedback: message.trim(),
+          display_name: profile?.display_name || 'Anonymous',
+          category,
+          message: message.trim(),
         });
       }
       setSubmitted(true);
