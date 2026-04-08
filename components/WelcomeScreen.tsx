@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from './Logo.tsx';
 
 interface WelcomeScreenProps {
   onStart: () => void;
@@ -30,7 +31,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
         <div className="flex justify-center items-center gap-3 sm:gap-4 mb-6" aria-hidden="true">
             <i className="fa-solid fa-envelope text-blue-400 text-2xl sm:text-3xl"></i>
             <i className="fa-solid fa-brain text-orange-400 text-3xl sm:text-4xl"></i>
-            <i className="fa-solid fa-cloud text-teal-300 text-4xl sm:text-5xl"></i>
+            <Logo size="xl" />
             <i className="fa-solid fa-route text-pink-400 text-3xl sm:text-4xl"></i>
             <i className="fa-solid fa-gears text-purple-400 text-2xl sm:text-3xl"></i>
         </div>

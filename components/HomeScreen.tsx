@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../lib/AuthContext.tsx';
 import StockTicker from './StockTicker.tsx';
+import Logo from './Logo.tsx';
 
 interface HomeScreenProps {
   onStartQuiz: () => void;
@@ -21,7 +22,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
     <div className="py-6 sm:py-10 animate-fade-in-up max-w-4xl mx-auto">
       {/* Welcome */}
       <div className="text-center mb-8">
-        <i className="fa-solid fa-cloud text-5xl text-[#0F79AF] mb-3"></i>
+        <Logo size="xl" className="mx-auto mb-3" />
         <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">SF Quizzer</h1>
         <p className="text-gray-400">Your Salesforce learning hub</p>
         {profile && (

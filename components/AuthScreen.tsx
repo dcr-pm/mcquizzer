@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../lib/AuthContext.tsx';
+import Logo from './Logo.tsx';
 
 type AuthStep = 'email' | 'verify';
 
@@ -46,7 +47,7 @@ const AuthScreen: React.FC = () => {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-blur-sm p-4">
         <div className="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-700 animate-fade-in-up w-full max-w-sm text-center">
-          <i className="fa-solid fa-cloud text-4xl text-[#0F79AF] mb-4"></i>
+          <Logo size="lg" className="mx-auto mb-4" />
           <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Setup Required</h2>
           <p className="text-gray-400 text-sm sm:text-base mb-4">
             Supabase is not configured yet. Add <strong className="text-white">VITE_SUPABASE_URL</strong> and <strong className="text-white">VITE_SUPABASE_ANON_KEY</strong> to your environment variables.
@@ -122,7 +123,7 @@ const AuthScreen: React.FC = () => {
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-blur-sm p-4">
       <div className="bg-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl border border-gray-700 animate-fade-in-up w-full max-w-sm">
         <div className="text-center mb-6">
-          <i className="fa-solid fa-cloud text-4xl text-[#0F79AF] mb-2"></i>
+          <Logo size="lg" className="mx-auto mb-2" />
           <h2 className="text-xl sm:text-2xl font-bold text-white">SF Quizzer</h2>
           <p className="text-gray-400 text-sm mt-1">Test your Salesforce knowledge</p>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Player, GameScreen } from '../types.ts';
 import { useAuth } from '../lib/AuthContext.tsx';
 import StockTicker from './StockTicker.tsx';
+import Logo from './Logo.tsx';
 
 interface HeaderProps {
   player: Player | null;
@@ -35,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
     <header className="sticky top-0 z-30 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg text-white p-3 sm:p-4 flex justify-between items-center">
       <div className="flex items-center gap-2 sm:gap-3">
         <button onClick={onNavigateHome} className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity">
-          <i className="fa-solid fa-cloud text-2xl sm:text-3xl text-[#0F79AF]"></i>
+          <Logo size="sm" />
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold">SF Quizzer</h1>
         </button>
         <div className="hidden sm:block">

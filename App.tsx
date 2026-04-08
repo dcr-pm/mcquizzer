@@ -460,7 +460,19 @@ const App: React.FC = () => {
     return (
       <div className="bg-gray-900 text-white min-h-dvh flex items-center justify-center">
         <div className="text-center animate-fade-in-up">
-          <i className="fa-solid fa-cloud text-5xl text-[#0F79AF] mb-4"></i>
+          <div className="w-16 h-16 mx-auto mb-4">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-lg">
+              <defs>
+                <linearGradient id="loadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3B82F6" />
+                  <stop offset="100%" stopColor="#06B6D4" />
+                </linearGradient>
+              </defs>
+              <rect width="64" height="64" rx="16" fill="url(#loadGrad)" />
+              <path d="M47 35c0-3.3-2.2-6-5.2-6.8C41.3 24.1 37.7 21 33.5 21c-3 0-5.6 1.5-7.2 3.8C25 24.3 23.6 24 22 24c-4.4 0-8 3.6-8 8 0 .7.1 1.4.3 2C12.3 35 11 37 11 39.5 11 42.5 13.5 45 16.5 45h28c3 0 5.5-2.5 5.5-5.5 0-1.7-.8-3.2-2-4.2-.3-.1-1-.3-1-.3z" fill="white" opacity="0.95"/>
+              <text x="30" y="41" fontFamily="Arial,sans-serif" fontWeight="bold" fontSize="16" fill="#3B82F6" textAnchor="middle">?</text>
+            </svg>
+          </div>
           <p className="text-gray-400">Loading...</p>
         </div>
       </div>
