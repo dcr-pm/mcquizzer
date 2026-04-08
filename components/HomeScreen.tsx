@@ -13,9 +13,10 @@ interface HomeScreenProps {
   onLeaderboard: () => void;
   onSFJobs: () => void;
   onTestimonials: () => void;
+  onContact: () => void;
 }
 
-const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNews, onBlog, onHelp, onDashboard, onLeaderboard, onSFJobs, onTestimonials }) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNews, onBlog, onHelp, onDashboard, onLeaderboard, onSFJobs, onTestimonials, onContact }) => {
   const { profile } = useAuth();
 
   return (
@@ -142,6 +143,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onStartQuiz, onCertPrep, onSFNe
         >
           <i className="fa-solid fa-circle-question text-xl text-green-400 mb-2"></i>
           <p className="text-white text-sm font-semibold group-hover:text-green-300 transition-colors">How to Use</p>
+        </button>
+        <button
+          onClick={onContact}
+          className="bg-gray-800/80 backdrop-blur-md rounded-xl border border-white/10 p-4 text-center hover:border-cyan-500/30 hover:bg-gray-800 transition-all group"
+        >
+          <i className="fa-solid fa-envelope text-xl text-cyan-400 mb-2"></i>
+          <p className="text-white text-sm font-semibold group-hover:text-cyan-300 transition-colors">Contact</p>
         </button>
       </div>
     </div>

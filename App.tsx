@@ -34,6 +34,7 @@ import SFJobsScreen from './components/SFJobsScreen.tsx';
 import TestimonialsScreen from './components/TestimonialsScreen.tsx';
 import FeedbackScreen from './components/FeedbackScreen.tsx';
 import LearningPathScreen from './components/LearningPathScreen.tsx';
+import ContactScreen from './components/ContactScreen.tsx';
 import NewsletterModal from './components/NewsletterModal.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -63,6 +64,7 @@ const SCREEN_PATHS: Record<string, GameScreen> = {
   '/help': 'help',
   '/feedback': 'feedback',
   '/learning-path': 'learning_path',
+  '/contact': 'contact',
 };
 
 const PATH_FOR_SCREEN: Record<string, string> = {};
@@ -495,12 +497,15 @@ const App: React.FC = () => {
             onLeaderboard={handleShowLeaderboard}
             onSFJobs={() => setScreen('sf_jobs')}
             onTestimonials={() => setScreen('testimonials')}
+            onContact={() => setScreen('contact')}
           />
         );
       case 'help':
         return <HelpScreen onBack={() => setScreen('home')} onFeedback={() => setScreen('feedback')} />;
       case 'feedback':
         return <FeedbackScreen onBack={() => setScreen('home')} />;
+      case 'contact':
+        return <ContactScreen onBack={() => setScreen('home')} onFeedback={() => setScreen('feedback')} />;
       case 'dashboard':
         return <DashboardScreen onStartQuiz={() => setScreen('category_selection')} onShowLeaderboard={handleShowLeaderboard} onEditProfile={() => setScreen('profile_edit')} onCertPrep={handleCertPrep} onSFNews={() => setScreen('sf_news')} onBlog={() => setScreen('blog')} />;
       case 'profile_edit':
