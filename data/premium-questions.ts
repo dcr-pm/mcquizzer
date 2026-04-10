@@ -1105,7 +1105,7 @@ const MC_QUESTIONS: PremiumQuestion[] = [
     ],
     correct: 1,
     explanation: 'Marketing Cloud system data views have retention limits (commonly 6 months for some views, though this varies). To preserve historical data beyond these limits, best practice is to create a recurring Automation Studio automation that queries tracking data views and writes the results into custom data extensions, which do not have the same automatic retention limits. This data can then power long-term reporting dashboards.',
-  },,
+  },
 
   // ============================================================
   // NEW SFMC CERT PREP QUESTIONS (examEligible: true)
@@ -2187,7 +2187,7 @@ const MC_QUESTIONS: PremiumQuestion[] = [
     certId: 'mc_email_specialist',
     domainId: 'data_management',
     examEligible: true,
-  },,
+  },
   // ============================================================
   // DOMAIN: automation — Questions 76-90
   // ============================================================
