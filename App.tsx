@@ -590,6 +590,7 @@ const App: React.FC = () => {
               examState={examState}
               onUpdateExamState={(updater) => setExamState(prev => prev ? updater(prev) : prev)}
               onSubmit={handleSubmitExam}
+              onExit={() => { setExamState(null); setScreen('cert_hub'); }}
             />
           );
         }

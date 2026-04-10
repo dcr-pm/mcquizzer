@@ -5,11 +5,13 @@ interface ExamPlayingScreenProps {
   examState: ExamState;
   onUpdateExamState: (updater: (prev: ExamState) => ExamState) => void;
   onSubmit: () => void;
+  onExit: () => void;
 }
 
-const ExamPlayingScreen: React.FC<ExamPlayingScreenProps> = ({ examState, onUpdateExamState, onSubmit }) => {
+const ExamPlayingScreen: React.FC<ExamPlayingScreenProps> = ({ examState, onUpdateExamState, onSubmit, onExit }) => {
   const [showNavPanel, setShowNavPanel] = useState(false);
   const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
   const autoSubmittedRef = useRef(false);
 
   const { questions, answers, flagged, currentIndex, startTime, timeLimitSeconds } = examState;
@@ -114,6 +116,12 @@ const ExamPlayingScreen: React.FC<ExamPlayingScreenProps> = ({ examState, onUpda
       {/* Top bar with timer */}
       <div className="bg-gray-800/80 backdrop-blur-md rounded-xl border border-white/10 p-3 mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowExitConfirm(true)}
+            className="text-gray-400 hover:text-white text-sm transition-colors"
+          >
+            <i className="fa-solid fa-arrow-left mr-1"></i>Exit
+          </button>
           <span className={`font-mono text-lg font-bold ${timerColor}`}>
             <i className="fa-solid fa-clock mr-1"></i>{formatTime(timeLeft)}
           </span>
@@ -248,6 +256,35 @@ const ExamPlayingScreen: React.FC<ExamPlayingScreenProps> = ({ examState, onUpda
                   className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-105 transform transition-transform"
                 >
                   Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Exit Confirmation Modal */}
+      {showExitConfirm && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 rounded-2xl border border-white/20 p-6 max-w-sm w-full animate-fade-in-up">
+            <div className="text-center">
+              <i className="fa-solid fa-door-open text-3xl text-red-400 mb-3"></i>
+              <h3 className="text-lg font-bold text-white mb-2">Exit Exam?</h3>
+              <p className="text-sm text-gray-400 mb-6">
+                Your progress will be lost and the exam will not be scored.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowExitConfirm(false)}
+                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 rounded-xl transition-colors"
+                >
+                  Continue Exam
+                </button>
+                <button
+                  onClick={() => { setShowExitConfirm(false); onExit(); }}
+                  className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-105 transform transition-transform"
+                >
+                  Exit
                 </button>
               </div>
             </div>
