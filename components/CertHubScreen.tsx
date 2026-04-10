@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../lib/AuthContext.tsx';
 import { fetchExamHistory } from '../lib/database.ts';
 import { Certification, ExamResult } from '../types.ts';
+import { LEARNING_PATHS } from '../data/learning-paths.ts';
 
 interface CertHubScreenProps {
   cert: Certification;
@@ -26,17 +27,19 @@ const CertHubScreen: React.FC<CertHubScreenProps> = ({ cert, onStudyMode, onFlas
     ? Math.max(...examHistory.map(e => e.scorePercent))
     : null;
 
+  const hasLearningPath = LEARNING_PATHS.some(lp => lp.certId === cert.id);
+
   const cards = [
     { key: 'study', icon: 'fa-book-open', title: 'Study Mode', desc: 'Learn at your own pace with untimed quizzes', color: 'from-blue-500 to-blue-600', onClick: onStudyMode },
     { key: 'flash', icon: 'fa-clone', title: 'Flashcards', desc: 'Review key concepts and track your mastery', color: 'from-purple-500 to-purple-600', onClick: onFlashcards },
     { key: 'exam', icon: 'fa-file-circle-check', title: 'Practice Exam', desc: `${cert.examQuestionCount} questions, ${cert.examTimeLimitMinutes} min, ${cert.passingScore}% to pass`, color: 'from-orange-500 to-red-500', onClick: onPracticeExam },
-    { key: 'learn', icon: 'fa-route', title: 'Learning Paths', desc: 'Follow a real-world scenario through every exam domain', color: 'from-cyan-500 to-blue-500', onClick: onLearningPath },
+    ...(hasLearningPath ? [{ key: 'learn', icon: 'fa-route', title: 'Learning Paths', desc: 'Follow a real-world scenario through every exam domain', color: 'from-cyan-500 to-blue-500', onClick: onLearningPath }] : []),
   ];
 
   return (
     <div className="py-6 sm:py-8 animate-fade-in-up max-w-3xl mx-auto">
       <button onClick={onBack} className="text-gray-400 hover:text-white text-sm mb-6 transition-colors">
-        <i className="fa-solid fa-arrow-left mr-2"></i>Back to Dashboard
+        <i className="fa-solid fa-arrow-left mr-2"></i>Back to Certifications
       </button>
 
       {/* Cert Header */}
@@ -60,7 +63,7 @@ const CertHubScreen: React.FC<CertHubScreenProps> = ({ cert, onStudyMode, onFlas
       </div>
 
       {/* Action Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div className={`grid grid-cols-1 ${cards.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-4 mb-6`}>
         {cards.map(card => (
           <button
             key={card.key}

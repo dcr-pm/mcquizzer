@@ -54,6 +54,7 @@ const SCREEN_PATHS: Record<string, GameScreen> = {
   '/dashboard': 'dashboard',
   '/leaderboard': 'leaderboard',
   '/cert-prep': 'cert_selection',
+  '/cert-hub': 'cert_hub',
   '/upgrade': 'premium_upgrade',
   '/study': 'study_mode',
   '/flashcards': 'flashcards',
@@ -66,7 +67,6 @@ const SCREEN_PATHS: Record<string, GameScreen> = {
   '/feedback': 'feedback',
   '/learning-path': 'learning_path',
   '/contact': 'contact',
-  '/cert-select': 'cert_selection',
 };
 
 const PATH_FOR_SCREEN: Record<string, string> = {};
@@ -611,6 +611,8 @@ const App: React.FC = () => {
         if (learningPath) {
           return <LearningPathScreen path={learningPath} onExit={() => setScreen('cert_hub')} />;
         }
+        // No learning path for this cert yet - go back to hub
+        setScreen('cert_hub');
         return null;
       }
       case 'sf_news':
