@@ -73,34 +73,6 @@ export const DATA_CLOUD_QUESTIONS: PremiumQuestion[] = [
   {
     certId: 'data_cloud_consultant',
     domainId: 'dc_segmentation',
-    text: '',
-    options: [
-      'CRM data cannot be manually refreshed and must wait for the next scheduled synchronization,',
-      'The CRM Connector\'s synchronization times can be customized to up to 15-minute intervals.',
-      'Formula fields are refreshed at regular sync intervals and are updated at the next full refresh.',
-      'The CRM Connector allows standard fields to stream into Data Cloud in real time.',
-    ],
-    correct: 3,
-    explanation: 'The correct answer is D. The CRM Connector allows standard fields to stream into Data Cloud in real time. This means that any changes to the standard fields in the CRM data source are reflected in Data Cloud almost instantly, without waiting for the next scheduled synchronization. This feature enables Data Cloud to have the most up-to-date and accurate CRM data for segmentation and activation1. The other options are incorrect for the following reasons: A . CRM data can be manually refreshed at any time by clicking the Refresh button on the data stream detail page2. This option is false. B . The CRM Connector\'s synchronization times can be customized to up to 60-minute intervals, not 15-minute intervals3. This option is false. C . Formula fields are not refreshed at regular sync intervals, but only at the next full refresh4. A full refresh is a complete data ingestion process that occurs once every 24 hours or when manually triggered. This option is false. : 1: Connect and Ingest Data in Data Cloud article on Salesforce Help 2: Data Sources in Data Cloud unit on Trailhead 3: Data Cloud for Admins module on Trailhead 4: [Formula Fields in Data Cloud] unit on Trailhead : [Data Streams in Data Cloud] unit on Trailhead',
-    examEligible: true,
-  },
-  {
-    certId: 'data_cloud_consultant',
-    domainId: 'dc_identity_resolution',
-    text: '',
-    options: [
-      'Includes data from sources where the data is most frequently occurring',
-      'Identifies which individual records should be merged into a unified profile by setting a priority forspecific data sources',
-      'Identifies which data sources should be used in the process of reconcillation by prioritizing themost recently updated data source',
-      'Sets the priority of specific data sources when building attributes in a unified profile, such as afirst or last name',
-    ],
-    correct: 3,
-    explanation: 'The Source Sequence reconciliation rule sets the priority of specific data sources when building attributes in a unified profile, such as a first or last name. This rule allows you to define which data source should be used as the primary source of truth for each attribute, and which data sources should be used as fallbacks in case the primary source is missing or invalid. For example, you can set the Source Sequence rule to use data from Salesforce CRM as the first priority, data from Marketing Cloud as the second priority, and data from Google Analytics as the third priority for the first name attribute. This way, the unified profile will use the first name value from Salesforce CRM if it exists, otherwise it will use the value from Marketing Cloud, and so on. This rule helps you to ensure the accuracy and consistency of the unified profile attributes across different data sources.',
-    examEligible: true,
-  },
-  {
-    certId: 'data_cloud_consultant',
-    domainId: 'dc_segmentation',
     text: 'Which two dependencies prevent a data stream from being deleted? Choose 2 answers',
     options: [
       'The underlying data lake object is used in activation.',
