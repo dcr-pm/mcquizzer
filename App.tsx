@@ -35,6 +35,7 @@ import TestimonialsScreen from './components/TestimonialsScreen.tsx';
 import FeedbackScreen from './components/FeedbackScreen.tsx';
 import LearningPathScreen from './components/LearningPathScreen.tsx';
 import ContactScreen from './components/ContactScreen.tsx';
+import CertSelectionScreen from './components/CertSelectionScreen.tsx';
 import NewsletterModal from './components/NewsletterModal.tsx';
 
 const shuffleArray = <T,>(array: T[]): T[] => {
@@ -52,7 +53,7 @@ const SCREEN_PATHS: Record<string, GameScreen> = {
   '/quiz': 'category_selection',
   '/dashboard': 'dashboard',
   '/leaderboard': 'leaderboard',
-  '/cert-prep': 'cert_hub',
+  '/cert-prep': 'cert_selection',
   '/upgrade': 'premium_upgrade',
   '/study': 'study_mode',
   '/flashcards': 'flashcards',
@@ -65,6 +66,7 @@ const SCREEN_PATHS: Record<string, GameScreen> = {
   '/feedback': 'feedback',
   '/learning-path': 'learning_path',
   '/contact': 'contact',
+  '/cert-select': 'cert_selection',
 };
 
 const PATH_FOR_SCREEN: Record<string, string> = {};
@@ -341,7 +343,7 @@ const App: React.FC = () => {
 
   const handleCertPrep = () => {
     if (profile?.is_premium) {
-      setScreen('cert_hub');
+      setScreen('cert_selection');
     } else {
       setScreen('premium_upgrade');
     }
@@ -535,6 +537,14 @@ const App: React.FC = () => {
         return null;
       case 'premium_upgrade':
         return <PremiumUpgradeScreen onBack={() => setScreen('home')} />;
+      case 'cert_selection':
+        return (
+          <CertSelectionScreen
+            certifications={CERTIFICATIONS}
+            onSelectCert={(cert) => { setCurrentCert(cert); setScreen('cert_hub'); }}
+            onBack={() => setScreen('home')}
+          />
+        );
       case 'cert_hub':
         return (
           <CertHubScreen
@@ -543,7 +553,7 @@ const App: React.FC = () => {
             onFlashcards={() => setScreen('flashcards')}
             onPracticeExam={() => setScreen('exam_setup')}
             onLearningPath={() => setScreen('learning_path')}
-            onBack={handleBackToDashboard}
+            onBack={() => setScreen('cert_selection')}
           />
         );
       case 'study_mode':

@@ -20,4 +20,23 @@ export const CERTIFICATIONS: Certification[] = [
     examQuestionCount: 60,
     examTimeLimitMinutes: 105,
   },
+  {
+    id: 'data_cloud_consultant',
+    name: 'Data Cloud Consultant',
+    description: 'Prepare for the Salesforce Certified Data Cloud Consultant certification exam.',
+    icon: 'fa-cloud',
+    color: '#7C3AED',
+    gradient: 'from-violet-500 to-purple-600',
+    domains: [
+      { id: 'dc_data_modeling', name: 'Data Modeling', weight: 22 },
+      { id: 'dc_data_ingestion', name: 'Data Ingestion & Harmonization', weight: 18 },
+      { id: 'dc_identity_resolution', name: 'Identity Resolution', weight: 15 },
+      { id: 'dc_segmentation', name: 'Segmentation & Insights', weight: 18 },
+      { id: 'dc_activation', name: 'Data Activation', weight: 14 },
+      { id: 'dc_implementation', name: 'Implementation Considerations', weight: 13 },
+    ],
+    passingScore: 62,
+    examQuestionCount: 60,
+    examTimeLimitMinutes: 105,
+  },
 ];

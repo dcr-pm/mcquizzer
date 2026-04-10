@@ -1,6 +1,7 @@
 import { PremiumQuestion } from '../types.ts';
+import { DATA_CLOUD_QUESTIONS } from './data-cloud-questions-parsed.ts';
 
-export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
+const MC_QUESTIONS: PremiumQuestion[] = [
   // ============================================================
   // STUDY-ONLY QUESTIONS (examEligible: false)
   // ============================================================
@@ -3184,5 +3185,7 @@ export const PREMIUM_QUESTIONS: PremiumQuestion[] = [
     certId: 'mc_email_specialist',
     domainId: 'tracking_reporting',
     examEligible: true,
-  },,
+  },
 ];
+
+export const PREMIUM_QUESTIONS: PremiumQuestion[] = [...MC_QUESTIONS, ...DATA_CLOUD_QUESTIONS];

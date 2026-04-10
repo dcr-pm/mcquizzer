@@ -246,4 +246,5 @@ export type GameScreen =
   | 'testimonials'
   | 'feedback'
   | 'learning_path'
-  | 'contact';
+  | 'contact'
+  | 'cert_selection';
