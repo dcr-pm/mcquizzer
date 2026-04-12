@@ -37,6 +37,19 @@
 <link rel="stylesheet" href="/index.css">
 </head>
   <body>
+    <!-- Netlify Forms: hidden definitions for bot detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
+    <form name="issue-report" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <input type="text" name="issue-type" />
+      <textarea name="details"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

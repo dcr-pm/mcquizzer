@@ -19,6 +19,10 @@ const AuthScreen: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [landingPage, setLandingPage] = useState<LandingPage>('home');
+  const [contactSent, setContactSent] = useState(false);
+  const [contactSending, setContactSending] = useState(false);
+  const [issueSent, setIssueSent] = useState(false);
+  const [issueSending, setIssueSending] = useState(false);
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -308,36 +312,51 @@ const AuthScreen: React.FC = () => {
               <h2 className="text-xl font-bold text-white mb-1">Get In Touch</h2>
               <p className="text-gray-400 text-sm">Questions, feedback, or partnership ideas? We would love to hear from you.</p>
             </div>
-            <form onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formEmail = (form.elements.namedItem('email') as HTMLInputElement).value; const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value; window.location.href = `mailto:support@login.sfquizzer.com?subject=SF Quizzer Inquiry&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(formEmail)}`; }} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
-                  <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+            {contactSent ? (
+              <div className="text-center py-8 animate-fade-in-up">
+                <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                  <i className="fa-solid fa-circle-check text-3xl text-green-400"></i>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-gray-400 text-sm mb-1">Thank you for reaching out. We have received your message</p>
+                <p className="text-gray-400 text-sm mb-6">and will get back to you within 24 hours at the email you provided.</p>
+                <button onClick={() => setContactSent(false)} className="text-blue-400 hover:text-blue-300 text-sm transition-colors">
+                  <i className="fa-solid fa-arrow-left mr-1"></i>Send another message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={async (e) => { e.preventDefault(); setContactSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'contact'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setContactSent(true); } catch { window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent('SF Quizzer: ' + (formData.get('subject') || 'Inquiry'))}&body=${encodeURIComponent(String(formData.get('message') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setContactSending(false); } }} className="space-y-4">
+                <input type="hidden" name="bot-field" />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
+                    <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                  </div>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
-                  <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
+                  <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
+                    <option value="General Question">General Question</option>
+                    <option value="Report a Bug">Report a Bug</option>
+                    <option value="Feature Request">Feature Request</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
-              </div>
-              <div>
-                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
-                <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
-                  <option value="general">General Question</option>
-                  <option value="bug">Report a Bug</option>
-                  <option value="feature">Feature Request</option>
-                  <option value="partnership">Partnership</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
-                <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
-              </div>
-              <button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm">
-                <i className="fa-solid fa-paper-plane mr-2"></i>Send Message
-              </button>
-              <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
-            </form>
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
+                  <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
+                </div>
+                <button type="submit" disabled={contactSending} className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
+                  {contactSending ? <><i className="fa-solid fa-spinner fa-spin mr-2"></i>Sending...</> : <><i className="fa-solid fa-paper-plane mr-2"></i>Send Message</>}
+                </button>
+                <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
+              </form>
+            )}
           </div>
 
           {/* CTA */}
@@ -413,35 +432,50 @@ const AuthScreen: React.FC = () => {
             </div>
 
             {/* Contact form */}
-            <form onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formEmail = (form.elements.namedItem('email') as HTMLInputElement).value; const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value; window.location.href = `mailto:support@login.sfquizzer.com?subject=SF Quizzer Inquiry&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(formEmail)}`; }} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
-                  <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+            {contactSent ? (
+              <div className="text-center py-8 animate-fade-in-up">
+                <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                  <i className="fa-solid fa-circle-check text-3xl text-green-400"></i>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-gray-400 text-sm mb-1">Thank you for reaching out. We have received your message</p>
+                <p className="text-gray-400 text-sm mb-6">and will get back to you within 24 hours at the email you provided.</p>
+                <button onClick={() => setContactSent(false)} className="text-blue-400 hover:text-blue-300 text-sm transition-colors">
+                  <i className="fa-solid fa-arrow-left mr-1"></i>Send another message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={async (e) => { e.preventDefault(); setContactSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'contact'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setContactSent(true); } catch { window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent('SF Quizzer: ' + (formData.get('subject') || 'Inquiry'))}&body=${encodeURIComponent(String(formData.get('message') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setContactSending(false); } }} className="space-y-4">
+                <input type="hidden" name="bot-field" />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
+                    <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                  </div>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
-                  <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
+                  <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
+                    <option value="General Question">General Question</option>
+                    <option value="Report a Bug">Report a Bug</option>
+                    <option value="Feature Request">Feature Request</option>
+                    <option value="Partnership">Partnership</option>
+                  </select>
                 </div>
-              </div>
-              <div>
-                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
-                <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
-                  <option value="general">General Question</option>
-                  <option value="bug">Report a Bug</option>
-                  <option value="feature">Feature Request</option>
-                  <option value="partnership">Partnership</option>
-                </select>
-              </div>
-              <div>
-                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
-                <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
-              </div>
-              <button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm">
-                <i className="fa-solid fa-paper-plane mr-2"></i>Send Message
-              </button>
-              <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
-            </form>
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
+                  <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
+                </div>
+                <button type="submit" disabled={contactSending} className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
+                  {contactSending ? <><i className="fa-solid fa-spinner fa-spin mr-2"></i>Sending...</> : <><i className="fa-solid fa-paper-plane mr-2"></i>Send Message</>}
+                </button>
+                <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
+              </form>
+            )}
           </div>
 
           {/* Login & Payment Issues */}
@@ -475,33 +509,48 @@ const AuthScreen: React.FC = () => {
               </div>
             </div>
 
-            <form onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const userEmail = (form.elements.namedItem('issue-email') as HTMLInputElement).value; const issueType = (form.elements.namedItem('issue-type') as HTMLSelectElement).value; const details = (form.elements.namedItem('issue-details') as HTMLTextAreaElement).value; window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent(`[${issueType}] Support Request`)}&body=${encodeURIComponent(details)}%0A%0AFrom: ${encodeURIComponent(userEmail)}`; }} className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Your Email</label>
-                  <input type="email" name="issue-email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent" />
+            {issueSent ? (
+              <div className="text-center py-8 animate-fade-in-up">
+                <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                  <i className="fa-solid fa-circle-check text-3xl text-green-400"></i>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Issue Reported!</h3>
+                <p className="text-gray-400 text-sm mb-1">We have received your report and our support team is on it.</p>
+                <p className="text-gray-400 text-sm mb-6">You will hear back from us within 24 hours at the email you provided.</p>
+                <button onClick={() => setIssueSent(false)} className="text-orange-400 hover:text-orange-300 text-sm transition-colors">
+                  <i className="fa-solid fa-arrow-left mr-1"></i>Report another issue
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={async (e) => { e.preventDefault(); setIssueSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'issue-report'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setIssueSent(true); } catch { const issueType = formData.get('issue-type') || 'Support'; window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent(`[${issueType}] Support Request`)}&body=${encodeURIComponent(String(formData.get('details') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setIssueSending(false); } }} className="space-y-4">
+                <input type="hidden" name="bot-field" />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Your Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent" />
+                  </div>
+                  <div>
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Issue Type</label>
+                    <select name="issue-type" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-transparent">
+                      <option value="Login Issue">Login Issue</option>
+                      <option value="Email Verification">Email Verification</option>
+                      <option value="Payment Failed">Payment Failed</option>
+                      <option value="Subscription Not Active">Subscription Not Active</option>
+                      <option value="Billing Question">Billing Question</option>
+                      <option value="Refund Request">Refund Request</option>
+                    </select>
+                  </div>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Issue Type</label>
-                  <select name="issue-type" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-transparent">
-                    <option value="Login Issue">Login Issue</option>
-                    <option value="Email Verification">Email Verification</option>
-                    <option value="Payment Failed">Payment Failed</option>
-                    <option value="Subscription Not Active">Subscription Not Active</option>
-                    <option value="Billing Question">Billing Question</option>
-                    <option value="Refund Request">Refund Request</option>
-                  </select>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Describe the Issue</label>
+                  <textarea name="details" rows={4} placeholder="Please include any error messages you saw, the email you used to sign up, and when the issue started..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none"></textarea>
                 </div>
-              </div>
-              <div>
-                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Describe the Issue</label>
-                <textarea name="issue-details" rows={4} placeholder="Please include any error messages you saw, the email you used to sign up, and when the issue started..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none"></textarea>
-              </div>
-              <button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm">
-                <i className="fa-solid fa-paper-plane mr-2"></i>Report Issue
-              </button>
-              <p className="text-gray-600 text-xs text-center">Submissions go to support@login.sfquizzer.com</p>
-            </form>
+                <button type="submit" disabled={issueSending} className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
+                  {issueSending ? <><i className="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...</> : <><i className="fa-solid fa-paper-plane mr-2"></i>Report Issue</>}
+                </button>
+                <p className="text-gray-600 text-xs text-center">Submissions go to support@login.sfquizzer.com</p>
+              </form>
+            )}
           </div>
 
           {/* Help topics */}
