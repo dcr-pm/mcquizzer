@@ -3,8 +3,11 @@ import { useAuth } from '../lib/AuthContext.tsx';
 import Logo from './Logo.tsx';
 import LandingQuiz from './LandingQuiz.tsx';
 import StockTicker from './StockTicker.tsx';
+import SFNewsScreen from './SFNewsScreen.tsx';
+import SFJobsScreen from './SFJobsScreen.tsx';
 
 type AuthStep = 'email' | 'verify';
+type LandingPage = 'home' | 'about' | 'news' | 'careers' | 'contact';
 
 const AuthScreen: React.FC = () => {
   const { signInWithOtp, verifyOtp, configured } = useAuth();
@@ -15,6 +18,7 @@ const AuthScreen: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
+  const [landingPage, setLandingPage] = useState<LandingPage>('home');
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -185,33 +189,286 @@ const AuthScreen: React.FC = () => {
     );
   }
 
-  // Landing page
-  return (
-    <div className="min-h-dvh bg-gray-900 text-white">
-      {/* Top Nav */}
-      <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-4 py-3">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
+  // Shared landing nav
+  const landingNav = (
+    <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-4 py-3">
+      <div className="max-w-5xl mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <button onClick={() => setLandingPage('home')} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Logo size="sm" />
             <span className="font-bold text-white text-lg">SF Quizzer</span>
-            <StockTicker />
+          </button>
+          <StockTicker />
+        </div>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <nav className="hidden md:flex items-center gap-1 mr-3">
+            {[
+              { key: 'about' as LandingPage, label: 'About' },
+              { key: 'news' as LandingPage, label: 'SF News' },
+              { key: 'careers' as LandingPage, label: 'Careers' },
+              { key: 'contact' as LandingPage, label: 'Contact' },
+            ].map(item => (
+              <button
+                key={item.key}
+                onClick={() => { setLandingPage(item.key); window.scrollTo(0, 0); }}
+                className={`text-sm px-3 py-1.5 rounded-lg transition-colors ${landingPage === item.key ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          <button
+            onClick={() => setShowSignIn(true)}
+            className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </header>
+  );
+
+  // About page
+  if (landingPage === 'about') {
+    return (
+      <div className="min-h-dvh bg-gray-900 text-white">
+        {landingNav}
+        <div className="max-w-4xl mx-auto px-4 py-10 sm:py-16">
+          {/* Hero */}
+          <div className="text-center mb-12">
+            <Logo size="xl" className="mx-auto mb-4" />
+            <h1 className="text-3xl sm:text-4xl font-extrabold mb-3 text-white">About SF Quizzer</h1>
+            <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">Built by Salesforce professionals who got tired of boring study tools.</p>
           </div>
-          <div className="flex items-center gap-1 sm:gap-2">
-            <nav className="hidden md:flex items-center gap-1 mr-3">
-              <a href="#about" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">About</a>
-              <a href="/news" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">SF News</a>
-              <a href="/jobs" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">Careers</a>
-              <a href="/contact" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">Contact</a>
-            </nav>
-            <button
-              onClick={() => setShowSignIn(true)}
-              className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
-            >
-              Sign In
+
+          {/* Mission */}
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-bold text-white mb-4"><i className="fa-solid fa-bullseye text-blue-400 mr-2"></i>Our Mission</h2>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              Salesforce certifications open doors. But studying for them can feel like a grind. We built SF Quizzer because we believe certification prep should be engaging, effective, and accessible to everyone in the ecosystem.
+            </p>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Every question is mapped to official exam domains. Every explanation teaches the "why" behind the answer. And every feature is designed to make your study sessions count, not just fill time.
+            </p>
+          </div>
+
+          {/* What makes us different */}
+          <h2 className="text-xl font-bold text-white mb-5"><i className="fa-solid fa-sparkles text-teal-400 mr-2"></i>What Makes Us Different</h2>
+          <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            {[
+              { icon: 'fa-bullseye', color: 'text-blue-400', bg: 'bg-blue-500/10', title: 'Exam-Focused Content', desc: 'Questions mapped to real Salesforce exam domains and weighted by importance. No fluff.' },
+              { icon: 'fa-route', color: 'text-purple-400', bg: 'bg-purple-500/10', title: 'Interactive Learning Paths', desc: 'Follow a fictional company through a complete implementation. Learn by doing, not just reading.' },
+              { icon: 'fa-file-circle-check', color: 'text-orange-400', bg: 'bg-orange-500/10', title: 'Realistic Practice Exams', desc: 'Timed exams with question flagging, navigation, and domain-level score breakdowns. Just like the real thing.' },
+              { icon: 'fa-mobile-screen', color: 'text-teal-400', bg: 'bg-teal-500/10', title: 'Study Anywhere', desc: 'Mobile-friendly design. Study on the bus, in line, or on your couch. Your progress syncs everywhere.' },
+              { icon: 'fa-heart', color: 'text-red-400', bg: 'bg-red-500/10', title: 'Community Built', desc: 'Made by Salesforce professionals for Salesforce professionals. We use it too.' },
+              { icon: 'fa-lock-open', color: 'text-green-400', bg: 'bg-green-500/10', title: 'Free to Start', desc: 'No credit card. No trial period. Sign up with just your email and start studying immediately.' },
+            ].map(f => (
+              <div key={f.title} className="bg-gray-800/60 rounded-xl border border-white/5 p-5">
+                <div className={`w-10 h-10 rounded-xl ${f.bg} flex items-center justify-center mb-3`}>
+                  <i className={`fa-solid ${f.icon} ${f.color}`}></i>
+                </div>
+                <h3 className="text-white font-bold text-sm mb-1">{f.title}</h3>
+                <p className="text-gray-400 text-xs leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-bold text-white mb-4"><i className="fa-solid fa-certificate text-yellow-400 mr-2"></i>Certifications We Cover</h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-gray-900/50 rounded-xl p-4 border border-blue-500/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                    <i className="fa-solid fa-certificate text-white"></i>
+                  </div>
+                  <h3 className="text-white font-bold text-sm">Marketing Cloud Email Specialist</h3>
+                </div>
+                <p className="text-gray-500 text-xs">229 questions, 45 flashcards, interactive learning path</p>
+              </div>
+              <div className="bg-gray-900/50 rounded-xl p-4 border border-violet-500/10">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 flex items-center justify-center">
+                    <i className="fa-solid fa-cloud text-white"></i>
+                  </div>
+                  <h3 className="text-white font-bold text-sm">Data Cloud Consultant</h3>
+                </div>
+                <p className="text-gray-500 text-xs">106 questions, 45 flashcards, interactive learning path</p>
+              </div>
+            </div>
+            <p className="text-gray-500 text-xs mt-4 text-center">More certifications coming soon.</p>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8">
+            <div className="text-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-3">
+                <i className="fa-solid fa-envelope text-xl text-white"></i>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-1">Get In Touch</h2>
+              <p className="text-gray-400 text-sm">Questions, feedback, or partnership ideas? We would love to hear from you.</p>
+            </div>
+            <form onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formEmail = (form.elements.namedItem('email') as HTMLInputElement).value; const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value; window.location.href = `mailto:support@login.sfquizzer.com?subject=SF Quizzer Inquiry&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(formEmail)}`; }} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
+                  <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
+                  <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
+                <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
+                  <option value="general">General Question</option>
+                  <option value="bug">Report a Bug</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
+                <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
+              </div>
+              <button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm">
+                <i className="fa-solid fa-paper-plane mr-2"></i>Send Message
+              </button>
+              <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
+            </form>
+          </div>
+
+          {/* CTA */}
+          <div className="text-center mt-12">
+            <button onClick={() => setShowSignIn(true)} className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:scale-105 transform transition-transform text-lg">
+              <i className="fa-solid fa-rocket mr-2"></i>Start Studying Free
             </button>
           </div>
         </div>
-      </header>
+      </div>
+    );
+  }
+
+  // SF News page
+  if (landingPage === 'news') {
+    return (
+      <div className="min-h-dvh bg-gray-900 text-white">
+        {landingNav}
+        <div className="max-w-4xl mx-auto px-4">
+          <SFNewsScreen onBack={() => setLandingPage('home')} />
+        </div>
+      </div>
+    );
+  }
+
+  // SF Careers page
+  if (landingPage === 'careers') {
+    return (
+      <div className="min-h-dvh bg-gray-900 text-white">
+        {landingNav}
+        <div className="max-w-4xl mx-auto px-4">
+          <SFJobsScreen onBack={() => setLandingPage('home')} />
+        </div>
+      </div>
+    );
+  }
+
+  // Contact page
+  if (landingPage === 'contact') {
+    return (
+      <div className="min-h-dvh bg-gray-900 text-white">
+        {landingNav}
+        <div className="max-w-4xl mx-auto px-4 py-10 sm:py-16">
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8 mb-8">
+            <div className="text-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-3">
+                <i className="fa-solid fa-envelope text-xl text-white"></i>
+              </div>
+              <h1 className="text-2xl font-bold text-white mb-1">Contact Us</h1>
+              <p className="text-gray-400 text-sm">Have a question, suggestion, or just want to say hello? We would love to hear from you.</p>
+            </div>
+
+            {/* Contact info */}
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              <div className="bg-gray-900/50 rounded-xl p-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <i className="fa-solid fa-envelope text-blue-400"></i>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Email</p>
+                  <a href="mailto:support@login.sfquizzer.com" className="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-colors">support@login.sfquizzer.com</a>
+                </div>
+              </div>
+              <div className="bg-gray-900/50 rounded-xl p-4 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
+                  <i className="fa-solid fa-clock text-teal-400"></i>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Response Time</p>
+                  <p className="text-gray-300 text-sm font-semibold">Within 24 hours</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact form */}
+            <form onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const formEmail = (form.elements.namedItem('email') as HTMLInputElement).value; const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value; window.location.href = `mailto:support@login.sfquizzer.com?subject=SF Quizzer Inquiry&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(formEmail)}`; }} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
+                  <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
+                  <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
+                <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
+                  <option value="general">General Question</option>
+                  <option value="bug">Report a Bug</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="partnership">Partnership</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
+                <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
+              </div>
+              <button type="submit" className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm">
+                <i className="fa-solid fa-paper-plane mr-2"></i>Send Message
+              </button>
+              <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
+            </form>
+          </div>
+
+          {/* Help topics */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { icon: 'fa-bug', label: 'Report a Bug', color: 'text-red-400', bg: 'bg-red-500/10' },
+              { icon: 'fa-lightbulb', label: 'Feature Request', color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
+              { icon: 'fa-circle-question', label: 'General Help', color: 'text-blue-400', bg: 'bg-blue-500/10' },
+              { icon: 'fa-handshake', label: 'Partnerships', color: 'text-green-400', bg: 'bg-green-500/10' },
+            ].map(t => (
+              <div key={t.label} className="bg-gray-800/60 rounded-xl border border-white/5 p-4 text-center">
+                <div className={`w-10 h-10 rounded-xl ${t.bg} flex items-center justify-center mx-auto mb-2`}>
+                  <i className={`fa-solid ${t.icon} ${t.color}`}></i>
+                </div>
+                <p className="text-gray-300 text-xs font-bold">{t.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Landing page
+  return (
+    <div className="min-h-dvh bg-gray-900 text-white">
+      {landingNav}
 
       {/* Hero Section */}
       <div className="relative overflow-hidden">
