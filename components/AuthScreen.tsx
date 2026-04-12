@@ -444,6 +444,66 @@ const AuthScreen: React.FC = () => {
             </form>
           </div>
 
+          {/* Login & Payment Issues */}
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8 mb-8">
+            <div className="text-center mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mx-auto mb-3">
+                <i className="fa-solid fa-triangle-exclamation text-xl text-white"></i>
+              </div>
+              <h2 className="text-xl font-bold text-white mb-1">Login or Payment Issues?</h2>
+              <p className="text-gray-400 text-sm">Having trouble signing in, verifying your email, or with a payment? Let us know and we will get it sorted.</p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div className="bg-gray-900/50 rounded-xl p-4 flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i className="fa-solid fa-right-to-bracket text-orange-400"></i>
+                </div>
+                <div>
+                  <p className="text-white text-sm font-bold mb-1">Login Issues</p>
+                  <p className="text-gray-500 text-xs">Not receiving the sign-in code, email verification problems, or account access issues.</p>
+                </div>
+              </div>
+              <div className="bg-gray-900/50 rounded-xl p-4 flex items-start gap-3">
+                <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i className="fa-solid fa-credit-card text-red-400"></i>
+                </div>
+                <div>
+                  <p className="text-white text-sm font-bold mb-1">Payment Issues</p>
+                  <p className="text-gray-500 text-xs">Billing questions, failed payments, subscription not activating, or refund requests.</p>
+                </div>
+              </div>
+            </div>
+
+            <form onSubmit={(e) => { e.preventDefault(); const form = e.target as HTMLFormElement; const userEmail = (form.elements.namedItem('issue-email') as HTMLInputElement).value; const issueType = (form.elements.namedItem('issue-type') as HTMLSelectElement).value; const details = (form.elements.namedItem('issue-details') as HTMLTextAreaElement).value; window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent(`[${issueType}] Support Request`)}&body=${encodeURIComponent(details)}%0A%0AFrom: ${encodeURIComponent(userEmail)}`; }} className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Your Email</label>
+                  <input type="email" name="issue-email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Issue Type</label>
+                  <select name="issue-type" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-transparent">
+                    <option value="Login Issue">Login Issue</option>
+                    <option value="Email Verification">Email Verification</option>
+                    <option value="Payment Failed">Payment Failed</option>
+                    <option value="Subscription Not Active">Subscription Not Active</option>
+                    <option value="Billing Question">Billing Question</option>
+                    <option value="Refund Request">Refund Request</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Describe the Issue</label>
+                <textarea name="issue-details" rows={4} placeholder="Please include any error messages you saw, the email you used to sign up, and when the issue started..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none"></textarea>
+              </div>
+              <button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm">
+                <i className="fa-solid fa-paper-plane mr-2"></i>Report Issue
+              </button>
+              <p className="text-gray-600 text-xs text-center">Submissions go to support@login.sfquizzer.com</p>
+            </form>
+          </div>
+
           {/* Help topics */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
