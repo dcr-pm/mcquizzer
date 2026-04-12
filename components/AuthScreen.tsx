@@ -195,16 +195,18 @@ const AuthScreen: React.FC = () => {
 
   // Shared landing nav
   const landingNav = (
-    <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-4 py-3">
-      <div className="max-w-5xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <button onClick={() => setLandingPage('home')} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+    <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-3 sm:px-4 py-2.5 sm:py-3">
+      <div className="max-w-5xl mx-auto flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <button onClick={() => setLandingPage('home')} className="flex items-center gap-1.5 sm:gap-2 hover:opacity-80 transition-opacity flex-shrink-0">
             <Logo size="sm" />
-            <span className="font-bold text-white text-lg">SF Quizzer</span>
+            <span className="font-bold text-white text-base sm:text-lg whitespace-nowrap">SF Quizzer</span>
           </button>
-          <StockTicker />
+          <div className="hidden sm:block">
+            <StockTicker />
+          </div>
         </div>
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
           <nav className="hidden md:flex items-center gap-1 mr-3">
             {[
               { key: 'about' as LandingPage, label: 'About' },
@@ -223,7 +225,7 @@ const AuthScreen: React.FC = () => {
           </nav>
           <button
             onClick={() => setShowSignIn(true)}
-            className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
+            className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-1.5 sm:py-2 px-4 sm:px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
           >
             Sign In
           </button>
@@ -399,34 +401,34 @@ const AuthScreen: React.FC = () => {
     return (
       <div className="min-h-dvh bg-gray-900 text-white">
         {landingNav}
-        <div className="max-w-4xl mx-auto px-4 py-10 sm:py-16">
-          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8 mb-8">
-            <div className="text-center mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-3">
-                <i className="fa-solid fa-envelope text-xl text-white"></i>
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-16">
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+            <div className="text-center mb-5 sm:mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mx-auto mb-3">
+                <i className="fa-solid fa-envelope text-lg sm:text-xl text-white"></i>
               </div>
-              <h1 className="text-2xl font-bold text-white mb-1">Contact Us</h1>
-              <p className="text-gray-400 text-sm">Have a question, suggestion, or just want to say hello? We would love to hear from you.</p>
+              <h1 className="text-xl sm:text-2xl font-bold text-white mb-1">Contact Us</h1>
+              <p className="text-gray-400 text-xs sm:text-sm">Have a question, suggestion, or just want to say hello? We would love to hear from you.</p>
             </div>
 
             {/* Contact info */}
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              <div className="bg-gray-900/50 rounded-xl p-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <i className="fa-solid fa-envelope text-blue-400"></i>
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="bg-gray-900/50 rounded-xl p-3 sm:p-4 flex items-center gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <i className="fa-solid fa-envelope text-blue-400 text-sm"></i>
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Email</p>
-                  <a href="mailto:support@login.sfquizzer.com" className="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-colors">support@login.sfquizzer.com</a>
+                  <a href="mailto:support@login.sfquizzer.com" className="text-blue-400 hover:text-blue-300 text-xs sm:text-sm font-semibold transition-colors truncate block">support@login.sfquizzer.com</a>
                 </div>
               </div>
-              <div className="bg-gray-900/50 rounded-xl p-4 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
-                  <i className="fa-solid fa-clock text-teal-400"></i>
+              <div className="bg-gray-900/50 rounded-xl p-3 sm:p-4 flex items-center gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-500/20 flex items-center justify-center flex-shrink-0">
+                  <i className="fa-solid fa-clock text-teal-400 text-sm"></i>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-wider font-bold">Response Time</p>
-                  <p className="text-gray-300 text-sm font-semibold">Within 24 hours</p>
+                  <p className="text-gray-300 text-xs sm:text-sm font-semibold">Within 24 hours</p>
                 </div>
               </div>
             </div>
@@ -445,21 +447,21 @@ const AuthScreen: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={async (e) => { e.preventDefault(); setContactSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'contact'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setContactSent(true); } catch { window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent('SF Quizzer: ' + (formData.get('subject') || 'Inquiry'))}&body=${encodeURIComponent(String(formData.get('message') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setContactSending(false); } }} className="space-y-4">
+              <form onSubmit={async (e) => { e.preventDefault(); setContactSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'contact'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setContactSent(true); } catch { window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent('SF Quizzer: ' + (formData.get('subject') || 'Inquiry'))}&body=${encodeURIComponent(String(formData.get('message') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setContactSending(false); } }} className="space-y-3 sm:space-y-4">
                 <input type="hidden" name="bot-field" />
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Name</label>
-                    <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Name</label>
+                    <input type="text" name="name" placeholder="Your name" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
                   </div>
                   <div>
-                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Email</label>
-                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent" />
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Subject</label>
-                  <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Subject</label>
+                  <select name="subject" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-transparent">
                     <option value="General Question">General Question</option>
                     <option value="Report a Bug">Report a Bug</option>
                     <option value="Feature Request">Feature Request</option>
@@ -467,10 +469,10 @@ const AuthScreen: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Message</label>
-                  <textarea name="message" rows={4} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none"></textarea>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Message</label>
+                  <textarea name="message" rows={3} placeholder="Tell us what's on your mind..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-transparent resize-none sm:[&]:rows-4"></textarea>
                 </div>
-                <button type="submit" disabled={contactSending} className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
+                <button type="submit" disabled={contactSending} className="w-full bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2.5 sm:py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
                   {contactSending ? <><i className="fa-solid fa-spinner fa-spin mr-2"></i>Sending...</> : <><i className="fa-solid fa-paper-plane mr-2"></i>Send Message</>}
                 </button>
                 <p className="text-gray-600 text-xs text-center">Or email us directly at support@login.sfquizzer.com</p>
@@ -479,31 +481,31 @@ const AuthScreen: React.FC = () => {
           </div>
 
           {/* Login & Payment Issues */}
-          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-6 sm:p-8 mb-8">
-            <div className="text-center mb-6">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mx-auto mb-3">
-                <i className="fa-solid fa-triangle-exclamation text-xl text-white"></i>
+          <div className="bg-gray-800/60 rounded-2xl border border-white/10 p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
+            <div className="text-center mb-5 sm:mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mx-auto mb-3">
+                <i className="fa-solid fa-triangle-exclamation text-lg sm:text-xl text-white"></i>
               </div>
-              <h2 className="text-xl font-bold text-white mb-1">Login or Payment Issues?</h2>
-              <p className="text-gray-400 text-sm">Having trouble signing in, verifying your email, or with a payment? Let us know and we will get it sorted.</p>
+              <h2 className="text-lg sm:text-xl font-bold text-white mb-1">Login or Payment Issues?</h2>
+              <p className="text-gray-400 text-xs sm:text-sm">Having trouble signing in, verifying your email, or with a payment? Let us know and we will get it sorted.</p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
-              <div className="bg-gray-900/50 rounded-xl p-4 flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <i className="fa-solid fa-right-to-bracket text-orange-400"></i>
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-5 sm:mb-6">
+              <div className="bg-gray-900/50 rounded-xl p-3 sm:p-4 flex items-start gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i className="fa-solid fa-right-to-bracket text-orange-400 text-sm"></i>
                 </div>
                 <div>
-                  <p className="text-white text-sm font-bold mb-1">Login Issues</p>
+                  <p className="text-white text-sm font-bold mb-0.5 sm:mb-1">Login Issues</p>
                   <p className="text-gray-500 text-xs">Not receiving the sign-in code, email verification problems, or account access issues.</p>
                 </div>
               </div>
-              <div className="bg-gray-900/50 rounded-xl p-4 flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <i className="fa-solid fa-credit-card text-red-400"></i>
+              <div className="bg-gray-900/50 rounded-xl p-3 sm:p-4 flex items-start gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <i className="fa-solid fa-credit-card text-red-400 text-sm"></i>
                 </div>
                 <div>
-                  <p className="text-white text-sm font-bold mb-1">Payment Issues</p>
+                  <p className="text-white text-sm font-bold mb-0.5 sm:mb-1">Payment Issues</p>
                   <p className="text-gray-500 text-xs">Billing questions, failed payments, subscription not activating, or refund requests.</p>
                 </div>
               </div>
@@ -522,16 +524,16 @@ const AuthScreen: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={async (e) => { e.preventDefault(); setIssueSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'issue-report'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setIssueSent(true); } catch { const issueType = formData.get('issue-type') || 'Support'; window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent(`[${issueType}] Support Request`)}&body=${encodeURIComponent(String(formData.get('details') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setIssueSending(false); } }} className="space-y-4">
+              <form onSubmit={async (e) => { e.preventDefault(); setIssueSending(true); const form = e.target as HTMLFormElement; const formData = new FormData(form); formData.append('form-name', 'issue-report'); try { await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(formData as any).toString() }); setIssueSent(true); } catch { const issueType = formData.get('issue-type') || 'Support'; window.location.href = `mailto:support@login.sfquizzer.com?subject=${encodeURIComponent(`[${issueType}] Support Request`)}&body=${encodeURIComponent(String(formData.get('details') || ''))}%0A%0AFrom: ${encodeURIComponent(String(formData.get('email') || ''))}`; } finally { setIssueSending(false); } }} className="space-y-3 sm:space-y-4">
                 <input type="hidden" name="bot-field" />
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Your Email</label>
-                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent" />
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Your Email</label>
+                    <input type="email" name="email" placeholder="you@example.com" required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent" />
                   </div>
                   <div>
-                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Issue Type</label>
-                    <select name="issue-type" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-transparent">
+                    <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Issue Type</label>
+                    <select name="issue-type" className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-transparent">
                       <option value="Login Issue">Login Issue</option>
                       <option value="Email Verification">Email Verification</option>
                       <option value="Payment Failed">Payment Failed</option>
@@ -542,10 +544,10 @@ const AuthScreen: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1.5 block">Describe the Issue</label>
-                  <textarea name="details" rows={4} placeholder="Please include any error messages you saw, the email you used to sign up, and when the issue started..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none"></textarea>
+                  <label className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1 sm:mb-1.5 block">Describe the Issue</label>
+                  <textarea name="details" rows={3} placeholder="Please include any error messages you saw, the email you used to sign up, and when the issue started..." required className="w-full bg-gray-900/60 border border-gray-700 rounded-xl p-2.5 sm:p-3 text-white text-sm placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-transparent resize-none"></textarea>
                 </div>
-                <button type="submit" disabled={issueSending} className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
+                <button type="submit" disabled={issueSending} className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-2.5 sm:py-3 rounded-xl shadow-lg hover:scale-[1.02] transform transition-transform text-sm disabled:opacity-60 disabled:hover:scale-100">
                   {issueSending ? <><i className="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...</> : <><i className="fa-solid fa-paper-plane mr-2"></i>Report Issue</>}
                 </button>
                 <p className="text-gray-600 text-xs text-center">Submissions go to support@login.sfquizzer.com</p>
@@ -554,16 +556,16 @@ const AuthScreen: React.FC = () => {
           </div>
 
           {/* Help topics */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
             {[
               { icon: 'fa-bug', label: 'Report a Bug', color: 'text-red-400', bg: 'bg-red-500/10' },
               { icon: 'fa-lightbulb', label: 'Feature Request', color: 'text-yellow-400', bg: 'bg-yellow-500/10' },
               { icon: 'fa-circle-question', label: 'General Help', color: 'text-blue-400', bg: 'bg-blue-500/10' },
               { icon: 'fa-handshake', label: 'Partnerships', color: 'text-green-400', bg: 'bg-green-500/10' },
             ].map(t => (
-              <div key={t.label} className="bg-gray-800/60 rounded-xl border border-white/5 p-4 text-center">
-                <div className={`w-10 h-10 rounded-xl ${t.bg} flex items-center justify-center mx-auto mb-2`}>
-                  <i className={`fa-solid ${t.icon} ${t.color}`}></i>
+              <div key={t.label} className="bg-gray-800/60 rounded-xl border border-white/5 p-3 sm:p-4 text-center">
+                <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl ${t.bg} flex items-center justify-center mx-auto mb-1.5 sm:mb-2`}>
+                  <i className={`fa-solid ${t.icon} ${t.color} text-sm`}></i>
                 </div>
                 <p className="text-gray-300 text-xs font-bold">{t.label}</p>
               </div>
