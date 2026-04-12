@@ -189,18 +189,28 @@ const AuthScreen: React.FC = () => {
   return (
     <div className="min-h-dvh bg-gray-900 text-white">
       {/* Top Nav */}
-      <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Logo size="sm" />
-          <span className="font-bold text-white text-lg">SF Quizzer</span>
-          <StockTicker />
+      <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-4 py-3">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Logo size="sm" />
+            <span className="font-bold text-white text-lg">SF Quizzer</span>
+            <StockTicker />
+          </div>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <nav className="hidden md:flex items-center gap-1 mr-3">
+              <a href="#about" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">About</a>
+              <a href="/news" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">SF News</a>
+              <a href="/jobs" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">Careers</a>
+              <a href="/contact" className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-white/5 transition-colors">Contact</a>
+            </nav>
+            <button
+              onClick={() => setShowSignIn(true)}
+              className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
+            >
+              Sign In
+            </button>
+          </div>
         </div>
-        <button
-          onClick={() => setShowSignIn(true)}
-          className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
-        >
-          Sign In
-        </button>
       </header>
 
       {/* Hero Section */}
@@ -339,6 +349,46 @@ const AuthScreen: React.FC = () => {
         </div>
       </div>
 
+      {/* About */}
+      <div id="about" className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
+        <div className="grid sm:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">About SF Quizzer</h2>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              SF Quizzer was built by Salesforce professionals, for Salesforce professionals. We know how tough certification exams can be, and we wanted to create a study tool that actually feels good to use.
+            </p>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              Every question is mapped to official exam domains. Every explanation teaches you the "why" behind the answer. And every feature is designed to make your study time count.
+            </p>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Whether you are preparing for your first Salesforce certification or adding another to your collection, SF Quizzer gives you the practice and confidence you need to pass.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-gray-800/60 rounded-xl border border-white/5 p-5 text-center">
+              <i className="fa-solid fa-bullseye text-2xl text-blue-400 mb-2"></i>
+              <p className="text-white font-bold text-sm">Exam-Focused</p>
+              <p className="text-gray-500 text-xs mt-1">Questions mapped to real exam domains</p>
+            </div>
+            <div className="bg-gray-800/60 rounded-xl border border-white/5 p-5 text-center">
+              <i className="fa-solid fa-graduation-cap text-2xl text-teal-400 mb-2"></i>
+              <p className="text-white font-bold text-sm">Learn by Doing</p>
+              <p className="text-gray-500 text-xs mt-1">Interactive paths with real scenarios</p>
+            </div>
+            <div className="bg-gray-800/60 rounded-xl border border-white/5 p-5 text-center">
+              <i className="fa-solid fa-clock text-2xl text-purple-400 mb-2"></i>
+              <p className="text-white font-bold text-sm">Study Anywhere</p>
+              <p className="text-gray-500 text-xs mt-1">Mobile-friendly, works on any device</p>
+            </div>
+            <div className="bg-gray-800/60 rounded-xl border border-white/5 p-5 text-center">
+              <i className="fa-solid fa-heart text-2xl text-red-400 mb-2"></i>
+              <p className="text-white font-bold text-sm">Community Built</p>
+              <p className="text-gray-500 text-xs mt-1">Made by the SF community, for the community</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* CTA */}
       <div className="bg-gradient-to-r from-blue-600/20 to-teal-600/20 border-y border-white/5">
         <div className="max-w-3xl mx-auto px-4 py-12 sm:py-16 text-center">
@@ -355,13 +405,61 @@ const AuthScreen: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <div className="max-w-4xl mx-auto px-4 py-8 text-center">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Logo size="sm" />
-          <span className="text-gray-400 font-bold">SF Quizzer</span>
+      <footer className="border-t border-white/5 bg-gray-900">
+        <div className="max-w-5xl mx-auto px-4 py-10 sm:py-14">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
+            {/* Brand */}
+            <div className="col-span-2 sm:col-span-1">
+              <div className="flex items-center gap-2 mb-3">
+                <Logo size="sm" />
+                <span className="text-white font-bold">SF Quizzer</span>
+              </div>
+              <p className="text-gray-500 text-xs leading-relaxed">Your Salesforce certification study partner. Practice smarter, pass faster.</p>
+              <div className="mt-3">
+                <StockTicker />
+              </div>
+            </div>
+
+            {/* Study */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-3">Study</h4>
+              <ul className="space-y-2">
+                <li><a href="/cert-prep" className="text-gray-400 hover:text-white text-sm transition-colors">Cert Prep Pro</a></li>
+                <li><a href="/quiz" className="text-gray-400 hover:text-white text-sm transition-colors">Quick Quiz</a></li>
+                <li><a href="/leaderboard" className="text-gray-400 hover:text-white text-sm transition-colors">Leaderboard</a></li>
+              </ul>
+            </div>
+
+            {/* Community */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-3">Community</h4>
+              <ul className="space-y-2">
+                <li><a href="/news" className="text-gray-400 hover:text-white text-sm transition-colors">SF News</a></li>
+                <li><a href="/jobs" className="text-gray-400 hover:text-white text-sm transition-colors">Salesforce Careers</a></li>
+                <li><a href="/blog" className="text-gray-400 hover:text-white text-sm transition-colors">From the Founder</a></li>
+                <li><a href="/testimonials" className="text-gray-400 hover:text-white text-sm transition-colors">Testimonials</a></li>
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-3">Support</h4>
+              <ul className="space-y-2">
+                <li><a href="#about" className="text-gray-400 hover:text-white text-sm transition-colors">About Us</a></li>
+                <li><a href="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</a></li>
+                <li><a href="/help" className="text-gray-400 hover:text-white text-sm transition-colors">How to Use</a></li>
+                <li><a href="/feedback" className="text-gray-400 hover:text-white text-sm transition-colors">Give Feedback</a></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-gray-600 text-xs">Built for the Salesforce community. Not affiliated with Salesforce, Inc.</p>
+            <p className="text-gray-600 text-xs">support@login.sfquizzer.com</p>
+          </div>
         </div>
-        <p className="text-gray-600 text-xs">Built for the Salesforce community. Not affiliated with Salesforce, Inc.</p>
-      </div>
+      </footer>
     </div>
   );
 };
