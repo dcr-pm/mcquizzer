@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../lib/AuthContext.tsx';
 import Logo from './Logo.tsx';
 import LandingQuiz from './LandingQuiz.tsx';
+import StockTicker from './StockTicker.tsx';
 
 type AuthStep = 'email' | 'verify';
 
@@ -187,6 +188,21 @@ const AuthScreen: React.FC = () => {
   // Landing page
   return (
     <div className="min-h-dvh bg-gray-900 text-white">
+      {/* Top Nav */}
+      <header className="sticky top-0 z-30 bg-gray-900/80 backdrop-blur-md border-b border-white/5 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <Logo size="sm" />
+          <span className="font-bold text-white text-lg">SF Quizzer</span>
+          <StockTicker />
+        </div>
+        <button
+          onClick={() => setShowSignIn(true)}
+          className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-5 rounded-lg text-sm hover:scale-105 transform transition-transform"
+        >
+          Sign In
+        </button>
+      </header>
+
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-blue-600/10 via-transparent to-transparent pointer-events-none"></div>

@@ -39,9 +39,7 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
           <Logo size="sm" />
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold">SF Quizzer</h1>
         </button>
-        <div className="hidden sm:block">
-          <StockTicker />
-        </div>
+        <StockTicker />
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
