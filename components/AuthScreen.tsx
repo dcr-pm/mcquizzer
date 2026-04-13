@@ -299,7 +299,7 @@ const AuthScreen: React.FC = () => {
                   </div>
                   <h3 className="text-white font-bold text-sm">Data Cloud Consultant</h3>
                 </div>
-                <p className="text-gray-500 text-xs">106 questions, 45 flashcards, interactive learning path</p>
+                <p className="text-gray-500 text-xs">150 questions, 45 flashcards, interactive learning path</p>
               </div>
             </div>
             <p className="text-gray-500 text-xs mt-4 text-center">More certifications coming soon.</p>
@@ -623,7 +623,7 @@ const AuthScreen: React.FC = () => {
       <div className="bg-gray-800/50 border-y border-white/5">
         <div className="max-w-4xl mx-auto px-4 py-6 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
           <div>
-            <p className="text-2xl sm:text-3xl font-bold text-white">335+</p>
+            <p className="text-2xl sm:text-3xl font-bold text-white">375+</p>
             <p className="text-xs sm:text-sm text-gray-400 mt-1">Practice Questions</p>
           </div>
           <div>
@@ -663,9 +663,9 @@ const AuthScreen: React.FC = () => {
               <i className="fa-solid fa-cloud text-xl text-white"></i>
             </div>
             <h3 className="text-lg font-bold text-white mb-1">Data Cloud Consultant</h3>
-            <p className="text-gray-400 text-sm mb-3">106 questions across 6 exam domains, plus interactive learning path</p>
+            <p className="text-gray-400 text-sm mb-3">150 questions across 6 exam domains, plus interactive learning path</p>
             <div className="flex gap-3 text-xs text-gray-500">
-              <span><i className="fa-solid fa-list-check mr-1 text-violet-400"></i>106 questions</span>
+              <span><i className="fa-solid fa-list-check mr-1 text-violet-400"></i>150 questions</span>
               <span><i className="fa-solid fa-clone mr-1 text-violet-400"></i>45 flashcards</span>
               <span><i className="fa-solid fa-route mr-1 text-violet-400"></i>Learning path</span>
             </div>
