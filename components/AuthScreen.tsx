@@ -378,7 +378,7 @@ const AuthScreen: React.FC = () => {
       <div className="min-h-dvh bg-gray-900 text-white">
         {landingNav}
         <div className="max-w-4xl mx-auto px-4">
-          <SFNewsScreen onBack={() => setLandingPage('home')} />
+          <SFNewsScreen onBack={() => setLandingPage('home')} backLabel="Back to Home" />
         </div>
       </div>
     );
@@ -390,7 +390,7 @@ const AuthScreen: React.FC = () => {
       <div className="min-h-dvh bg-gray-900 text-white">
         {landingNav}
         <div className="max-w-4xl mx-auto px-4">
-          <SFJobsScreen onBack={() => setLandingPage('home')} />
+          <SFJobsScreen onBack={() => setLandingPage('home')} backLabel="Back to Home" />
         </div>
       </div>
     );
@@ -609,12 +609,12 @@ const AuthScreen: React.FC = () => {
             >
               <i className="fa-solid fa-rocket mr-2"></i>Start Studying Free
             </button>
-            <a
-              href="#features"
+            <button
+              onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-gray-800/80 border border-white/10 text-gray-300 font-bold py-3.5 px-8 rounded-xl hover:bg-gray-700/80 transition-colors text-lg text-center"
             >
               Learn More
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -792,9 +792,9 @@ const AuthScreen: React.FC = () => {
             <div>
               <h4 className="text-white font-bold text-sm mb-3">Study</h4>
               <ul className="space-y-2">
-                <li><a href="/cert-prep" className="text-gray-400 hover:text-white text-sm transition-colors">Cert Prep Pro</a></li>
-                <li><a href="/quiz" className="text-gray-400 hover:text-white text-sm transition-colors">Quick Quiz</a></li>
-                <li><a href="/leaderboard" className="text-gray-400 hover:text-white text-sm transition-colors">Leaderboard</a></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">Cert Prep Pro</button></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">Quick Quiz</button></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">Leaderboard</button></li>
               </ul>
             </div>
 
@@ -802,10 +802,10 @@ const AuthScreen: React.FC = () => {
             <div>
               <h4 className="text-white font-bold text-sm mb-3">Community</h4>
               <ul className="space-y-2">
-                <li><a href="/news" className="text-gray-400 hover:text-white text-sm transition-colors">SF News</a></li>
-                <li><a href="/jobs" className="text-gray-400 hover:text-white text-sm transition-colors">Salesforce Careers</a></li>
-                <li><a href="/blog" className="text-gray-400 hover:text-white text-sm transition-colors">From the Founder</a></li>
-                <li><a href="/testimonials" className="text-gray-400 hover:text-white text-sm transition-colors">Testimonials</a></li>
+                <li><button onClick={() => { setLandingPage('news'); window.scrollTo(0, 0); }} className="text-gray-400 hover:text-white text-sm transition-colors">SF News</button></li>
+                <li><button onClick={() => { setLandingPage('careers'); window.scrollTo(0, 0); }} className="text-gray-400 hover:text-white text-sm transition-colors">Salesforce Careers</button></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">From the Founder</button></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">Testimonials</button></li>
               </ul>
             </div>
 
@@ -813,10 +813,10 @@ const AuthScreen: React.FC = () => {
             <div>
               <h4 className="text-white font-bold text-sm mb-3">Support</h4>
               <ul className="space-y-2">
-                <li><a href="#about" className="text-gray-400 hover:text-white text-sm transition-colors">About Us</a></li>
-                <li><a href="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</a></li>
-                <li><a href="/help" className="text-gray-400 hover:text-white text-sm transition-colors">How to Use</a></li>
-                <li><a href="/feedback" className="text-gray-400 hover:text-white text-sm transition-colors">Give Feedback</a></li>
+                <li><button onClick={() => { setLandingPage('about'); window.scrollTo(0, 0); }} className="text-gray-400 hover:text-white text-sm transition-colors">About Us</button></li>
+                <li><button onClick={() => { setLandingPage('contact'); window.scrollTo(0, 0); }} className="text-gray-400 hover:text-white text-sm transition-colors">Contact</button></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">How to Use</button></li>
+                <li><button onClick={() => setShowSignIn(true)} className="text-gray-400 hover:text-white text-sm transition-colors">Give Feedback</button></li>
               </ul>
             </div>
           </div>

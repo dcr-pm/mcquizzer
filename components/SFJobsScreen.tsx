@@ -11,6 +11,7 @@ interface Job {
 
 interface SFJobsScreenProps {
   onBack: () => void;
+  backLabel?: string;
 }
 
 const CLOUDS = [
@@ -56,7 +57,7 @@ const LOCATIONS = [
   { id: 'India', label: 'India' },
 ];
 
-const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
+const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack, backLabel = 'Back' }) => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -136,7 +137,7 @@ const SFJobsScreen: React.FC<SFJobsScreenProps> = ({ onBack }) => {
   return (
     <div className="py-6 sm:py-8 animate-fade-in-up max-w-3xl mx-auto">
       <button onClick={onBack} className="text-gray-400 hover:text-white text-sm mb-6 transition-colors">
-        <i className="fa-solid fa-arrow-left mr-2"></i>Back
+        <i className="fa-solid fa-arrow-left mr-2"></i>{backLabel}
       </button>
 
       <div className="text-center mb-6">

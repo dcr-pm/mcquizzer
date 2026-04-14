@@ -3,9 +3,10 @@ import { NewsItem } from '../types.ts';
 
 interface SFNewsScreenProps {
   onBack: () => void;
+  backLabel?: string;
 }
 
-const SFNewsScreen: React.FC<SFNewsScreenProps> = ({ onBack }) => {
+const SFNewsScreen: React.FC<SFNewsScreenProps> = ({ onBack, backLabel = 'Back to Dashboard' }) => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +40,7 @@ const SFNewsScreen: React.FC<SFNewsScreenProps> = ({ onBack }) => {
   return (
     <div className="py-6 sm:py-8 animate-fade-in-up max-w-3xl mx-auto">
       <button onClick={onBack} className="text-gray-400 hover:text-white text-sm mb-6 transition-colors">
-        <i className="fa-solid fa-arrow-left mr-2"></i>Back to Dashboard
+        <i className="fa-solid fa-arrow-left mr-2"></i>{backLabel}
       </button>
 
       <div className="text-center mb-8">

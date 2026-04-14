@@ -66,6 +66,16 @@ const Header: React.FC<HeaderProps> = ({ player, onNavigateHome, onSignOut, scre
               <span>{player.points.toLocaleString()}</span>
             </div>
 
+            {/* Sign Out Button */}
+            <button
+              onClick={onSignOut}
+              className="hidden sm:flex items-center gap-1.5 bg-gray-700/60 hover:bg-red-500/20 text-gray-400 hover:text-red-400 font-semibold py-1.5 px-3 rounded-lg text-xs transition-colors border border-transparent hover:border-red-500/30"
+              title="Sign Out"
+            >
+              <i className="fa-solid fa-right-from-bracket"></i>
+              <span>Logout</span>
+            </button>
+
             {/* User Avatar Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
